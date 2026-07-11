@@ -1,0 +1,58 @@
+{
+  "id": 1,
+  "semana": 1,
+  "modulo": "Onboarding",
+  "titulo": "Bienvenida a Mediastream y cómo trabajamos",
+  "objetivo": "Conocer qué es Mediastream y qué hace, sus valores reales, y dominar las herramientas de comunicación que usa el equipo de soporte para arrancar con el pie derecho.",
+  "bloques": [
+    {
+      "id": "b1",
+      "tipo": "teoria",
+      "titulo": "Qué es Mediastream, sus valores y cómo nos comunicamos",
+      "duracion": "50 min",
+      "html": "<h3>¿Qué es Mediastream?</h3><p>Mediastream es una empresa <b>líder en streaming desde 2007</b>, fundada por <b>Luis Ahumada</b> y con sede en <b>Santiago de Chile</b>. Ofrece una solución <b>end-to-end</b> para la <b>gestión, distribución y monetización</b> de contenido de audio y video, y atiende a <b>más de 300 clientes</b> en Latinoamérica y Europa.</p><p>Su ecosistema (la <b>Platform</b>) cubre todo lo que necesita un servicio de streaming: canales en vivo, VOD (video bajo demanda), podcasts, canales FAST, players, integraciones de IA y publicación en múltiples dispositivos (web, apps móviles y Smart TV). La monetización puede ser por <b>suscripción, PPV (pago por evento) o publicidad</b>.</p><div class=\"callout key\"><span class=\"ct\">Idea central del rol</span>Nuestro objetivo en soporte es hacer que este ecosistema complejo sea simple para el cliente, y mantener sus transmisiones funcionando.</div><h3>Nuestros valores</h3><p>Mediastream se guía por <b>honestidad, pasión y transparencia</b>. Se consideran esenciales para construir relaciones de confianza y asegurar el éxito tanto de los clientes como del equipo.</p><h3>Cómo nos comunicamos (herramientas oficiales)</h3><table><tr><th>Herramienta</th><th>Para qué se usa</th></tr><tr><td>Slack</td><td><b>Comunicación interna del equipo</b>: coordinación, dudas rápidas, canales temáticos y alertas automáticas de monitoreo.</td></tr><tr><td>Intercom</td><td><b>Comunicación con los clientes</b>: es la consola donde llegan y se gestionan los tickets/conversaciones de soporte.</td></tr><tr><td>Correo (Gmail)</td><td>Se usa en <b>casos específicos</b> (por ejemplo, comunicaciones formales puntuales con un cliente).</td></tr><tr><td>Google Calendar</td><td>Principalmente para <b>programar eventos y tareas</b>; también para agendar reuniones ocasionales.</td></tr></table><div class=\"callout tip\"><span class=\"ct\">Regla práctica</span>El día a día del equipo vive en Slack (interno) e Intercom (clientes). Si dudas dónde escribir algo, pregunta: ¿es para el equipo? → Slack. ¿es para un cliente? → Intercom.</div><h3>Qué se espera de ti en soporte</h3><ul><li>Aprender rápido y dominar las herramientas.</li><li>Dar un buen servicio y cuidar la experiencia del cliente.</li><li>Resolver de forma autónoma lo que puedas, escalando cuando corresponde.</li><li>Documentar lo que haces y los incidentes nuevos.</li></ul>"
+    },
+    {
+      "id": "b2",
+      "tipo": "practica",
+      "titulo": "Deja listas tus herramientas de trabajo",
+      "duracion": "80 min",
+      "requiereEvidencia": true,
+      "html": "<p>Con apoyo de tu supervisor, configura y explora tu entorno:</p><ol><li>Entra a <b>Slack</b>, preséntate en el canal del equipo e identifica los canales de soporte (incluidos los de alertas de monitoreo que veremos en el Día 14).</li><li>Accede a la consola de <b>Intercom</b> y familiarízate con la bandeja de conversaciones (la usaremos a fondo el Día 4).</li><li>Revisa tu <b>correo corporativo</b> y confirma que tienes acceso.</li><li>Abre <b>Google Calendar</b> y revisa cómo se agendan los eventos/tareas del equipo.</li></ol>"
+    },
+    {
+      "id": "b3",
+      "tipo": "shadowing",
+      "titulo": "Observa a un agente senior en operación",
+      "duracion": "60 min",
+      "html": "<p>Acompaña (presencial o por pantalla compartida) a un agente senior durante una hora real de operación. Observa:</p><ul><li>Cómo atiende una conversación de cliente en Intercom.</li><li>Cómo se coordina con el equipo por Slack.</li><li>Qué tono usa: cercano pero profesional.</li></ul><p>Anota 3 cosas que te sorprendieron y 1 duda para el cierre del día.</p>"
+    },
+    {
+      "id": "b4",
+      "tipo": "ejercicio",
+      "titulo": "Tus primeras notas del rol",
+      "duracion": "40 min",
+      "requiereEvidencia": true,
+      "html": "<p>Escribe con tus palabras:</p><ol><li>En una frase, ¿qué hace Mediastream?</li><li>¿Cómo aplicarías cada valor (honestidad, pasión, transparencia) al atender a un cliente?</li><li>Una regla personal para responder con calma a un cliente molesto.</li></ol><p>Comparte tus notas con tu supervisor.</p>"
+    }
+  ],
+  "quiz": {
+    "preguntasAMostrar": 10,
+    "umbral": 90,
+    "banco": [
+      { "enunciado": "¿Qué es Mediastream?", "tipo": "single", "opciones": ["Una empresa de streaming que ofrece una solución end-to-end para gestionar, distribuir y monetizar audio y video", "Un fabricante de encoders de hardware", "Una red social de video", "Un proveedor de internet"], "correctas": [0], "objetivo": "Qué es Mediastream", "explicacion": "Mediastream es una plataforma end-to-end de gestión, distribución y monetización de contenido de audio y video." },
+      { "enunciado": "¿Desde qué año Mediastream lidera en el mundo del streaming?", "tipo": "single", "opciones": ["2007", "2015", "1999", "2020"], "correctas": [0], "objetivo": "Qué es Mediastream", "explicacion": "Mediastream es líder en tecnología de streaming desde 2007." },
+      { "enunciado": "¿Cuáles son los valores de Mediastream?", "tipo": "single", "opciones": ["Honestidad, pasión y transparencia", "Excelencia, austeridad y compromiso", "Rapidez, ahorro y competencia", "Innovación, disciplina y jerarquía"], "correctas": [0], "objetivo": "Valores de Mediastream", "explicacion": "Los valores son honestidad, pasión y transparencia, base para construir relaciones de confianza." },
+      { "enunciado": "¿Qué herramienta se usa para la comunicación INTERNA del equipo de soporte?", "tipo": "single", "opciones": ["Slack", "Intercom", "El correo", "WhatsApp"], "correctas": [0], "objetivo": "Canales de comunicación", "explicacion": "La comunicación interna del equipo se hace por Slack; con los clientes es Intercom." },
+      { "enunciado": "¿Qué herramienta se usa para la comunicación con los CLIENTES?", "tipo": "single", "opciones": ["Intercom", "Slack", "Google Calendar", "El correo únicamente"], "correctas": [0], "objetivo": "Canales de comunicación", "explicacion": "Intercom es la consola donde se gestionan las conversaciones y tickets con clientes." },
+      { "enunciado": "¿Para qué se usa principalmente Google Calendar en el equipo?", "tipo": "single", "opciones": ["Para programar eventos y tareas (y a veces agendar reuniones)", "Para chatear con clientes", "Para transcodificar video", "Para monitorear alarmas"], "correctas": [0], "objetivo": "Canales de comunicación", "explicacion": "Calendar se usa sobre todo para programar eventos y tareas, y ocasionalmente reuniones." },
+      { "enunciado": "El correo (Gmail) en el flujo de trabajo se usa:", "tipo": "single", "opciones": ["En casos específicos, como comunicaciones formales puntuales", "Como canal principal del día a día", "Para el chat interno del equipo", "Nunca"], "correctas": [0], "objetivo": "Canales de comunicación", "explicacion": "El correo se reserva para casos específicos; el día a día vive en Slack (interno) e Intercom (clientes)." },
+      { "enunciado": "¿En qué modalidades puede monetizar un cliente con Mediastream? (selección múltiple)", "tipo": "multi", "opciones": ["Suscripción", "PPV (pago por evento)", "Publicidad", "Venta de encoders"], "correctas": [0, 1, 2], "objetivo": "Qué es Mediastream", "explicacion": "La monetización puede ser por suscripción, PPV o publicidad." },
+      { "enunciado": "El ecosistema de Mediastream permite publicar contenido en: (selección múltiple)", "tipo": "multi", "opciones": ["Web", "Apps móviles", "Smart TV", "Solo en televisión por cable"], "correctas": [0, 1, 2], "objetivo": "Qué es Mediastream", "explicacion": "La Platform publica en web, apps móviles y Smart TV, entre otros dispositivos." },
+      { "enunciado": "Necesitas coordinar algo rápido con un compañero del equipo. ¿Dónde lo haces?", "tipo": "single", "opciones": ["En Slack", "Abriendo un ticket en Intercom", "Por WhatsApp personal", "En Google Calendar"], "correctas": [0], "objetivo": "Canales de comunicación", "explicacion": "La coordinación interna rápida se hace por Slack." },
+      { "enunciado": "¿Qué se espera de ti en el rol de soporte? (selección múltiple)", "tipo": "multi", "opciones": ["Aprender rápido y dominar las herramientas", "Resolver de forma autónoma y escalar cuando corresponde", "Documentar lo que haces y los incidentes nuevos", "Evitar comunicarte con el equipo"], "correctas": [0, 1, 2], "objetivo": "Expectativas del rol", "explicacion": "Se espera aprendizaje continuo, buen servicio, resolución autónoma con escalamiento oportuno y documentación." },
+      { "enunciado": "¿Quién fundó Mediastream y dónde tiene su sede?", "tipo": "single", "opciones": ["Luis Ahumada; sede en Santiago de Chile", "Un grupo anónimo; sede en Estados Unidos", "Una empresa europea; sede en Madrid", "No se sabe"], "correctas": [0], "objetivo": "Qué es Mediastream", "explicacion": "Fue fundada por Luis Ahumada y tiene su sede en Santiago de Chile." },
+      { "enunciado": "Aproximadamente, ¿a cuántos clientes atiende Mediastream y en qué regiones?", "tipo": "single", "opciones": ["Más de 300 clientes en Latinoamérica y Europa", "Menos de 10, solo en Chile", "Miles, solo en Estados Unidos", "Uno, exclusivo"], "correctas": [0], "objetivo": "Qué es Mediastream", "explicacion": "Mediastream atiende a más de 300 clientes en Latinoamérica y Europa." }
+    ]
+  }
+}

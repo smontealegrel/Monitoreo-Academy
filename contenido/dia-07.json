@@ -1,0 +1,229 @@
+{
+  "id": 7,
+  "semana": 2,
+  "modulo": "Platform · Live",
+  "titulo": "Módulo Live y Live Editor",
+  "objetivo": "Aprender a crear y gestionar señales en vivo: opciones Quick Edit / Edit / DVR, Cloud Transcoding, tipos de evento, y usar Live Editor para extraer clips en tiempo real, respetando la crítica 'regla de zonas'.",
+  "bloques": [
+    {
+      "id": "b1",
+      "tipo": "teoria",
+      "titulo": "Señales en vivo, DVR, Cloud Transcoding, clips y regla de zonas",
+      "duracion": "75 min",
+      "html": "<p>El módulo <b>Live</b> es el motor de las transmisiones en tiempo real. Soporta video y audio: se crea con <i>New Live Stream</i> o <i>New Audio Stream</i> (radios: ingesta RTMP o Icecast, salidas HLS/Icecast).</p><h3>Tipos de evento</h3><table><tr><th>Tipo</th><th>Descripción</th></tr><tr><td>Live Event (único)</td><td>Evento con inicio y fin. Ej: conferencia, partido.</td></tr><tr><td>Live Recurring</td><td>Se repite según horario. Ej: noticiero diario.</td></tr><tr><td>24/7 Linear Channel</td><td>Canal continuo (se gestiona con Fast Channels).</td></tr></table><h3>Editar una señal</h3><ul><li><b>Quick Edit:</b> cambios rápidos de título, estado (Online/Offline), protocolo (HLS por defecto, RTMP legacy) y skin del player.</li><li><b>Edit (avanzada):</b> Publishing Points (zonas US, CL, BR), restricciones (geobloqueo ISO 3166, referer de dominio, whitelist de IP, restricciones ASN, límite de espectadores), imagen de error y thumbnails.</li><li><b>DVR (Timeshift):</b> permite pausar/retroceder el vivo. Grabaciones (Start Recording): máx. <b>3 h en RTMP</b> y máx. <b>5h 59m 59s en HLS</b> vía Cloud Transcoding.</li></ul><h3>Cloud Transcoding</h3><p>La Platform toma la señal del encoder y la transcodifica en la nube a múltiples calidades. El cliente envía UNA señal de alta calidad y Mediastream genera 1080p/720p/480p/360p.</p><h3>Live Editor</h3><p>Crea VOD recortando segmentos de una señal en vivo activa. Requiere <b>DVR/retención activo</b>. Modos: Live (cortes recientes) y Date Picker (pasado). Herramientas: marcador de entrada (I), de salida (O), procesar clip (C), zoom. El movimiento fino desplaza <b>12 ms por clic</b>. Máx. 6 h por clip y hasta 9 cortes por proceso.</p><div class=\"callout warn\"><span class=\"ct\">Regla de Zonas (súper crítica)</span>Para que la línea de tiempo cargue segmentos sin errores, la zona de publicación del Live y la zona geográfica de la cuenta deben COINCIDIR (una cuenta de Chile usa punto de publicación CL). Única excepción: el timeline siempre funciona en zona US para flujos de Audio y señales con Cloud Transcoding (AWS MediaLive).</div>"
+    },
+    {
+      "id": "b2",
+      "tipo": "practica",
+      "titulo": "Crear un evento en vivo y un clip",
+      "duracion": "90 min",
+      "requiereEvidencia": true,
+      "html": "<ol><li>Crea un evento en vivo de prueba en sandbox con Cloud Transcoding en 3 calidades.</li><li>Usa OBS en tu equipo como encoder y envía la señal a la URL de ingest.</li><li>Verifica que el evento pase a estado 'Live' en la Platform.</li><li>Usa Live Editor para crear un clip de 30 segundos.</li><li>Verifica que el clip aparece en el módulo Media.</li></ol>"
+    },
+    {
+      "id": "b3",
+      "tipo": "shadowing",
+      "titulo": "Caso: 'mi encoder envía pero no se ve nada'",
+      "duracion": "45 min",
+      "html": "<ol><li>¿El evento está en 'Live' o sigue en 'Scheduled'?</li><li>Si no está en 'Live': revisar el trayecto encoder → Mediastream (URL de ingest, firewall, stream key).</li><li>Comparar la URL de ingest del encoder vs. la que muestra la Platform.</li><li>Si está en 'Live' pero no se ve: revisar la configuración de publicación (¿player público habilitado?).</li></ol>"
+    },
+    {
+      "id": "b4",
+      "tipo": "ejercicio",
+      "titulo": "Explica la regla de zonas y los límites",
+      "duracion": "45 min",
+      "requiereEvidencia": true,
+      "html": "<ol><li>Explica con tus palabras la regla de zonas y su única excepción.</li><li>Haz una tabla con los límites de grabación (RTMP vs HLS).</li><li>Describe qué es DVR/Timeshift y por qué el Live Editor lo requiere.</li></ol>"
+    }
+  ],
+  "quiz": {
+    "preguntasAMostrar": 10,
+    "umbral": 90,
+    "banco": [
+      {
+        "enunciado": "Según la Regla de Zonas del Live Editor, ¿qué debe cumplirse para que la línea de tiempo cargue segmentos sin errores?",
+        "tipo": "single",
+        "opciones": [
+          "La zona de publicación del Live y la zona geográfica de la cuenta deben coincidir",
+          "El bitrate debe ser mayor a 6000 kbps",
+          "El evento debe estar en modo Loop",
+          "El player debe estar en modo oscuro"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Regla de zonas",
+        "explicacion": "Deben coincidir (ej. cuenta de Chile → punto de publicación CL) o el timeline arroja errores."
+      },
+      {
+        "enunciado": "¿Cuál es la única excepción donde el timeline del Live Editor siempre funciona en zona US?",
+        "tipo": "single",
+        "opciones": [
+          "Flujos de Audio y señales que usan Cloud Transcoding (AWS MediaLive)",
+          "Solo los eventos de fútbol",
+          "Cuando el cliente está en Brasil",
+          "Nunca hay excepción"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Regla de zonas",
+        "explicacion": "La excepción son los flujos de Audio y señales con Cloud Transcoding, que siempre funcionan en zona US."
+      },
+      {
+        "enunciado": "¿Qué requisito debe tener una señal para poder extraer clips con Live Editor?",
+        "tipo": "single",
+        "opciones": [
+          "Tener el DVR/retención activo",
+          "Estar en 4K",
+          "Usar RTMP obligatoriamente",
+          "Tener publicidad DAI"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Live Editor",
+        "explicacion": "El Live Editor necesita DVR/retención activo para poder cargar los segmentos y recortar."
+      },
+      {
+        "enunciado": "El límite de grabación (Start Recording) es:",
+        "tipo": "single",
+        "opciones": [
+          "Máx. 3 h en RTMP y máx. 5h 59m 59s en HLS vía Cloud Transcoding",
+          "Máx. 1 h para todo",
+          "Sin límite",
+          "Máx. 12 h para RTMP"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Grabación en vivo",
+        "explicacion": "RTMP: 3 h. HLS vía Cloud Transcoding: 5h 59m 59s."
+      },
+      {
+        "enunciado": "¿Qué ventaja da el Cloud Transcoding al cliente?",
+        "tipo": "single",
+        "opciones": [
+          "Solo necesita enviar UNA señal de alta calidad; la Platform genera las demás calidades",
+          "Le permite no usar internet",
+          "Elimina la latencia por completo",
+          "Le da acceso a Intercom"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Cloud Transcoding",
+        "explicacion": "El cliente manda una sola señal y Mediastream genera 1080p/720p/480p/360p en la nube."
+      },
+      {
+        "enunciado": "En Quick Edit se pueden cambiar rápidamente: (selección múltiple)",
+        "tipo": "multi",
+        "opciones": [
+          "Título de la señal",
+          "Estado Online/Offline",
+          "Skin del player",
+          "Las credenciales VPN del cliente"
+        ],
+        "correctas": [
+          0,
+          1,
+          2
+        ],
+        "objetivo": "Edición de señales",
+        "explicacion": "Quick Edit maneja título, estado, protocolo preferido y skin. No gestiona credenciales VPN."
+      },
+      {
+        "enunciado": "El movimiento fino (Move Selection) en Live Editor desplaza:",
+        "tipo": "single",
+        "opciones": [
+          "12 milisegundos por clic",
+          "1 segundo por clic",
+          "1 minuto por clic",
+          "12 segundos por clic"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Live Editor",
+        "explicacion": "El movimiento fino realiza desplazamientos de 12 ms por clic para cortes precisos."
+      },
+      {
+        "enunciado": "Un evento sigue en 'Scheduled' y no pasa a 'Live'. ¿Dónde está el problema?",
+        "tipo": "single",
+        "opciones": [
+          "En el trayecto encoder → Mediastream (URL de ingest, firewall o stream key)",
+          "En la CDN de México",
+          "En el módulo Analytics",
+          "En la Papelera de Media"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Diagnóstico de Live",
+        "explicacion": "Si no llega la señal, el evento no pasa a Live: se revisa URL de ingest, firewall y stream key."
+      },
+      {
+        "enunciado": "En la edición avanzada (Edit) de una señal se configuran restricciones como: (selección múltiple)",
+        "tipo": "multi",
+        "opciones": [
+          "Geobloqueo (ISO 3166)",
+          "Whitelist de direcciones IP",
+          "Límite de espectadores concurrentes",
+          "El códec del encoder del cliente"
+        ],
+        "correctas": [
+          0,
+          1,
+          2
+        ],
+        "objetivo": "Edición de señales",
+        "explicacion": "Edit maneja Publishing Points y restricciones de acceso (geobloqueo, referer, IP, ASN, límite de espectadores)."
+      },
+      {
+        "enunciado": "¿Cuántos cortes admite Live Editor en un solo proceso y cuál es la duración máxima por clip?",
+        "tipo": "single",
+        "opciones": [
+          "Hasta 9 cortes por proceso; máximo 6 horas por clip",
+          "Hasta 3 cortes; máximo 1 hora",
+          "Ilimitados cortes; sin límite de duración",
+          "1 corte; máximo 12 horas"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Live Editor",
+        "explicacion": "Máximo 9 cortes por proceso y 6 horas de duración por clip."
+      },
+      {
+        "enunciado": "Un cliente (cuenta de Chile) no logra que el Live Editor cargue la línea de tiempo. ¿Qué revisas primero?",
+        "tipo": "single",
+        "opciones": [
+          "Que la zona de publicación del Live coincida con la zona de la cuenta (CL)",
+          "El color del player",
+          "La cuota de la Papelera",
+          "El feed RSS"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Regla de zonas",
+        "explicacion": "La Regla de Zonas: publicación y cuenta deben coincidir (salvo Audio/Cloud Transcoding, que van en US)."
+      },
+      {
+        "enunciado": "El evento está en 'Live' pero los espectadores no ven nada. ¿Qué revisas?",
+        "tipo": "single",
+        "opciones": [
+          "La configuración de publicación (¿está habilitado el player público?)",
+          "El límite de 20 GB",
+          "El Archive Path",
+          "La metadata ID3"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Diagnóstico de Live",
+        "explicacion": "Si la señal llega (Live) pero no se ve, se revisa la publicación/player público."
+      }
+    ]
+  }
+}

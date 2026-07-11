@@ -1,0 +1,227 @@
+{
+  "id": 14,
+  "semana": 3,
+  "modulo": "Diagnóstico",
+  "titulo": "Monitoreo, QoE y Analytics (Elecard Boro)",
+  "objetivo": "Aprender monitoreo proactivo con Elecard Boro (alta de señal, alarmas QoE), leer un manifiesto .m3u8 para diagnóstico, e interpretar las métricas de Analytics Now/Performance y Crashlytics.",
+  "bloques": [
+    {
+      "id": "b1",
+      "tipo": "teoria",
+      "titulo": "Elecard Boro, alarmas, leer .m3u8 y Analytics",
+      "duracion": "80 min",
+      "html": "<h3>Monitoreo proactivo con Elecard Boro</h3><p>Detectar problemas ANTES de que el cliente los reporte. Boro monitorea streams HLS en tiempo real y mide calidad (bitrate real, fps, nivel de audio). Alta de una señal (resumen): <i>Add task</i> → protocolo de entrada <b>OTT</b> (para HLS de Mediastream) → URL del manifiesto <code>.m3u8</code> con parámetros de administración → nomenclatura estándar <code>[TIPO] - [CUENTA]: [CONTEXTO] - [NOMBRE_LIVE] | [PROVEEDOR] - [ID_LIVE]</code> (TIPO = 'V' video, 'R' audio) → asignar alarma y webhook. Para Video: alarma 'soporte' + webhook 'soporte_boro', y en QoE Options activar Video Freeze Detection y Thumbnails Capture. Para Audio: alarma 'SoporteAudio' + webhook 'soporte_boro_Audio', activando solo Audio Loudness y Audio Decodability.</p><h3>Tipos de alarma comunes</h3><table><tr><th>Alarma</th><th>Significado</th></tr><tr><td>Input Loss</td><td>La señal de entrada desapareció.</td></tr><tr><td>Bitrate Drop</td><td>El bitrate cayó bruscamente (posible problema de red).</td></tr><tr><td>Audio Silence</td><td>El stream está sin audio.</td></tr><tr><td>Black Frame</td><td>Solo pantalla negra.</td></tr><tr><td>Segment Missing</td><td>Falta un segmento en el manifiesto (causa buffering).</td></tr></table><h3>Leer un manifiesto .m3u8</h3><p>El master lista variantes: <code>#EXT-X-STREAM-INF:BANDWIDTH=2800000,RESOLUTION=1280x720</code> seguido de la URL del sub-manifiesto de esa calidad. En un live, si los últimos segmentos tienen más de 30 s de antigüedad, el stream se ha detenido. Si el .m3u8 devuelve 404, el stream no existe o la URL está mal.</p><h3>Analytics</h3><ul><li><b>Analytics Now:</b> Streams, Time, Devices, Playback Start, Concurrency (live).</li><li><b>Analytics Performance (admin):</b> curvas de concurrencia, errores de reproducción, First Buffer y ReBuffering, tablas de errores del player (ej. manifest.loadTimeOut, BehindLiveWindowException) y restricciones que bloquearon reproducciones.</li><li><b>Crashlytics (mobile):</b> errores fatales iOS/Android. Estabilidad óptima 97–99%; si baja del 95% se detiene el rollout. Nota: errores de backend de API (ej. HTTP 400 por recaptcha) NO se registran en Crashlytics.</li></ul><div class=\"callout key\"><span class=\"ct\">Uso en soporte</span>Antes de asumir un problema técnico, revisa Analytics: si hay views y bandwidth normales, el problema puede ser del lado del usuario (ad-blocker, red corporativa).</div>"
+    },
+    {
+      "id": "b2",
+      "tipo": "practica",
+      "titulo": "Leer un .m3u8 y dar de alta una señal en Boro",
+      "duracion": "80 min",
+      "requiereEvidencia": true,
+      "html": "<ol><li>Abre un stream HLS público y examina su manifiesto: ¿cuántas calidades? ¿BANDWIDTH máximo?</li><li>Abre el sub-manifiesto de la calidad más alta y cuenta los segmentos.</li><li>En el entorno de prueba de Boro, da de alta una señal con la nomenclatura estándar y activa thumbnails + alarmas QoE.</li><li>Configura una alerta de prueba y verifica que llega el webhook a Slack.</li></ol>"
+    },
+    {
+      "id": "b3",
+      "tipo": "shadowing",
+      "titulo": "Caso: 'alarma de Audio Silence hace 10 minutos'",
+      "duracion": "45 min",
+      "html": "<ol><li>Verificar en el player: abrir el stream y confirmar el silencio.</li><li>Notificar de inmediato al cliente (no esperar a que reporte).</li><li>Revisar el estado del evento/canal en la plataforma.</li><li>Conectarse (VPN) al encoder: en Elemental Live revisar el 'Input Audio Level'.</li><li>Si el nivel es correcto en el encoder pero no en el stream, el problema está en los outputs del encoder.</li></ol>"
+    },
+    {
+      "id": "b4",
+      "tipo": "ejercicio",
+      "titulo": "Guía de alarmas y lectura de manifiesto",
+      "duracion": "45 min",
+      "requiereEvidencia": true,
+      "html": "<ol><li>Haz una tabla de alarmas de Boro y qué revisarías ante cada una.</li><li>Escribe los pasos para saber si un live se ha detenido leyendo el .m3u8.</li><li>Explica la diferencia entre Analytics Now y Analytics Performance.</li><li>¿Qué NO registra Crashlytics y por qué?</li></ol>"
+    }
+  ],
+  "quiz": {
+    "preguntasAMostrar": 10,
+    "umbral": 90,
+    "banco": [
+      {
+        "enunciado": "¿Qué es el monitoreo proactivo con Elecard Boro?",
+        "tipo": "single",
+        "opciones": [
+          "Detectar problemas ANTES de que el cliente los reporte",
+          "Esperar a que el cliente abra un ticket",
+          "Transcodificar archivos VOD",
+          "Configurar el player"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Monitoreo proactivo",
+        "explicacion": "Boro monitorea en tiempo real para anticiparse a los problemas antes de que el cliente los note."
+      },
+      {
+        "enunciado": "Al dar de alta una señal de VIDEO en Boro, ¿qué opciones de QoE se activan obligatoriamente?",
+        "tipo": "single",
+        "opciones": [
+          "Video Freeze Detection y Thumbnails Capture",
+          "Solo Audio Loudness",
+          "Ninguna",
+          "Solo el check Lite"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Alta de señal en Boro",
+        "explicacion": "Para Video se activan Video Freeze Detection y Thumbnails Capture; esas se desactivan para Audio."
+      },
+      {
+        "enunciado": "La alarma 'Segment Missing' significa que:",
+        "tipo": "single",
+        "opciones": [
+          "Falta un segmento en el manifiesto HLS, lo que causa buffering",
+          "El audio está en silencio",
+          "La señal de entrada desapareció",
+          "El bitrate subió"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Tipos de alarma",
+        "explicacion": "Segment Missing = falta un segmento en el manifiesto, provocando buffering en el player."
+      },
+      {
+        "enunciado": "Al leer un .m3u8 de un live, ¿cómo sabes que el stream se ha detenido?",
+        "tipo": "single",
+        "opciones": [
+          "Si los últimos segmentos tienen más de 30 segundos de antigüedad",
+          "Si tiene más de 3 calidades",
+          "Si el BANDWIDTH es alto",
+          "Si la resolución es 1280x720"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Leer manifiesto",
+        "explicacion": "En un live, segmentos con más de 30 s de antigüedad indican que dejó de generarse contenido."
+      },
+      {
+        "enunciado": "Si la URL del manifiesto .m3u8 devuelve un error 404:",
+        "tipo": "single",
+        "opciones": [
+          "El stream no existe o la URL está mal",
+          "El stream está perfecto",
+          "Hay demasiados espectadores",
+          "Es un problema de Crashlytics"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Leer manifiesto",
+        "explicacion": "Un 404 en el manifiesto significa que el recurso no existe o la URL es incorrecta."
+      },
+      {
+        "enunciado": "En un master .m3u8, la línea #EXT-X-STREAM-INF con BANDWIDTH y RESOLUTION describe:",
+        "tipo": "single",
+        "opciones": [
+          "Una variante de calidad del stream (seguida de la URL de su sub-manifiesto)",
+          "El nivel de audio",
+          "Un error del player",
+          "La cuota de almacenamiento"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Leer manifiesto",
+        "explicacion": "Cada #EXT-X-STREAM-INF define una variante de calidad con su bitrate y resolución."
+      },
+      {
+        "enunciado": "¿Qué rango de estabilidad se considera óptimo en Crashlytics y cuándo se detiene el rollout?",
+        "tipo": "single",
+        "opciones": [
+          "Óptimo 97–99% de sesiones sin crash; se detiene el rollout si baja del 95%",
+          "Óptimo 50%; se detiene si baja del 10%",
+          "Óptimo 100% siempre",
+          "No hay umbral"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Crashlytics",
+        "explicacion": "97–99% es óptimo; bajo 95% se detiene el rollout de la versión móvil."
+      },
+      {
+        "enunciado": "Un error de backend de API (ej. HTTP 400 por recaptcha en login) en la app móvil:",
+        "tipo": "single",
+        "opciones": [
+          "NO se registra en Crashlytics, porque la app no se cierra",
+          "Se registra siempre como crash fatal",
+          "Detiene la CDN",
+          "Genera una alarma de Audio Silence"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Crashlytics",
+        "explicacion": "Crashlytics registra crashes de código; un error de red controlado por la app (que no la cierra) no aparece ahí."
+      },
+      {
+        "enunciado": "Antes de asumir un problema técnico cuando un cliente dice 'mi video no se ve', ¿qué conviene revisar en Analytics?",
+        "tipo": "single",
+        "opciones": [
+          "Si hay views y bandwidth normales (si los hay, puede ser problema del lado del usuario)",
+          "El color del player",
+          "La Papelera de Media",
+          "El Archive Path del Watchfolder"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Uso de Analytics",
+        "explicacion": "Si Analytics muestra actividad normal, el problema puede ser del usuario (ad-blocker, red corporativa)."
+      },
+      {
+        "enunciado": "En la nomenclatura estándar de Boro, ¿qué indica el TIPO 'R'?",
+        "tipo": "single",
+        "opciones": [
+          "Señal de Audio (Radio)",
+          "Señal de respaldo",
+          "Resolución alta",
+          "Región restringida"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Alta de señal en Boro",
+        "explicacion": "En [TIPO] - [CUENTA]:..., 'V' es Video y 'R' es Audio (Radio)."
+      },
+      {
+        "enunciado": "¿Cuáles son alarmas comunes en Elecard Boro? (selección múltiple)",
+        "tipo": "multi",
+        "opciones": [
+          "Input Loss",
+          "Bitrate Drop",
+          "Black Frame",
+          "Purge Cache"
+        ],
+        "correctas": [
+          0,
+          1,
+          2
+        ],
+        "objetivo": "Tipos de alarma",
+        "explicacion": "Input Loss, Bitrate Drop, Audio Silence, Black Frame y Segment Missing son alarmas. 'Purge Cache' es una acción de CDN, no una alarma."
+      },
+      {
+        "enunciado": "Boro dispara 'Audio Silence' en un canal. Como soporte proactivo, ¿qué haces primero?",
+        "tipo": "single",
+        "opciones": [
+          "Confirmar el silencio en el player y notificar al cliente sin esperar a que reporte",
+          "Ignorar hasta que el cliente escriba",
+          "Borrar la señal en Boro",
+          "Subir el bitrate"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Monitoreo proactivo",
+        "explicacion": "Monitoreo proactivo = confirmar y avisar antes de que el cliente reporte; luego diagnosticar el audio en el encoder."
+      }
+    ]
+  }
+}

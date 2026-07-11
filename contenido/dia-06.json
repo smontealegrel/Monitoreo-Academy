@@ -1,0 +1,231 @@
+{
+  "id": 6,
+  "semana": 2,
+  "modulo": "Platform · Media",
+  "titulo": "Módulo Media — ingesta, transcodificación y VOD",
+  "objetivo": "Dominar el módulo Media: subir contenido con sus límites físicos, entender la transcodificación automática, los estados de un media, los metadatos y las acciones masivas para administrar el ciclo de vida del VOD.",
+  "bloques": [
+    {
+      "id": "b1",
+      "tipo": "teoria",
+      "titulo": "Ingesta, límites, estados, metadatos y acciones masivas",
+      "duracion": "70 min",
+      "html": "<p>El módulo <b>Media</b> es el repositorio de contenido VOD: el 'disco duro en la nube' de cada cliente, con superpoderes de transcodificación y distribución.</p><h3>Subir contenido (Upload New Media) — límites físicos</h3><ul><li><b>Tamaño máximo:</b> hasta 20 GB por archivo.</li><li><b>Duración máxima:</b> 11 horas, 59 minutos y 59 segundos.</li><li><b>Formatos:</b> avi, mpg, mpeg, 3gp, flv, f4v, mp4, m4v, mkv, mov, mxf, wmv, mp3, aac, m4a, wav, ogg, wma.</li></ul><p>Al recibir la ingesta, la Platform transcodifica automáticamente a MP4 (H.264) generando perfiles desde 144p hasta 1080p. Si subes un 4K (2160p), conserva el original pero procesa las calidades de reproducción hasta un <b>máximo de 1080p</b>.</p><h3>Estados de un media</h3><table><tr><th>Estado</th><th>Significado</th></tr><tr><td>Uploading</td><td>El archivo se está subiendo.</td></tr><tr><td>Processing</td><td>Se está transcodificando a las calidades configuradas.</td></tr><tr><td>Ready</td><td>Listo para publicarse y reproducirse.</td></tr><tr><td>Error</td><td>Falló la subida o la transcodificación.</td></tr></table><h3>Metadatos</h3><p>Título, descripción, categorías, tags, fecha de publicación, restricciones geográficas (geo-blocking) y protección DRM. Importantes para búsqueda, organización y monetización.</p><h3>Acciones masivas y Papelera</h3><p>Puedes seleccionar múltiples videos para publicarlos, despublicarlos o enviarlos a la <b>Papelera (Trash)</b> en bloque. La Papelera permite recuperar medias borradas por error o eliminarlas permanentemente para liberar cuota de almacenamiento.</p><div class=\"callout tip\"><span class=\"ct\">Diagnóstico</span>Si un video lleva mucho tiempo en 'Processing': revisa el tamaño del original, el perfil elegido (más calidades/H.265 = más lento), si hay jobs en cola y si hay algún error real en el log.</div>"
+    },
+    {
+      "id": "b2",
+      "tipo": "practica",
+      "titulo": "Subir un video y verificar el ABR",
+      "duracion": "80 min",
+      "requiereEvidencia": true,
+      "html": "<ol><li>Sube un clip corto (1–2 min) al entorno de prueba.</li><li>Completa TODOS los metadatos: título, descripción, categoría, tags.</li><li>Selecciona un perfil de transcodificación con al menos 3 calidades.</li><li>Espera a que pase de Processing a Ready y verifica que las 3 calidades están disponibles.</li><li>Reprodúcelo y comprueba el ABR cambiando la calidad manualmente.</li><li>Documenta el tiempo de procesamiento y las calidades generadas.</li></ol>"
+    },
+    {
+      "id": "b3",
+      "tipo": "shadowing",
+      "titulo": "Caso: 'lleva 2 horas en Processing'",
+      "duracion": "45 min",
+      "html": "<p>Observa el diagnóstico de un video de 45 min atascado en Processing:</p><ol><li>¿Tamaño del archivo original?</li><li>¿Qué perfil se eligió? (5 calidades en H.265 tarda más).</li><li>¿Hay jobs en cola?</li><li>Revisar logs por si hay un error real.</li></ol><p>Resolución: si hay error, cancelar y reintentar; si es solo tiempo, informar al cliente el estimado.</p>"
+    },
+    {
+      "id": "b4",
+      "tipo": "ejercicio",
+      "titulo": "Ficha de límites y estados",
+      "duracion": "45 min",
+      "requiereEvidencia": true,
+      "html": "<ol><li>Crea una ficha de referencia rápida con los límites de Upload New Media (tamaño, duración, formatos).</li><li>Dibuja el ciclo de estados de un media (Uploading → Processing → Ready / Error).</li><li>Explica qué hace la Papelera y por qué liberar cuota es importante (valor: Austeridad).</li></ol>"
+    }
+  ],
+  "quiz": {
+    "preguntasAMostrar": 10,
+    "umbral": 90,
+    "banco": [
+      {
+        "enunciado": "¿Cuál es el tamaño máximo por archivo en Upload New Media?",
+        "tipo": "single",
+        "opciones": [
+          "20 GB",
+          "2 GB",
+          "100 GB",
+          "Sin límite"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Límites de ingesta",
+        "explicacion": "El límite es 20 GB por archivo."
+      },
+      {
+        "enunciado": "¿Cuál es la duración máxima de un archivo subido a Media?",
+        "tipo": "single",
+        "opciones": [
+          "11 horas, 59 minutos y 59 segundos",
+          "3 horas",
+          "24 horas",
+          "6 horas"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Límites de ingesta",
+        "explicacion": "La duración máxima es 11h 59m 59s."
+      },
+      {
+        "enunciado": "Si subes un video original en 4K (2160p), ¿qué hace la Platform?",
+        "tipo": "single",
+        "opciones": [
+          "Conserva el original pero procesa las calidades de reproducción hasta un máximo de 1080p",
+          "Rechaza el archivo por ser muy grande",
+          "Reproduce siempre en 4K",
+          "Lo convierte solo a 360p"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Transcodificación",
+        "explicacion": "Se guarda el original de alta calidad, pero las calidades de reproducción llegan hasta 1080p."
+      },
+      {
+        "enunciado": "El estado 'Ready' de un media significa:",
+        "tipo": "single",
+        "opciones": [
+          "Está listo para publicarse y reproducirse",
+          "Se está subiendo",
+          "Se está transcodificando",
+          "Hubo un error"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Estados de un media",
+        "explicacion": "Ready = listo. Uploading = subiendo, Processing = transcodificando, Error = falló."
+      },
+      {
+        "enunciado": "Ordena mentalmente: ¿cuál es el estado mientras el sistema genera las calidades del video?",
+        "tipo": "single",
+        "opciones": [
+          "Processing",
+          "Uploading",
+          "Ready",
+          "Error"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Estados de un media",
+        "explicacion": "Processing es el estado durante la transcodificación a las calidades configuradas."
+      },
+      {
+        "enunciado": "¿Para qué sirven las Acciones Masivas en Media? (selección múltiple)",
+        "tipo": "multi",
+        "opciones": [
+          "Publicar varios videos a la vez",
+          "Despublicar varios videos a la vez",
+          "Enviar varios videos a la Papelera en bloque",
+          "Cambiar el bitrate del encoder del cliente"
+        ],
+        "correctas": [
+          0,
+          1,
+          2
+        ],
+        "objetivo": "Acciones masivas",
+        "explicacion": "Las acciones masivas publican, despublican o mandan a Papelera en bloque. No tocan el encoder del cliente."
+      },
+      {
+        "enunciado": "¿Qué permite la Papelera (Trash)?",
+        "tipo": "single",
+        "opciones": [
+          "Recuperar medias borradas por error o eliminarlas permanentemente para liberar cuota",
+          "Aumentar el límite de 20 GB",
+          "Transcodificar a 4K",
+          "Crear canales FAST"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Ciclo de vida del VOD",
+        "explicacion": "La Papelera permite recuperar o borrar definitivamente para liberar cuota de almacenamiento."
+      },
+      {
+        "enunciado": "Un video de 45 min lleva 2 h en 'Processing'. ¿Qué es razonable revisar? (selección múltiple)",
+        "tipo": "multi",
+        "opciones": [
+          "El tamaño del archivo original",
+          "El perfil elegido (más calidades o H.265 tardan más)",
+          "Si hay muchos jobs en cola",
+          "El color del skin del player"
+        ],
+        "correctas": [
+          0,
+          1,
+          2
+        ],
+        "objetivo": "Diagnóstico de Media",
+        "explicacion": "Tamaño, perfil y cola explican tiempos largos. El skin del player no afecta la transcodificación."
+      },
+      {
+        "enunciado": "¿A qué formato/códec transcodifica automáticamente la Platform al recibir la ingesta?",
+        "tipo": "single",
+        "opciones": [
+          "MP4 (H.264), generando perfiles desde 144p hasta 1080p",
+          "Solo a AV1 en 4K",
+          "A WAV para audio",
+          "No transcodifica, guarda el original tal cual"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Transcodificación",
+        "explicacion": "La ingesta se transcodifica automáticamente a MP4 (H.264) con perfiles de 144p a 1080p."
+      },
+      {
+        "enunciado": "¿Cuáles de estos son metadatos de un media? (selección múltiple)",
+        "tipo": "multi",
+        "opciones": [
+          "Título y descripción",
+          "Tags y categorías",
+          "Restricciones geográficas (geo-blocking)",
+          "La contraseña VPN del cliente"
+        ],
+        "correctas": [
+          0,
+          1,
+          2
+        ],
+        "objetivo": "Metadatos",
+        "explicacion": "Los metadatos incluyen título, descripción, tags, categorías, geo-blocking, DRM y fecha de publicación."
+      },
+      {
+        "enunciado": "Un cliente dice que su video 'quedó en Error' tras subirlo. ¿Qué acción corresponde?",
+        "tipo": "single",
+        "opciones": [
+          "Revisar el log del job y, si hay error real, reprocesar el video",
+          "Decirle que espere 2 horas",
+          "Borrarlo de la Papelera",
+          "Cambiar la zona de publicación"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Diagnóstico de Media",
+        "explicacion": "El estado Error indica fallo de subida/transcodificación; se revisa el log y se reprocesa si aplica."
+      },
+      {
+        "enunciado": "Un cliente subió un archivo de 25 GB y falló. ¿Cuál es la causa más probable?",
+        "tipo": "single",
+        "opciones": [
+          "Supera el límite de 20 GB por archivo",
+          "El formato no existe",
+          "Le falta la VPN",
+          "La CDN está caída"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Límites de ingesta",
+        "explicacion": "El límite es 20 GB por archivo; 25 GB lo supera."
+      }
+    ]
+  }
+}

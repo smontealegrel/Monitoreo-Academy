@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mediastream Academy · Soporte Técnico</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="#/" class="brand">
+        <span class="brand-mark">▶</span>
+        <span class="brand-text">Mediastream <b>Academy</b></span>
+      </a>
+      <nav class="topnav">
+        <a href="#/" data-nav="home">Ruta</a>
+        <a href="#/progreso" data-nav="progreso">Mi progreso</a>
+      </nav>
+      <div class="topbar-user">
+        <span id="user-chip" class="user-chip hidden"></span>
+      </div>
+    </div>
+  </header>
+
+  <main id="app" class="app"></main>
+
+  <footer class="footer">
+    Mediastream · Manual de Capacitación · Área de Soporte Técnico · Confidencial · Uso Interno
+  </footer>
+
+  <!-- El orden importa: primero datos y motor, luego la app -->
+  <script src="assets/store.js"></script>
+  <script src="assets/content-loader.js"></script>
+  <script src="assets/quiz.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>

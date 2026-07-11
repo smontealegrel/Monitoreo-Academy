@@ -1,0 +1,229 @@
+{
+  "id": 15,
+  "semana": 3,
+  "modulo": "Integración final",
+  "titulo": "Operaciones avanzadas y simulación de soporte",
+  "objetivo": "Integrar todo lo aprendido: listas de Playout, blackouts por región, el manejo de las capas de caché y la resolución sistemática de los casos de soporte más frecuentes.",
+  "bloques": [
+    {
+      "id": "b1",
+      "tipo": "teoria",
+      "titulo": "Playout, blackouts, caché y diagnóstico sistemático",
+      "duracion": "75 min",
+      "html": "<h3>Listas de Playout</h3><p>La 'parrilla de programación': una secuencia ordenada de VOD que genera un stream lineal continuo. Puede tener inicio programado, ser cíclica (loop) o lineal, admite transiciones y contenido en vivo intercalado, y soporta marcas SCTE-35 para publicidad.</p><h3>Blackouts (bloqueo por región)</h3><p>Bloqueo de contenido para ciertos usuarios/regiones (común en deportes por derechos). Se muestra un <b>slate</b> (señal alternativa) a los bloqueados. Flujo: (1) el cliente informa contenido, fechas y regiones; (2) se configura el geo-blocking; (3) se sube el slate; (4) se configura el player para mostrarlo; (5) se prueba con VPN simulando una IP de la región bloqueada; (6) se monitorea; (7) se desactiva al terminar.</p><div class=\"callout warn\"><span class=\"ct\">Importancia legal</span>Los blackouts suelen ser obligaciones contractuales. Un error que permita ver el contenido en una región bloqueada puede tener consecuencias legales graves para el cliente.</div><h3>Capas de caché</h3><table><tr><th>Capa</th><th>Nota</th></tr><tr><td>CDN Cache</td><td>Manifiestos y segmentos. TTL de minutos a horas.</td></tr><tr><td>Browser Cache</td><td>Player y metadatos. TTL de días o semanas.</td></tr><tr><td>Platform Cache</td><td>Respuestas de API y metadatos.</td></tr><tr><td>Player Cache</td><td>Segmentos ya descargados en memoria.</td></tr></table><div class=\"callout key\"><span class=\"ct\">Regla práctica</span>Antes de declarar un 'bug', verifica si es caché: espera 5–10 min, recarga con Ctrl+F5 y prueba de nuevo. Muchos 'problemas urgentes' se resuelven solos.</div><h3>Diagnóstico sistemático: 'el video no carga'</h3><ol><li>¿Es solo ese usuario o todos? (solo uno → lado del usuario: conexión, navegador, ad-blocker).</li><li>¿El .m3u8 responde? (404 → no existe o URL mal).</li><li>¿El video está en 'Ready'? (Error → reprocesar).</li><li>¿Hay actividad en Analytics? (views normales → lado del usuario).</li><li>¿La CDN responde? (ping/traceroute al dominio de CDN).</li></ol>"
+    },
+    {
+      "id": "b2",
+      "tipo": "practica",
+      "titulo": "Playout con SCTE-35 y blackout de prueba",
+      "duracion": "80 min",
+      "requiereEvidencia": true,
+      "html": "<ol><li>Crea una lista de Playout con al menos 5 videos en orden y ponla en modo loop.</li><li>Añade 2 marcas SCTE-35 en momentos específicos.</li><li>Configura un blackout simple para un video en un país de prueba.</li><li>Prueba con VPN simulando una IP de esa región para confirmar el bloqueo.</li><li>Documenta el procedimiento completo.</li></ol>"
+    },
+    {
+      "id": "b3",
+      "tipo": "shadowing",
+      "titulo": "Caso urgente: fuga de blackout",
+      "duracion": "45 min",
+      "html": "<p>Usuarios de Colombia ven un partido que debería estar bloqueado. Observa el diagnóstico urgente:</p><ol><li>¿Colombia está en la lista de países bloqueados?</li><li>¿Hay múltiples streams del mismo evento, alguno sin blackout?</li><li>¿El player lee bien la geolocalización?</li><li>Probar con VPN colombiana. Si el blackout no está activo, activarlo de emergencia y documentar el post-mortem.</li></ol>"
+    },
+    {
+      "id": "b4",
+      "tipo": "ejercicio",
+      "titulo": "Manual de bolsillo de diagnóstico",
+      "duracion": "60 min",
+      "requiereEvidencia": true,
+      "html": "<p>Crea tu propio 'manual de bolsillo' (será tu apoyo en el examen final):</p><ol><li>Los 5 pasos de 'el video no carga'.</li><li>Checklist de 'el stream en vivo se corta cada 30 s'.</li><li>Checklist de 'los anuncios no aparecen'.</li><li>Las 4 capas de caché y su solución típica.</li><li>El flujo operativo de un blackout.</li></ol>"
+    }
+  ],
+  "quiz": {
+    "preguntasAMostrar": 10,
+    "umbral": 90,
+    "banco": [
+      {
+        "enunciado": "¿Qué es un 'slate' en el contexto de blackouts?",
+        "tipo": "single",
+        "opciones": [
+          "La señal alternativa que se muestra a los usuarios bloqueados",
+          "El manifiesto principal del stream",
+          "Un tipo de encoder",
+          "Una métrica de Analytics"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Blackouts",
+        "explicacion": "El slate es la señal/pantalla alternativa (mensaje o video) que ven los usuarios en la región bloqueada."
+      },
+      {
+        "enunciado": "Antes de un evento con blackout, ¿cómo se prueba que el bloqueo funciona?",
+        "tipo": "single",
+        "opciones": [
+          "Con una VPN que simule una IP de la región bloqueada",
+          "Apagando el encoder",
+          "Borrando la playlist",
+          "Subiendo el bitrate"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Blackouts",
+        "explicacion": "Se prueba con VPN simulando una IP de la región para confirmar que se muestra el slate."
+      },
+      {
+        "enunciado": "¿Por qué los blackouts son especialmente delicados?",
+        "tipo": "single",
+        "opciones": [
+          "Suelen ser obligaciones contractuales; un error puede tener consecuencias legales graves",
+          "Consumen mucho almacenamiento",
+          "Bajan el bitrate",
+          "Requieren 4K"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Blackouts",
+        "explicacion": "Son obligaciones con los dueños de los derechos; una fuga de blackout puede acarrear consecuencias legales."
+      },
+      {
+        "enunciado": "Según la regla práctica, antes de declarar un 'bug' conviene:",
+        "tipo": "single",
+        "opciones": [
+          "Verificar si es caché: esperar 5–10 min y recargar con Ctrl+F5",
+          "Escalar de inmediato a Nivel 3",
+          "Reiniciar el encoder del cliente",
+          "Borrar el video"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Caché",
+        "explicacion": "Muchos problemas son de caché; esperar y recargar con Ctrl+F5 los resuelve sin ser un bug real."
+      },
+      {
+        "enunciado": "En el diagnóstico de 'el video no carga', si el problema es SOLO para un usuario, ¿qué indica?",
+        "tipo": "single",
+        "opciones": [
+          "Es del lado del usuario (conexión, navegador, ad-blocker)",
+          "La CDN mundial está caída",
+          "El video está en Error",
+          "Hay que reprocesar el video"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Diagnóstico sistemático",
+        "explicacion": "Si afecta a un solo usuario y no a todos, la causa suele estar en su entorno."
+      },
+      {
+        "enunciado": "¿Cuáles son capas de caché en Mediastream? (selección múltiple)",
+        "tipo": "multi",
+        "opciones": [
+          "CDN Cache",
+          "Browser Cache",
+          "Player Cache",
+          "Encoder Cache"
+        ],
+        "correctas": [
+          0,
+          1,
+          2
+        ],
+        "objetivo": "Capas de caché",
+        "explicacion": "CDN, Browser, Platform y Player Cache. 'Encoder Cache' no es una de las capas descritas."
+      },
+      {
+        "enunciado": "Una lista de Playout puede: (selección múltiple)",
+        "tipo": "multi",
+        "opciones": [
+          "Tener inicio programado",
+          "Ser cíclica (loop) o lineal",
+          "Incluir marcas SCTE-35 para publicidad",
+          "Reemplazar a la CDN"
+        ],
+        "correctas": [
+          0,
+          1,
+          2
+        ],
+        "objetivo": "Playout",
+        "explicacion": "El Playout admite inicio programado, loop/lineal, transiciones y SCTE-35. No sustituye a la CDN."
+      },
+      {
+        "enunciado": "En 'el video no carga', si el manifiesto .m3u8 responde 404, ¿qué concluyes?",
+        "tipo": "single",
+        "opciones": [
+          "El video no existe o la URL es incorrecta",
+          "El cliente tiene ad-blocker",
+          "La retención DVR está activa",
+          "Es un problema de audio"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Diagnóstico sistemático",
+        "explicacion": "Un 404 en el manifiesto indica que el recurso no existe o la URL está mal escrita."
+      },
+      {
+        "enunciado": "Un stream en vivo se corta cada 30 s. ¿Qué revisas primero?",
+        "tipo": "single",
+        "opciones": [
+          "El bitrate de ingest del encoder vs. la velocidad de upload del cliente",
+          "El color del skin del player",
+          "La Papelera",
+          "El feed RSS"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Diagnóstico sistemático",
+        "explicacion": "Cortes periódicos suelen deberse a bitrate mayor que el ancho de banda de subida; también se revisan estado del canal y logs."
+      },
+      {
+        "enunciado": "El caso frecuente 'actualicé la miniatura pero sigo viendo la antigua' se resuelve por:",
+        "tipo": "single",
+        "opciones": [
+          "Caché de CDN: esperar el TTL o hacer un purge",
+          "Reprocesar todo el catálogo",
+          "Cambiar de encoder",
+          "Desactivar el blackout"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Capas de caché",
+        "explicacion": "Es caché de CDN; se espera a que expire el TTL o se solicita un purge manual."
+      },
+      {
+        "enunciado": "'El video no carga' para TODOS los usuarios y el .m3u8 responde 404. ¿Qué concluyes?",
+        "tipo": "single",
+        "opciones": [
+          "El video no existe o la URL del manifiesto es incorrecta",
+          "Es problema del navegador de un usuario",
+          "Es la retención DVR",
+          "Es un problema de audio"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Diagnóstico sistemático",
+        "explicacion": "Un 404 en el manifiesto indica recurso inexistente o URL mal escrita."
+      },
+      {
+        "enunciado": "Ante un 'problema urgente' de contenido que no se actualiza, antes de declarar bug, ¿qué haces?",
+        "tipo": "single",
+        "opciones": [
+          "Verificar si es caché: esperar unos minutos y recargar con Ctrl+F5",
+          "Escalar a N3 de inmediato",
+          "Reiniciar el encoder",
+          "Borrar el video"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Capas de caché",
+        "explicacion": "Muchos casos son caché; se recarga con Ctrl+F5 antes de declarar un bug."
+      }
+    ]
+  }
+}

@@ -1,0 +1,231 @@
+{
+  "id": 12,
+  "semana": 3,
+  "modulo": "Infraestructura",
+  "titulo": "Automatización con Watchfolders y Elemental Server",
+  "objetivo": "Entender cómo funcionan los flujos automatizados de ingesta con Watchfolders entre el Elemental Server y la Platform, y saber diagnosticar problemas frecuentes de este flujo.",
+  "bloques": [
+    {
+      "id": "b1",
+      "tipo": "teoria",
+      "titulo": "Watchfolders, el flujo de ingesta y errores comunes",
+      "duracion": "70 min",
+      "html": "<h3>¿Qué es un Watchfolder?</h3><p>Una 'carpeta vigilada' que el sistema monitorea constantemente. Al detectar un archivo nuevo, dispara automáticamente un proceso (transcodificación, subida a Platform). Como un asistente que vigila tu buzón y procesa cada 'carta' que llega.</p><h3>El flujo Watchfolder → Elemental Server → Platform</h3><ol><li>Se deposita un video en el Watchfolder (carpeta de red o bucket S3).</li><li>El Elemental Server vigila esa carpeta.</li><li>Al detectar el archivo, crea un Job de transcodificación con el perfil predefinido.</li><li>Transcodifica y deposita la salida en una carpeta de Output.</li><li>La Platform vigila el Output y toma los archivos transcodificados.</li><li>La Platform crea el registro del Media con sus metadatos y lo publica.</li></ol><h3>Parámetros clave del Watchfolder</h3><ul><li><b>Input Path:</b> la carpeta vigilada (local, red o S3).</li><li><b>Job Template:</b> el perfil de transcodificación a aplicar.</li><li><b>Output Path:</b> dónde se depositan los transcodificados.</li><li><b>Archive Path:</b> dónde se mueven los originales tras procesarse (para no reprocesarlos).</li></ul><h3>Monitoreo de Jobs</h3><p>El estado se ve en 'Job Queue': <b>Verde</b> = exitoso, <b>Naranja</b> = alerta, <b>Rojo</b> = error técnico.</p><div class=\"callout warn\"><span class=\"ct\">Error común</span>Si el Watchfolder procesa los MISMOS archivos repetidamente, casi siempre es que el <b>Archive Path</b> no está bien configurado: los originales se quedan en la carpeta y el sistema los detecta como 'nuevos' en cada escaneo.</div>"
+    },
+    {
+      "id": "b2",
+      "tipo": "practica",
+      "titulo": "Configurar y probar un Watchfolder",
+      "duracion": "90 min",
+      "requiereEvidencia": true,
+      "html": "<ol><li>Con acceso al Elemental Server de prueba, localiza la configuración del Watchfolder.</li><li>Documenta: Input Path, Output Path, Archive Path, Job Template.</li><li>Deposita un video pequeño en el Watchfolder y observa cómo se crea el Job automáticamente.</li><li>Monitorea el Job hasta que complete y verifica que el archivo llegó al Output.</li><li>Explica en un mini-reporte: ¿qué pasaría si el Output Path se queda sin espacio en disco?</li></ol>"
+    },
+    {
+      "id": "b3",
+      "tipo": "shadowing",
+      "titulo": "Caso: 'subimos videos pero no aparecen en la Platform'",
+      "duracion": "45 min",
+      "html": "<ol><li>¿Se crearon Jobs para esos archivos? Si no, el Watchfolder no los detecta.</li><li>Si hay Jobs en Error, leer el mensaje (codec no soportado, archivo corrupto, permisos).</li><li>Si completaron, verificar si los archivos llegaron al Output.</li><li>Si están en Output pero no en Platform, revisar la integración Output → ingesta de Platform.</li></ol>"
+    },
+    {
+      "id": "b4",
+      "tipo": "ejercicio",
+      "titulo": "Diagrama del flujo automatizado",
+      "duracion": "45 min",
+      "requiereEvidencia": true,
+      "html": "<ol><li>Dibuja el flujo Watchfolder → Elemental Server → Output → Platform → CDN.</li><li>Explica el rol del Archive Path y qué pasa si falta.</li><li>Describe los 3 estados del Job Queue y qué harías en cada color.</li></ol>"
+    }
+  ],
+  "quiz": {
+    "preguntasAMostrar": 10,
+    "umbral": 90,
+    "banco": [
+      {
+        "enunciado": "¿Qué es un Watchfolder?",
+        "tipo": "single",
+        "opciones": [
+          "Una carpeta vigilada que dispara un proceso automático al detectar un archivo nuevo",
+          "Un tipo de player",
+          "Un feed de podcast",
+          "Una credencial VPN"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Concepto de Watchfolder",
+        "explicacion": "Es una carpeta monitoreada que, al recibir un archivo, lanza transcodificación/subida automáticamente."
+      },
+      {
+        "enunciado": "Si el Watchfolder procesa los MISMOS archivos una y otra vez, la causa más probable es:",
+        "tipo": "single",
+        "opciones": [
+          "El Archive Path no está bien configurado y los originales no se mueven",
+          "El bitrate es muy alto",
+          "La CDN está en caché",
+          "El player no tiene skin"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Errores comunes",
+        "explicacion": "Sin Archive Path correcto, los originales se quedan y se detectan como 'nuevos' en cada escaneo."
+      },
+      {
+        "enunciado": "En el Job Queue del Elemental Server, ¿qué significa el color Rojo?",
+        "tipo": "single",
+        "opciones": [
+          "Error técnico",
+          "Éxito",
+          "Alerta",
+          "En cola"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Monitoreo de Jobs",
+        "explicacion": "Verde = éxito, Naranja = alerta, Rojo = error técnico."
+      },
+      {
+        "enunciado": "¿Cuál es el orden correcto del flujo automatizado?",
+        "tipo": "single",
+        "opciones": [
+          "Watchfolder → Elemental Server (Job) → Output → Platform → publica el Media",
+          "Platform → Watchfolder → CDN → Encoder",
+          "Player → CDN → Watchfolder → Media",
+          "Encoder → Intercom → Output → Player"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Flujo de ingesta",
+        "explicacion": "El archivo entra por el Watchfolder, el Server lo transcodifica al Output, y la Platform lo toma y publica."
+      },
+      {
+        "enunciado": "¿Cuál es la función del 'Archive Path'?",
+        "tipo": "single",
+        "opciones": [
+          "Mover los originales tras procesarse para no reprocesarlos",
+          "Guardar los logs de la CDN",
+          "Definir el bitrate de salida",
+          "Almacenar las credenciales"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Parámetros del Watchfolder",
+        "explicacion": "El Archive Path reubica los originales ya procesados para evitar reprocesos."
+      },
+      {
+        "enunciado": "Un cliente subió 5 capítulos y ninguno aparece en la Platform. No se crearon Jobs. ¿Qué concluyes?",
+        "tipo": "single",
+        "opciones": [
+          "El Watchfolder no está detectando los archivos",
+          "Los videos están perfectos y publicados",
+          "La CDN los está cacheando",
+          "Es un problema del player"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Diagnóstico de Watchfolder",
+        "explicacion": "Si no hay Jobs, el Watchfolder no detecta los archivos (ruta, permisos o formato)."
+      },
+      {
+        "enunciado": "¿Cuáles son parámetros clave de un Watchfolder? (selección múltiple)",
+        "tipo": "multi",
+        "opciones": [
+          "Input Path",
+          "Output Path",
+          "Job Template",
+          "Stream Key del podcast"
+        ],
+        "correctas": [
+          0,
+          1,
+          2
+        ],
+        "objetivo": "Parámetros del Watchfolder",
+        "explicacion": "Input Path, Output Path, Archive Path y Job Template. La Stream Key no es parámetro del Watchfolder."
+      },
+      {
+        "enunciado": "Si un Job está en Error, ¿qué mensajes podrías encontrar? (selección múltiple)",
+        "tipo": "multi",
+        "opciones": [
+          "Codec no soportado",
+          "Archivo corrupto",
+          "Permisos de carpeta",
+          "El cliente cerró Intercom"
+        ],
+        "correctas": [
+          0,
+          1,
+          2
+        ],
+        "objetivo": "Diagnóstico de Watchfolder",
+        "explicacion": "Los errores típicos son codec no soportado, archivo corrupto o permisos. Intercom no afecta al Job."
+      },
+      {
+        "enunciado": "¿Dónde puede estar ubicado el Input Path de un Watchfolder?",
+        "tipo": "multi",
+        "opciones": [
+          "Una carpeta local",
+          "Una carpeta de red compartida",
+          "Un bucket S3",
+          "Dentro del navegador del usuario"
+        ],
+        "correctas": [
+          0,
+          1,
+          2
+        ],
+        "objetivo": "Parámetros del Watchfolder",
+        "explicacion": "El Input Path puede ser local, de red o S3; no vive en el navegador del usuario."
+      },
+      {
+        "enunciado": "El Watchfolder de un cliente reprocesa los mismos videos una y otra vez. ¿Qué corriges?",
+        "tipo": "single",
+        "opciones": [
+          "Configurar bien el Archive Path para que los originales se muevan tras procesarse",
+          "Subir el bitrate",
+          "Cambiar el player",
+          "Activar blackout"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Errores comunes",
+        "explicacion": "Sin Archive Path los originales se quedan y se detectan como 'nuevos' en cada escaneo."
+      },
+      {
+        "enunciado": "Subieron 5 capítulos y no se crearon Jobs en el Elemental Server. ¿Qué concluyes?",
+        "tipo": "single",
+        "opciones": [
+          "El Watchfolder no está detectando los archivos (ruta, permisos o formato)",
+          "Están publicados correctamente",
+          "La CDN los cachea",
+          "Es un problema del player"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Diagnóstico de Watchfolder",
+        "explicacion": "Sin Jobs, el Watchfolder no detecta los archivos."
+      },
+      {
+        "enunciado": "En el Job Queue ves un job en color Naranja. ¿Qué significa?",
+        "tipo": "single",
+        "opciones": [
+          "Alerta",
+          "Éxito",
+          "Error técnico",
+          "Sin empezar"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Monitoreo de Jobs",
+        "explicacion": "Verde = éxito, Naranja = alerta, Rojo = error técnico."
+      }
+    ]
+  }
+}

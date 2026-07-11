@@ -1,0 +1,227 @@
+{
+  "id": 11,
+  "semana": 3,
+  "modulo": "Distribución",
+  "titulo": "Sindicación de contenidos y Feeds",
+  "objetivo": "Entender cómo Platform expone feeds estructurados para distribuir contenido hacia apps, agregadores y sistemas de TV: Feed JSON de Apps, RSS de podcast, MRSS para Google DAI y EPG.",
+  "bloques": [
+    {
+      "id": "b1",
+      "tipo": "teoria",
+      "titulo": "Feed JSON, RSS podcast, MRSS/DAI y EPG",
+      "duracion": "65 min",
+      "html": "<p>Para distribuir contenido hacia agregadores externos, apps nativas o sistemas de TV, la Platform expone <b>feeds</b> estructurados en tiempo real.</p><h3>Feed JSON para Apps</h3><p>Alimenta el catálogo de apps web o Smart TV. Funciona de forma jerárquica consultando categorías (<code>/feed/apps/{id}/category</code>), listas de medias (<code>/feed/apps/{id}/media</code>) o temporadas (<code>/feed/apps/{id}/season/{show_id}</code>). Requiere que la cuenta tenga activos <code>modules.app_feed = true</code> y <code>feeds.enabled = true</code>.</p><h3>Feed Podcast RSS</h3><p>Para sindicar audio en Spotify o Apple Podcasts. Requiere que el módulo Show tenga shows y episodios marcados como publicados (<code>is_published: true</code>) y que el archivo de audio esté disponible.</p><h3>Feed MRSS para Google DAI / DFP</h3><p>Formato XML estándar que describe el catálogo de video para que Google Ad Manager lo ingeste y genere manifiestos con anuncios. Para que un video aparezca en este feed de monetización, su metadato <code>google_dai</code> debe apuntar a una configuración de Ad activa de tipo <code>ad-insertion-google</code>. Los puntos de corte comercial (cuepoints) se toman de los Tracks de la media marcados con <code>isAd: true</code>.</p><h3>Feed EPG (Guía de Programación)</h3><p>Expone dinámicamente la grilla horaria en vivo según los schedules cargados.</p><div class=\"callout tip\"><span class=\"ct\">Regla mental</span>Cada feed sirve un consumidor distinto: JSON → apps propias; RSS → plataformas de podcast; MRSS → monetización con Google; EPG → guía de programación.</div>"
+    },
+    {
+      "id": "b2",
+      "tipo": "practica",
+      "titulo": "Explorar los feeds de una cuenta",
+      "duracion": "80 min",
+      "requiereEvidencia": true,
+      "html": "<ol><li>En sandbox, abre un Feed JSON de apps y recorre la jerarquía category → media → season.</li><li>Verifica en Settings que <code>modules.app_feed</code> y <code>feeds.enabled</code> estén activos.</li><li>Genera un feed RSS de un Show con episodios publicados y ábrelo.</li><li>Localiza el metadato google_dai en una media configurada para MRSS.</li></ol>"
+    },
+    {
+      "id": "b3",
+      "tipo": "shadowing",
+      "titulo": "Caso: 'mi podcast no aparece en Spotify'",
+      "duracion": "45 min",
+      "html": "<ol><li>Verificar que los episodios del Show estén marcados <code>is_published: true</code>.</li><li>Confirmar que el archivo de audio esté disponible.</li><li>Validar la estructura del feed RSS.</li></ol><p>Suele ser un episodio sin publicar o audio no disponible.</p>"
+    },
+    {
+      "id": "b4",
+      "tipo": "ejercicio",
+      "titulo": "Mapa de feeds",
+      "duracion": "40 min",
+      "requiereEvidencia": true,
+      "html": "<ol><li>Haz una tabla: feed → consumidor → requisito clave.</li><li>Explica qué condición debe cumplir un video para aparecer en el feed MRSS de monetización.</li><li>Describe qué son los cuepoints y de dónde se toman.</li></ol>"
+    }
+  ],
+  "quiz": {
+    "preguntasAMostrar": 10,
+    "umbral": 90,
+    "banco": [
+      {
+        "enunciado": "¿Qué feed se usa para sindicar audio en Spotify o Apple Podcasts?",
+        "tipo": "single",
+        "opciones": [
+          "Feed Podcast RSS",
+          "Feed MRSS",
+          "Feed JSON de Apps",
+          "Feed EPG"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Tipos de feed",
+        "explicacion": "El RSS de podcast sindica audio a Spotify/Apple. MRSS es para monetización con Google, JSON para apps, EPG para la guía."
+      },
+      {
+        "enunciado": "Para que un episodio aparezca en el feed RSS de podcast, debe estar:",
+        "tipo": "single",
+        "opciones": [
+          "Marcado como publicado (is_published: true) y con el audio disponible",
+          "En 4K",
+          "Con DAI activo",
+          "En la Papelera"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Feed RSS",
+        "explicacion": "Requiere is_published: true y que el archivo de audio esté disponible."
+      },
+      {
+        "enunciado": "¿Qué feed usa Google Ad Manager para ingerir el catálogo y generar manifiestos con anuncios?",
+        "tipo": "single",
+        "opciones": [
+          "Feed MRSS (para Google DAI / DFP)",
+          "Feed EPG",
+          "Feed JSON de Apps",
+          "Feed Podcast RSS"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Feed MRSS",
+        "explicacion": "El MRSS (XML) describe el catálogo para que GAM lo ingeste y monetice."
+      },
+      {
+        "enunciado": "Para que un video aparezca en el feed MRSS de monetización, su metadato google_dai debe:",
+        "tipo": "single",
+        "opciones": [
+          "Apuntar a una configuración de Ad activa de tipo ad-insertion-google",
+          "Estar vacío",
+          "Ser mayor que 6000 kbps",
+          "Coincidir con la zona CL"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Feed MRSS",
+        "explicacion": "El metadato google_dai debe apuntar a un Ad activo de tipo ad-insertion-google."
+      },
+      {
+        "enunciado": "Los cuepoints (puntos de corte comercial) del feed MRSS se toman de:",
+        "tipo": "single",
+        "opciones": [
+          "Los Tracks de la media marcados con isAd: true",
+          "El manifiesto .m3u8",
+          "La configuración del player",
+          "La Papelera"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Feed MRSS",
+        "explicacion": "Los cuepoints provienen de los Tracks marcados con isAd: true."
+      },
+      {
+        "enunciado": "El Feed EPG expone:",
+        "tipo": "single",
+        "opciones": [
+          "La grilla horaria en vivo según los schedules cargados",
+          "El catálogo de podcasts",
+          "Las credenciales de la cuenta",
+          "Los logs del encoder"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Feed EPG",
+        "explicacion": "EPG = guía de programación, expone dinámicamente la grilla horaria en vivo."
+      },
+      {
+        "enunciado": "El Feed JSON de Apps consulta de forma jerárquica: (selección múltiple)",
+        "tipo": "multi",
+        "opciones": [
+          "Categorías",
+          "Listas de medias",
+          "Temporadas (season/{show_id})",
+          "Credenciales VPN"
+        ],
+        "correctas": [
+          0,
+          1,
+          2
+        ],
+        "objetivo": "Feed JSON",
+        "explicacion": "El feed JSON navega category → media → season. No expone credenciales."
+      },
+      {
+        "enunciado": "¿Qué flags de cuenta requiere el Feed JSON de Apps?",
+        "tipo": "single",
+        "opciones": [
+          "modules.app_feed = true y feeds.enabled = true",
+          "is_blackout = true",
+          "loop = true",
+          "Mute on Start"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Feed JSON",
+        "explicacion": "Necesita modules.app_feed = true y feeds.enabled = true activos en la cuenta."
+      },
+      {
+        "enunciado": "El podcast de un cliente no aparece en Spotify. ¿Qué revisas primero?",
+        "tipo": "single",
+        "opciones": [
+          "Que los episodios estén is_published: true y que el audio esté disponible",
+          "La zona de publicación",
+          "El bitrate del video",
+          "La Papelera"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Feed RSS",
+        "explicacion": "El RSS de podcast requiere episodios publicados y audio disponible."
+      },
+      {
+        "enunciado": "Un video no aparece en el feed de monetización de Google. ¿Qué metadato revisas?",
+        "tipo": "single",
+        "opciones": [
+          "google_dai (debe apuntar a un Ad activo tipo ad-insertion-google)",
+          "is_blackout",
+          "loop",
+          "skin"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Feed MRSS",
+        "explicacion": "El MRSS requiere google_dai apuntando a un Ad activo ad-insertion-google."
+      },
+      {
+        "enunciado": "El feed JSON de apps de un cliente no responde. ¿Qué flags de cuenta verificas?",
+        "tipo": "single",
+        "opciones": [
+          "modules.app_feed = true y feeds.enabled = true",
+          "is_blackout = true",
+          "Mute on Start",
+          "maxIntentos"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Feed JSON",
+        "explicacion": "El feed JSON requiere modules.app_feed y feeds.enabled activos."
+      },
+      {
+        "enunciado": "Un cliente pregunta qué feed usar para su guía de programación en vivo. ¿Cuál recomiendas?",
+        "tipo": "single",
+        "opciones": [
+          "EPG",
+          "RSS de podcast",
+          "JSON de apps",
+          "MRSS"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Feed EPG",
+        "explicacion": "El EPG expone la grilla horaria en vivo según los schedules."
+      }
+    ]
+  }
+}

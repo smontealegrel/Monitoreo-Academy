@@ -1,0 +1,242 @@
+{
+  "id": 2,
+  "semana": 1,
+  "modulo": "Fundamentos técnicos",
+  "titulo": "Fundamentos de streaming y protocolos",
+  "objetivo": "Entender qué es el streaming y sus componentes básicos (códec, bitrate, transcodificación) y dominar los protocolos clave: HLS para distribución y SRT para contribución. No hay que memorizar todo, sino entenderlo para explicárselo a un cliente.",
+  "bloques": [
+    {
+      "id": "b1",
+      "tipo": "teoria",
+      "titulo": "Streaming, códecs, bitrate, transcodificación, HLS y SRT",
+      "duracion": "70 min",
+      "html": "<h3>¿Qué es el streaming?</h3><p>Imagina llenar un vaso de agua. Puedes esperar a que te traigan toda el agua de una vez (eso es <b>descargar</b>), o conectar una manguera que va dejando caer agua mientras bebes (eso es <b>streaming</b>): recibir y consumir el contenido al mismo tiempo. El video se divide en pequeños fragmentos (<i>chunks</i>) que se envían y reproducen de forma secuencial.</p><h3>Códecs</h3><p>Un códec (COdificador/DECodificador) es el 'idioma' en el que se comprime el video. Un minuto en 1080p sin comprimir puede ocupar más de 100 GB.</p><table><tr><th>Códec</th><th>Descripción</th></tr><tr><td>H.264 (AVC)</td><td>El más usado. Compatibilidad universal.</td></tr><tr><td>H.265 (HEVC)</td><td>Hasta 50% más eficiente que H.264, pide más procesamiento. Ideal para 4K.</td></tr><tr><td>VP9</td><td>De Google, muy eficiente, usado en YouTube.</td></tr><tr><td>AV1</td><td>El futuro: más eficiente que H.265 y de código abierto.</td></tr></table><h3>Bitrate: la 'velocidad del agua'</h3><p>Cantidad de datos por segundo. Bitrate alto = mejor calidad pero exige mejor conexión. Referencias: 720p ≈ 2.500–4.000 kbps; 1080p ≈ 4.500–9.000 kbps (el roadmap técnico usa 3.000–6.000 kbps para 1080p@30fps). Audio óptimo: <b>128 kbps en AAC</b>.</p><div class=\"callout tip\"><span class=\"ct\">Analogía para clientes</span>Si el video se ve pixelado, muchas veces el bitrate está muy bajo o la conexión no lo soporta: es como una manguera muy delgada para una pileta grande.</div><h3>Transcodificación</h3><p>Convertir un video a múltiples formatos y calidades a la vez (ej. 1080p, 720p, 480p, 360p). El reproductor elige la mejor versión según la conexión: esto es <b>ABR (Adaptive Bitrate)</b>. Ojo con el matiz técnico: <i>codificar</i> es de crudo a comprimido; <i>transcodificar</i> es de un comprimido a otro (ej. de un RTMP entrante a varias resoluciones HLS).</p><h3>HLS (HTTP Live Streaming)</h3><p>Protocolo adaptativo de Apple, el más usado. Divide el stream en fragmentos (2–10 s) referenciados por un archivo de índice o <b>manifiesto .m3u8</b> (texto plano con las rutas de video y audio). Gracias al ABR, el reproductor cambia de calidad según el ancho de banda.</p><div class=\"callout key\"><span class=\"ct\">Dato clave</span>El .m3u8 es el corazón de HLS. Cuando un cliente dice 'el video no carga', muchas veces el problema es que ese archivo no es accesible o tiene un error. Aprenderás a leerlo en el Día 14.</div><h3>SRT (Secure Reliable Transport)</h3><p>Protocolo para transmisión en vivo de larga distancia con baja latencia. Si HLS es el 'correo regular', SRT es la 'mensajería express con confirmación de entrega'. Ideal cuando el cliente envía señal desde una ubicación con conexión inestable (estadio, cancha): se recupera de pérdidas de paquetes sin caerse.</p><table><tr><th>Protocolo</th><th>Uso principal</th></tr><tr><td>HLS</td><td>Distribución al público final (muchos usuarios).</td></tr><tr><td>SRT</td><td>Contribución: enviar la señal del encoder al servidor.</td></tr></table>"
+    },
+    {
+      "id": "b2",
+      "tipo": "practica",
+      "titulo": "Identificar un stream HLS en el navegador",
+      "duracion": "60 min",
+      "requiereEvidencia": true,
+      "html": "<p>Practica en tu navegador para ver un manifiesto HLS real:</p><ol><li>Abre Google Chrome y ve a un sitio que use HLS (ej. un canal de noticias online).</li><li>Presiona <b>F12</b> para abrir las herramientas de desarrollador.</li><li>Ve a la pestaña <b>Network</b> y filtra por <code>m3u8</code>.</li><li>Recarga la página: verás peticiones a archivos <code>.m3u8</code> — ese es el manifiesto.</li></ol><p><b>Bonus:</b> busca 'HLS streaming test player', reproduce un stream, cambia la calidad manualmente y observa cómo cambia la imagen. Abre el <code>.m3u8</code> directamente en el navegador y observa su estructura de texto.</p>"
+    },
+    {
+      "id": "b3",
+      "tipo": "shadowing",
+      "titulo": "Un caso real de diagnóstico con fundamentos",
+      "duracion": "45 min",
+      "html": "<p>Con un senior, revisa este caso: <i>'El stream de mi cliente se corta cada 30 segundos'</i>. Sigue el razonamiento:</p><ol><li>¿Está usando HLS o SRT para enviar la señal?</li><li>¿Cuál es el bitrate configurado en su encoder?</li><li>¿La conexión de subida del cliente soporta ese bitrate?</li></ol><p>Si usa SRT con 6.000 kbps pero su subida es de 4.000 kbps, el problema es claro: la manguera es más delgada que el flujo.</p>"
+    },
+    {
+      "id": "b4",
+      "tipo": "ejercicio",
+      "titulo": "Explícalo como se lo explicarías a un cliente",
+      "duracion": "45 min",
+      "requiereEvidencia": true,
+      "html": "<p>Escribe con tus palabras, sin copiar del material:</p><ol><li>La diferencia entre HLS y SRT, con un ejemplo de cuándo usarías cada uno.</li><li>Qué es la transcodificación usando una analogía propia.</li><li>Por qué un video 'se ve pixelado' y qué preguntarías al cliente para diagnosticarlo.</li></ol>"
+    }
+  ],
+  "quiz": {
+    "preguntasAMostrar": 10,
+    "umbral": 90,
+    "banco": [
+      {
+        "enunciado": "¿Cuál es la diferencia principal entre descargar y hacer streaming?",
+        "tipo": "single",
+        "opciones": [
+          "En streaming recibes y consumes el contenido al mismo tiempo, sin tenerlo completo antes",
+          "El streaming siempre tiene mejor calidad que la descarga",
+          "La descarga no usa códecs",
+          "El streaming solo funciona con archivos pequeños"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Concepto de streaming",
+        "explicacion": "Streaming = consumir mientras se recibe, en fragmentos secuenciales; no necesitas el archivo completo antes de verlo."
+      },
+      {
+        "enunciado": "¿Qué protocolo se usa para DISTRIBUCIÓN al público final y cuál para CONTRIBUCIÓN (enviar la señal del encoder)?",
+        "tipo": "single",
+        "opciones": [
+          "HLS para distribución, SRT para contribución",
+          "SRT para distribución, HLS para contribución",
+          "Ambos solo para distribución",
+          "HLS para ambos casos"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "HLS vs SRT",
+        "explicacion": "HLS distribuye al público (muchos usuarios); SRT contribuye la señal del encoder al servidor."
+      },
+      {
+        "enunciado": "El archivo .m3u8 es:",
+        "tipo": "single",
+        "opciones": [
+          "El manifiesto de índice de HLS, un texto plano con las rutas de los fragmentos",
+          "El archivo de video comprimido final",
+          "Un códec de audio",
+          "La configuración del encoder"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Manifiesto HLS",
+        "explicacion": "El .m3u8 es el manifiesto: un archivo de texto que indica qué fragmentos existen y en qué orden reproducirlos."
+      },
+      {
+        "enunciado": "¿Qué es el ABR (Adaptive Bitrate)?",
+        "tipo": "single",
+        "opciones": [
+          "El reproductor cambia de calidad automáticamente según el ancho de banda del usuario",
+          "Un códec de nueva generación",
+          "El bitrate máximo permitido por AWS",
+          "Un tipo de encoder de hardware"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Transcodificación y ABR",
+        "explicacion": "ABR permite que el player elija dinámicamente la mejor calidad disponible según la conexión."
+      },
+      {
+        "enunciado": "El estándar óptimo de bitrate para audio es:",
+        "tipo": "single",
+        "opciones": [
+          "128 kbps en formato AAC",
+          "6000 kbps en MP3",
+          "32 kbps en WAV",
+          "320 kbps en H.264"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Bitrate",
+        "explicacion": "El estándar óptimo de audio es 128 kbps en AAC. H.264 es un códec de video, no de audio."
+      },
+      {
+        "enunciado": "¿Cuáles de estos son códecs de VIDEO? (selección múltiple)",
+        "tipo": "multi",
+        "opciones": [
+          "H.264 (AVC)",
+          "H.265 (HEVC)",
+          "AV1",
+          "m3u8"
+        ],
+        "correctas": [
+          0,
+          1,
+          2
+        ],
+        "objetivo": "Códecs",
+        "explicacion": "H.264, H.265 y AV1 son códecs de video. m3u8 es un manifiesto, no un códec."
+      },
+      {
+        "enunciado": "Un cliente reporta que su transmisión SRT a 6.000 kbps se corta, y su conexión de subida es de 4.000 kbps. ¿Cuál es la causa más probable?",
+        "tipo": "single",
+        "opciones": [
+          "El bitrate configurado supera la velocidad de subida disponible",
+          "El códec H.264 no soporta SRT",
+          "El manifiesto .m3u8 está corrupto",
+          "La CDN está caída"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Diagnóstico con fundamentos",
+        "explicacion": "Si el bitrate excede el ancho de banda de subida, el stream no puede enviarse completo y se corta: hay que reducir el bitrate."
+      },
+      {
+        "enunciado": "¿Cuál es la diferencia entre codificar y transcodificar?",
+        "tipo": "single",
+        "opciones": [
+          "Codificar es de video crudo a comprimido; transcodificar es de un formato comprimido a otro",
+          "Son exactamente lo mismo",
+          "Transcodificar solo aplica a audio",
+          "Codificar solo lo hace la CDN"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Transcodificación y ABR",
+        "explicacion": "Codificación: crudo → comprimido. Transcodificación: comprimido → otro comprimido (ej. RTMP entrante a varias resoluciones HLS)."
+      },
+      {
+        "enunciado": "¿Por qué SRT es preferible cuando se transmite desde un estadio con conexión inestable?",
+        "tipo": "single",
+        "opciones": [
+          "Porque se recupera de pérdidas de paquetes sin que el stream se caiga, con baja latencia",
+          "Porque no necesita internet",
+          "Porque comprime más que H.265",
+          "Porque no usa bitrate"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "HLS vs SRT",
+        "explicacion": "SRT está diseñado para larga distancia y conexiones inestables: recupera paquetes perdidos con baja latencia."
+      },
+      {
+        "enunciado": "Un cliente dice 'el video se ve pixelado'. ¿Cuál es una causa típica según los fundamentos?",
+        "tipo": "single",
+        "opciones": [
+          "El bitrate está muy bajo o la conexión del usuario no soporta el bitrate requerido",
+          "El video tiene demasiadas calidades",
+          "El manifiesto tiene demasiados fragmentos",
+          "El códec AV1 es de código abierto"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Bitrate",
+        "explicacion": "Pixelado suele ser bitrate insuficiente o conexión que no lo soporta: la 'manguera' es muy delgada."
+      },
+      {
+        "enunciado": "¿Quién desarrolló el protocolo HLS?",
+        "tipo": "single",
+        "opciones": [
+          "Apple",
+          "Google",
+          "Amazon",
+          "Microsoft"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Manifiesto HLS",
+        "explicacion": "HLS (HTTP Live Streaming) fue desarrollado por Apple."
+      },
+      {
+        "enunciado": "H.265 (HEVC) comparado con H.264:",
+        "tipo": "single",
+        "opciones": [
+          "Es hasta 50% más eficiente pero requiere más poder de procesamiento",
+          "Es menos eficiente y más lento",
+          "Es el mismo códec con otro nombre",
+          "Solo sirve para audio"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Códecs",
+        "explicacion": "H.265 comprime hasta 50% mejor que H.264 a costa de más procesamiento; ideal para 4K."
+      },
+      {
+        "enunciado": "En HLS, ¿de qué tamaño suelen ser los fragmentos de video?",
+        "tipo": "single",
+        "opciones": [
+          "De pocos segundos (típicamente 2 a 10 segundos)",
+          "De 1 hora cada uno",
+          "De exactamente 1 minuto",
+          "No se fragmenta, es un solo archivo"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Manifiesto HLS",
+        "explicacion": "HLS divide el stream en segmentos cortos, generalmente de 2 a 10 segundos."
+      }
+    ]
+  }
+}

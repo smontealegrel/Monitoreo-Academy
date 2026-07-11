@@ -1,0 +1,227 @@
+{
+  "id": 13,
+  "semana": 3,
+  "modulo": "Integraciones",
+  "titulo": "APIs, metadatos y MCP",
+  "objetivo": "Comprender la API de Mediastream (endpoints, métodos, autenticación), cómo usarla para consultas y automatizaciones, la metadata ID3 para audio/video, y el servidor MCP de IA.",
+  "bloques": [
+    {
+      "id": "b1",
+      "tipo": "teoria",
+      "titulo": "Conceptos de API, ID3 y el servidor MCP",
+      "duracion": "70 min",
+      "html": "<h3>¿Qué es una API?</h3><p>Application Programming Interface: como el menú de un restaurante, te dice qué puedes pedir, cómo pedirlo y qué recibirás. La API de Mediastream permite subir videos, crear eventos, consultar estadísticas y configurar, todo de forma programática.</p><table><tr><th>Concepto</th><th>Descripción</th></tr><tr><td>Endpoint</td><td>La URL que se consulta (ej. /api/v1/medias).</td></tr><tr><td>HTTP Method</td><td>GET (consultar), POST (crear), PUT (actualizar), DELETE (eliminar).</td></tr><tr><td>API Key / Token</td><td>Credencial que identifica al cliente y autoriza el acceso (header Authorization: Bearer [TOKEN]).</td></tr><tr><td>Response / JSON</td><td>La respuesta del servidor, en formato JSON.</td></tr></table><h3>Metadata ID3</h3><p>Estándar para embeber metadatos dentro de un stream de audio/video, sincronizados en tiempo real. Muy usado en radio online: el encoder inserta 'frames ID3' y el player los muestra (ej. 'Ahora suena: Artista - Canción'). Si un cliente de radio dice 'las canciones ya no se muestran', suele ser que el encoder dejó de enviar las marcas ID3 o el player no está configurado para leerlas.</p><h3>Servidor MCP (Model Context Protocol)</h3><p>La Analytics API expone un servidor de IA por <b>MCP</b> en <code>https://mcp.platform.mediastre.am</code>, con herramientas de solo lectura como <code>getLiveStreamList</code>, <code>getMediaList</code> y <code>queryAnalytics</code> para análisis conversacional de datos complejos. Las consultas por API van a <code>metrics.mdstrm.com/outbound/v1/metric/api</code> (header X-API-Token de administrador, límite de un mes por consulta y cuota mensual de 2 TB).</p><div class=\"callout tip\"><span class=\"ct\">Tu rol en soporte</span>No siempre programarás. Muchas veces tu trabajo es explicar al cliente cómo usar la API, darle la documentación correcta y un ejemplo básico (ej. usar GET /medias con paginación y luego PUT /medias/{id} para actualizar en lote).</div>"
+    },
+    {
+      "id": "b2",
+      "tipo": "practica",
+      "titulo": "Primeras consultas a la API con Postman",
+      "duracion": "80 min",
+      "requiereEvidencia": true,
+      "html": "<ol><li>Instala Postman y obtén la API Key/token del entorno de prueba.</li><li>Crea una solicitud GET a <code>/v1/medias</code> con el header <code>Authorization: Bearer [TOKEN]</code>.</li><li>Haz también GET <code>/medias/{id}</code> y un POST <code>/medias</code> (solo metadatos).</li><li>Identifica en el JSON cuántos medias retornó y cuál es el primero.</li><li>Investiga: ¿qué es un webhook y tiene la API de Mediastream webhooks?</li></ol>"
+    },
+    {
+      "id": "b3",
+      "tipo": "shadowing",
+      "titulo": "Caso: 'quiero taggear 500 videos'",
+      "duracion": "45 min",
+      "html": "<p>Un cliente quiere añadir un tag a 500 videos. Observa la solución vía API:</p><ol><li>GET /medias con paginación para obtener la lista.</li><li>Por cada video, PUT /medias/{id} con los metadatos actualizados.</li><li>Se puede automatizar con un script simple.</li></ol><p>Tu rol: explicar el enfoque, dar la documentación y un ejemplo básico.</p>"
+    },
+    {
+      "id": "b4",
+      "tipo": "ejercicio",
+      "titulo": "Documenta endpoints y explica ID3/MCP",
+      "duracion": "45 min",
+      "requiereEvidencia": true,
+      "html": "<ol><li>Documenta los endpoints que usaste y sus parámetros.</li><li>Explica con tus palabras qué es la metadata ID3 y un caso de radio online.</li><li>Describe qué es el servidor MCP y nombra 2 herramientas de solo lectura que expone.</li></ol>"
+    }
+  ],
+  "quiz": {
+    "preguntasAMostrar": 10,
+    "umbral": 90,
+    "banco": [
+      {
+        "enunciado": "¿Qué método HTTP se usa para CONSULTAR datos en una API?",
+        "tipo": "single",
+        "opciones": [
+          "GET",
+          "POST",
+          "DELETE",
+          "PUT"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Conceptos de API",
+        "explicacion": "GET consulta, POST crea, PUT actualiza, DELETE elimina."
+      },
+      {
+        "enunciado": "¿Cómo se autentica típicamente una solicitud a la API de Mediastream?",
+        "tipo": "single",
+        "opciones": [
+          "Con un header Authorization: Bearer [TOKEN] / API Key",
+          "Con usuario y contraseña en la URL",
+          "Sin autenticación",
+          "Con el número de teléfono del cliente"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Conceptos de API",
+        "explicacion": "Se usa una API Key/token en el header de autorización."
+      },
+      {
+        "enunciado": "Un cliente quiere añadir un tag a 500 videos. ¿Cuál es el enfoque correcto vía API?",
+        "tipo": "single",
+        "opciones": [
+          "GET /medias con paginación y luego PUT /medias/{id} por cada video",
+          "Borrar los 500 videos y volver a subirlos",
+          "DELETE /medias",
+          "Hacerlo manualmente uno por uno"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Uso de la API",
+        "explicacion": "Se listan con GET (paginado) y se actualizan con PUT por id; se puede automatizar con un script."
+      },
+      {
+        "enunciado": "¿Para qué sirve la metadata ID3?",
+        "tipo": "single",
+        "opciones": [
+          "Embeber metadatos en el stream de audio/video sincronizados en tiempo real (ej. título de la canción)",
+          "Comprimir el video",
+          "Autenticar la API",
+          "Configurar la CDN"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Metadata ID3",
+        "explicacion": "ID3 embebe información (canción/artista, marcas de anuncio) dentro del stream, útil en radio online."
+      },
+      {
+        "enunciado": "Un cliente de radio dice 'ya no se muestran las canciones en el player'. Causa típica:",
+        "tipo": "single",
+        "opciones": [
+          "El encoder dejó de enviar las marcas ID3, o el player no está configurado para leerlas",
+          "La CDN está caída",
+          "El video está en 4K",
+          "Falta la Stream Key"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Metadata ID3",
+        "explicacion": "El problema está en las marcas ID3: encoder que no las envía o player que no las lee."
+      },
+      {
+        "enunciado": "¿Qué es el servidor MCP de Mediastream?",
+        "tipo": "single",
+        "opciones": [
+          "Un servidor de IA (Model Context Protocol) con herramientas de solo lectura para analizar datos conversacionalmente",
+          "Un encoder de hardware",
+          "Una CDN secundaria",
+          "El gestor de contraseñas"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "MCP",
+        "explicacion": "El MCP expone herramientas de solo lectura (getLiveStreamList, getMediaList, queryAnalytics) para análisis conversacional."
+      },
+      {
+        "enunciado": "¿Cuáles son herramientas de solo lectura del servidor MCP? (selección múltiple)",
+        "tipo": "multi",
+        "opciones": [
+          "getLiveStreamList",
+          "getMediaList",
+          "queryAnalytics",
+          "deleteAllMedias"
+        ],
+        "correctas": [
+          0,
+          1,
+          2
+        ],
+        "objetivo": "MCP",
+        "explicacion": "El MCP es de solo lectura: getLiveStreamList, getMediaList y queryAnalytics. No borra nada."
+      },
+      {
+        "enunciado": "¿Cuál es la cuota mensual de la Analytics API por consulta/tráfico mencionada?",
+        "tipo": "single",
+        "opciones": [
+          "Límite de un mes por consulta y cuota mensual de 2 TB",
+          "Sin límite",
+          "1 GB al día",
+          "10 consultas por hora"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Analytics API",
+        "explicacion": "La consulta tiene límite de un mes y la cuota mensual es de 2 TB (header X-API-Token de admin)."
+      },
+      {
+        "enunciado": "En una API, un 'Endpoint' es:",
+        "tipo": "single",
+        "opciones": [
+          "La URL específica que se consulta (ej. /api/v1/medias)",
+          "La contraseña del administrador",
+          "El formato de los datos",
+          "El navegador del usuario"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Conceptos de API",
+        "explicacion": "El endpoint es la URL del recurso que se consulta o modifica."
+      },
+      {
+        "enunciado": "Un cliente pide ayuda para añadir un tag a 500 videos. ¿Qué le propones?",
+        "tipo": "single",
+        "opciones": [
+          "Listar con GET /medias (paginado) y actualizar cada uno con PUT /medias/{id}, automatizable con un script",
+          "Borrarlos y re-subirlos",
+          "Hacerlo a mano uno por uno",
+          "Escalar a N3 sin más"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Uso de la API",
+        "explicacion": "GET paginado + PUT por id; se puede automatizar con un script."
+      },
+      {
+        "enunciado": "Una radio dice que 'ya no se ve la canción en el player'. ¿Cuál es la causa típica?",
+        "tipo": "single",
+        "opciones": [
+          "El encoder dejó de enviar las marcas ID3 (o el player no las lee)",
+          "La CDN está caída",
+          "El video está en 4K",
+          "Falta la VPN"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Metadata ID3",
+        "explicacion": "El nombre de la canción viaja en marcas ID3; si no se envían o el player no las lee, no se muestra."
+      },
+      {
+        "enunciado": "¿Qué se usa para autenticar una llamada a la API de Mediastream?",
+        "tipo": "single",
+        "opciones": [
+          "Un token / API Key en el header Authorization",
+          "Usuario y contraseña en la URL",
+          "Nada",
+          "El número del cliente"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Conceptos de API",
+        "explicacion": "Se autentica con un token/API Key en el header de autorización."
+      }
+    ]
+  }
+}

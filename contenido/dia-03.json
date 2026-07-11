@@ -1,0 +1,226 @@
+{
+  "id": 3,
+  "semana": 1,
+  "modulo": "Arquitectura",
+  "titulo": "El ecosistema Mediastream (Platform, CDN, Player)",
+  "objetivo": "Comprender la arquitectura end-to-end de Mediastream: qué es la Platform, la CDN, el Player y el Encoder, cuál es el 'viaje' de un video (VOD y Live) y cómo el caché afecta al soporte.",
+  "bloques": [
+    {
+      "id": "b1",
+      "tipo": "teoria",
+      "titulo": "Los 4 componentes, el viaje del video y el caché",
+      "duracion": "70 min",
+      "html": "<p>Mediastream es una plataforma de video <b>end-to-end</b>: cubre todo el ciclo de vida del video, desde que se sube o transmite hasta que el usuario lo ve. Piénsalo como una autopista de video.</p><h3>Los 4 componentes clave</h3><table><tr><th>Componente</th><th>Función</th></tr><tr><td>1. Platform (la fábrica)</td><td>El cerebro. Los clientes suben videos, crean eventos, configuran canales. Panel de control central.</td></tr><tr><td>2. CDN (la red de distribución)</td><td>Content Delivery Network: servidores por todo el mundo que acercan el video al usuario (a un viewer en Chile lo sirve el servidor más cercano).</td></tr><tr><td>3. Player (la ventana)</td><td>El reproductor que ve el usuario final. Configurable, embebido en web o app.</td></tr><tr><td>4. Encoder (la fuente)</td><td>El dispositivo (AWS Elemental, OBS…) que captura y codifica el video en vivo y envía la señal a la Platform.</td></tr></table><h3>El viaje del video (VOD)</h3><ol><li>El cliente sube el archivo a la Platform (módulo Media).</li><li>La Platform lo transcodifica (1080p, 720p, 480p, 360p).</li><li>Se almacena en el storage de Mediastream.</li><li>El usuario hace clic en el Player.</li><li>El Player pide el manifiesto .m3u8 a la CDN.</li><li>La CDN entrega los fragmentos desde el servidor más cercano.</li><li>El usuario ve el video con calidad adaptada a su conexión.</li></ol><h3>El viaje del video (Live)</h3><ol><li>El cliente configura su encoder apuntando a la URL de ingest de Mediastream.</li><li>La señal llega en tiempo real vía RTMP o SRT.</li><li>La Platform transcodifica en vivo (Cloud Transcoding).</li><li>Los fragmentos HLS se escriben y publican en la CDN.</li><li>El Player los consume con una latencia de 10–30 s (HLS estándar).</li></ol><div class=\"callout tip\"><span class=\"ct\">¿Por qué hay retraso en vivo?</span>El Player 'acumula' algunos fragmentos antes de reproducir, para tener un buffer de seguridad si la conexión falla. Es como llenar un vaso antes de beber.</div><h3>La CDN y el caché</h3><p>La CDN guarda copias (caché) del contenido más solicitado. Es genial para VOD, pero causa problemas si un cliente cambia algo y el caché sigue sirviendo la versión antigua. El tiempo de caché (TTL) es configurable.</p><div class=\"callout warn\"><span class=\"ct\">Caso frecuente</span>Un cliente actualiza la miniatura de un video pero sigue viendo la anterior. Causa probable: caché de la CDN. Solución: esperar que expire el TTL (típicamente 5–60 min) o solicitar un <b>purge</b> (limpieza manual).</div>"
+    },
+    {
+      "id": "b2",
+      "tipo": "practica",
+      "titulo": "Recorrido guiado por la Platform (demo/sandbox)",
+      "duracion": "90 min",
+      "requiereEvidencia": true,
+      "html": "<p>Pide a tu supervisor acceso demo/sandbox y realiza el recorrido:</p><ol><li>Ingresa con tus credenciales.</li><li>Identifica en el menú lateral los módulos: Media, Live, Next, Fast Channels, Analytics, Ads.</li><li>Entra a Media y observa cómo se organizan los videos (categorías, metadatos).</li><li>Entra a Live y observa la sección de eventos.</li><li>Identifica la sección de configuración del Player.</li></ol>"
+    },
+    {
+      "id": "b3",
+      "tipo": "shadowing",
+      "titulo": "Caso: 'se ve bien en Chile pero lento en México'",
+      "duracion": "45 min",
+      "html": "<p>Con un senior, analiza el caso donde usuarios en México tienen buffering pero en Chile no:</p><ol><li>El video está bien subido y transcodificado en la Platform.</li><li>El problema está en la distribución: el nodo CDN cercano a México puede estar bajo alta demanda o mal configurado.</li><li>Se revisa la configuración CDN del cliente y las alertas de disponibilidad de nodos en esa zona.</li></ol>"
+    },
+    {
+      "id": "b4",
+      "tipo": "ejercicio",
+      "titulo": "Dibuja el viaje del video",
+      "duracion": "45 min",
+      "requiereEvidencia": true,
+      "html": "<p>En papel o en draw.io / Miro:</p><ol><li>Dibuja el diagrama completo del viaje de un video VOD desde la subida hasta el usuario final.</li><li>Añade dónde entran la CDN y el Player.</li><li>Marca en qué punto podría ocurrir un fallo.</li><li>Comparte con tu supervisor para feedback.</li></ol>"
+    }
+  ],
+  "quiz": {
+    "preguntasAMostrar": 10,
+    "umbral": 90,
+    "banco": [
+      {
+        "enunciado": "¿Cuáles son los 4 componentes clave del ecosistema Mediastream?",
+        "tipo": "single",
+        "opciones": [
+          "Platform, CDN, Player y Encoder",
+          "Media, Live, Next y Ads",
+          "Servidor, cliente, router y switch",
+          "Gmail, Slack, Intercom y Calendar"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Componentes del ecosistema",
+        "explicacion": "Platform (fábrica), CDN (distribución), Player (ventana) y Encoder (fuente). Media/Live/Next son módulos de la Platform."
+      },
+      {
+        "enunciado": "¿Cuál es la función de la CDN?",
+        "tipo": "single",
+        "opciones": [
+          "Acercar el video al usuario sirviéndolo desde el servidor más cercano",
+          "Codificar la señal en vivo del cliente",
+          "Ser el panel de control donde se suben los videos",
+          "Reproducir el video en la pantalla del usuario"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Componentes del ecosistema",
+        "explicacion": "La CDN es la red de distribución: sirve el contenido desde el nodo más cercano al usuario para reducir latencia."
+      },
+      {
+        "enunciado": "En el viaje de un video VOD, ¿a quién le pide el Player el manifiesto .m3u8?",
+        "tipo": "single",
+        "opciones": [
+          "A la CDN",
+          "Al encoder",
+          "A Intercom",
+          "Al usuario final"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Viaje del video VOD",
+        "explicacion": "El Player solicita el manifiesto a la CDN, que entrega los fragmentos desde el servidor más cercano."
+      },
+      {
+        "enunciado": "¿Por qué hay una latencia de 10–30 segundos en un evento en vivo con HLS estándar?",
+        "tipo": "single",
+        "opciones": [
+          "El Player acumula fragmentos en un buffer de seguridad antes de reproducir",
+          "La CDN está siempre saturada",
+          "El encoder tarda en encender",
+          "El manifiesto se descarga muy lento siempre"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Viaje del video Live",
+        "explicacion": "El buffer de seguridad (acumular fragmentos) genera la latencia típica de HLS, pero protege ante fallos momentáneos."
+      },
+      {
+        "enunciado": "Un cliente actualiza la miniatura de un video pero sigue viendo la anterior. ¿Cuál es la causa más probable y su solución?",
+        "tipo": "single",
+        "opciones": [
+          "Caché de la CDN; esperar que expire el TTL o solicitar un purge",
+          "El video está corrupto; volver a subirlo",
+          "El encoder está apagado; reiniciarlo",
+          "La API está caída; escalar a Nivel 3"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "CDN y caché",
+        "explicacion": "El caché de la CDN sigue sirviendo la versión vieja hasta que expira el TTL o se hace un purge manual."
+      },
+      {
+        "enunciado": "¿Qué es el Encoder en el ecosistema?",
+        "tipo": "single",
+        "opciones": [
+          "El dispositivo (hardware o software) que captura y codifica el video en vivo y lo envía a la Platform",
+          "El reproductor que ve el usuario",
+          "La red de servidores de distribución",
+          "El panel donde se gestionan los tickets"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Componentes del ecosistema",
+        "explicacion": "El encoder (Elemental, OBS…) es la fuente: codifica la señal y la envía a la Platform."
+      },
+      {
+        "enunciado": "¿Por qué protocolos puede llegar la señal en vivo a la Platform?",
+        "tipo": "multi",
+        "opciones": [
+          "RTMP",
+          "SRT",
+          "SMTP",
+          "IMAP"
+        ],
+        "correctas": [
+          0,
+          1
+        ],
+        "objetivo": "Viaje del video Live",
+        "explicacion": "El ingest en vivo llega vía RTMP o SRT. SMTP e IMAP son protocolos de correo."
+      },
+      {
+        "enunciado": "¿Qué significa que Mediastream sea una plataforma 'end-to-end'?",
+        "tipo": "single",
+        "opciones": [
+          "Cubre todo el ciclo de vida del video, desde la subida/transmisión hasta que el usuario lo ve",
+          "Solo transcodifica archivos",
+          "Solo distribuye contenido de otras plataformas",
+          "Solo gestiona la publicidad"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Arquitectura general",
+        "explicacion": "End-to-end = cubre todo el ciclo: ingesta, transcodificación, almacenamiento, distribución y reproducción."
+      },
+      {
+        "enunciado": "En el viaje del Live, ¿qué hace el Cloud Transcoding?",
+        "tipo": "single",
+        "opciones": [
+          "Transcodifica el stream en vivo a múltiples calidades en los servidores de Mediastream",
+          "Almacena los videos VOD",
+          "Bloquea usuarios por país",
+          "Genera reportes de Analytics"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Viaje del video Live",
+        "explicacion": "El Cloud Transcoding genera las múltiples calidades del vivo en la nube de Mediastream, no en el equipo del cliente."
+      },
+      {
+        "enunciado": "Usuarios en México tienen buffering pero en Chile no. El video está bien subido. ¿Dónde está el problema?",
+        "tipo": "single",
+        "opciones": [
+          "En la distribución: el nodo CDN cercano a México puede estar saturado o mal configurado",
+          "En el módulo Media, hay que re-subir el video",
+          "En el encoder del cliente",
+          "En el navegador de todos los usuarios del mundo"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "CDN y caché",
+        "explicacion": "Si el origen está bien pero solo falla en una región, el problema es de distribución/CDN en esa zona."
+      },
+      {
+        "enunciado": "El caché de la CDN es útil principalmente para:",
+        "tipo": "single",
+        "opciones": [
+          "Servir más rápido el contenido más solicitado (especialmente VOD)",
+          "Codificar la señal en vivo",
+          "Guardar las contraseñas de los clientes",
+          "Reemplazar al Player"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "CDN y caché",
+        "explicacion": "El caché acelera la entrega guardando copias del contenido popular más cerca del usuario."
+      },
+      {
+        "enunciado": "Como ingeniero de soporte, ¿la forma más rápida de que la CDN deje de servir una versión antigua de un archivo tras un cambio?",
+        "tipo": "single",
+        "opciones": [
+          "Solicitar un purge de la CDN (o esperar a que expire el TTL)",
+          "Reiniciar el encoder del cliente",
+          "Volver a subir todo el catálogo",
+          "Cambiar el skin del player"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "CDN y caché",
+        "explicacion": "Un purge limpia el caché de inmediato; sin él hay que esperar el TTL."
+      }
+    ]
+  }
+}

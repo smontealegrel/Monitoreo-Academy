@@ -1,0 +1,229 @@
+{
+  "id": 5,
+  "semana": 1,
+  "modulo": "Encoders y accesos",
+  "titulo": "Hardware de transmisión y conectividad remota",
+  "objetivo": "Comprender los encoders de hardware (AWS Elemental Live y Server), y aprender a conectarse de forma segura a los equipos de los clientes usando VPN y WinSCP, respetando las reglas de seguridad de accesos.",
+  "bloques": [
+    {
+      "id": "b1",
+      "tipo": "teoria",
+      "titulo": "Elemental Live/Server, VPN, WinSCP y seguridad de accesos",
+      "duracion": "70 min",
+      "html": "<h3>¿Qué es un encoder de hardware?</h3><p>Un dispositivo físico dedicado a codificar (comprimir) video. A diferencia de un software encoder (OBS), tiene chips especializados: más eficiente, estable y confiable. Como una panificadora industrial vs. hacer pan a mano.</p><table><tr><th>Dispositivo</th><th>Uso principal</th></tr><tr><td>AWS Elemental Live</td><td>Transmisión en vivo (real-time). Procesa SDI/HDMI/IP, múltiples outputs (HLS, RTMP, SRT), interfaz web, soporta redundancia.</td></tr><tr><td>AWS Elemental Server</td><td>Transcodificación de archivos VOD, masiva y automatizada. Recibe archivos (Watchfolder, FTP, S3) y los procesa según perfiles.</td></tr></table><h3>Conceptos clave de encoders</h3><ul><li><b>Input:</b> la señal que ENTRA (cámara, SDI, archivo).</li><li><b>Output:</b> lo que PRODUCE (HLS, MP4, RTMP).</li><li><b>Job:</b> tarea de transcodificación en Elemental Server.</li><li><b>Channel:</b> configuración de transmisión en Elemental Live.</li><li><b>Profile/Preset:</b> plantilla que define códec, bitrate, resolución.</li></ul><h3>VPN (Red Privada Virtual)</h3><p>Crea un 'túnel seguro' entre tu equipo y la red privada del cliente, como un pasadizo hacia su sala de servidores. Tipos frecuentes: OpenVPN (archivo .ovpn), Cisco AnyConnect, WireGuard, Forticlient, Watchguard.</p><h3>WinSCP</h3><p>Herramienta para transferir archivos de forma segura (SCP/SFTP). Usos: bajar logs del Elemental, subir configuraciones, verificar archivos transcodificados y revisar Watchfolders.</p><div class=\"callout warn\"><span class=\"ct\">Reglas de oro de acceso remoto</span><ul><li>NUNCA guardes credenciales de clientes en texto plano: usa el gestor de contraseñas del equipo.</li><li>Solicita SIEMPRE autorización explícita antes de conectarte.</li><li>Documenta cada acceso: fecha, hora, sistema y acciones.</li><li>Cierra la sesión VPN al terminar.</li><li>Ante la duda, consulta a un senior antes de hacer cambios.</li></ul></div>"
+    },
+    {
+      "id": "b2",
+      "tipo": "practica",
+      "titulo": "Conexión por VPN y descarga de logs con WinSCP",
+      "duracion": "90 min",
+      "requiereEvidencia": true,
+      "html": "<p>Con un entorno de prueba del supervisor:</p><ol><li>Conéctate al servidor de prueba con las credenciales VPN proporcionadas.</li><li>Desde la VPN, accede a la interfaz web del Elemental Live de prueba (http://[IP_INTERNA]).</li><li>Abre WinSCP y conéctate por SFTP (puerto 22) al mismo servidor.</li><li>Descarga el archivo de log más reciente (ej. /var/log/elemental/).</li><li>Ábrelo y encuentra el último mensaje de error o advertencia.</li><li>Documenta tus hallazgos como si fueran parte de un ticket.</li></ol>"
+    },
+    {
+      "id": "b3",
+      "tipo": "shadowing",
+      "titulo": "Caso: 'el Elemental Server no procesa archivos'",
+      "duracion": "45 min",
+      "html": "<p>Observa el diagnóstico de un Elemental Server 'congelado':</p><ol><li>Pedir autorización y conectarse por VPN.</li><li>Revisar el estado de los jobs en la interfaz web.</li><li>Si los jobs están en cola pero no avanzan, revisar logs por WinSCP.</li><li>Buscar mensajes como 'disk full', 'license expired', 'input not found'.</li><li>Con esa información: resolver o escalar.</li></ol>"
+    },
+    {
+      "id": "b4",
+      "tipo": "ejercicio",
+      "titulo": "Mini-glosario y comparación Live vs Server",
+      "duracion": "45 min",
+      "requiereEvidencia": true,
+      "html": "<ol><li>Accede (modo lectura) a un Elemental de prueba: ¿cuántos canales/jobs tiene? ¿están activos?</li><li>Redacta un mini-glosario de 10 términos técnicos que veas en la interfaz.</li><li>Explica en 3 líneas la diferencia entre Elemental Live y Elemental Server.</li><li>Escribe con tus palabras las 5 reglas de oro de acceso remoto seguro.</li></ol>"
+    }
+  ],
+  "quiz": {
+    "preguntasAMostrar": 10,
+    "umbral": 90,
+    "banco": [
+      {
+        "enunciado": "¿Cuál es la diferencia principal entre Elemental Live y Elemental Server?",
+        "tipo": "single",
+        "opciones": [
+          "Live es para transmisión en vivo (real-time); Server es para transcodificar archivos VOD de forma masiva",
+          "Live procesa archivos y Server hace streaming en vivo",
+          "Son el mismo equipo con distinto nombre",
+          "Live es software y Server es hardware"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Encoders de hardware",
+        "explicacion": "Elemental Live = vivo en tiempo real; Elemental Server = transcodificación masiva de archivos (VOD)."
+      },
+      {
+        "enunciado": "En un encoder, ¿qué es el 'Input'?",
+        "tipo": "single",
+        "opciones": [
+          "La señal que ENTRA al encoder (cámara, SDI, archivo)",
+          "El stream HLS que produce",
+          "El perfil de transcodificación",
+          "El log de errores"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Conceptos de encoders",
+        "explicacion": "Input = lo que entra; Output = lo que produce (HLS, MP4, RTMP)."
+      },
+      {
+        "enunciado": "¿Qué es un 'Job' en el contexto de Elemental Server?",
+        "tipo": "single",
+        "opciones": [
+          "Una tarea de transcodificación",
+          "Un canal de transmisión en vivo",
+          "Una credencial VPN",
+          "Un tipo de códec"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Conceptos de encoders",
+        "explicacion": "Job = tarea de transcodificación en Elemental Server. Channel = configuración de transmisión en Elemental Live."
+      },
+      {
+        "enunciado": "¿Para qué sirve una VPN en soporte?",
+        "tipo": "single",
+        "opciones": [
+          "Crear un túnel seguro para acceder a la red privada del cliente",
+          "Aumentar el bitrate del stream",
+          "Reemplazar al encoder",
+          "Transcodificar archivos"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Conexión remota",
+        "explicacion": "La VPN te 'mete' en la red privada del cliente para ver sus dispositivos internos de forma segura."
+      },
+      {
+        "enunciado": "¿Para qué se usa WinSCP? (selección múltiple)",
+        "tipo": "multi",
+        "opciones": [
+          "Bajar logs del Elemental para análisis",
+          "Subir archivos de configuración al servidor",
+          "Verificar el contenido de los Watchfolders",
+          "Editar el bitrate del player del usuario"
+        ],
+        "correctas": [
+          0,
+          1,
+          2
+        ],
+        "objetivo": "Conexión remota",
+        "explicacion": "WinSCP transfiere archivos por SCP/SFTP: logs, configuraciones, verificación de watchfolders. No configura players."
+      },
+      {
+        "enunciado": "¿Cuál es una regla de oro del acceso remoto seguro?",
+        "tipo": "single",
+        "opciones": [
+          "Nunca guardar credenciales de clientes en texto plano; usar el gestor de contraseñas",
+          "Guardar todas las claves en un archivo de texto en el escritorio",
+          "Conectarse sin avisar al cliente para ir más rápido",
+          "Dejar la VPN siempre abierta"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Seguridad de accesos",
+        "explicacion": "Las credenciales van en el gestor de contraseñas, nunca en texto plano; se pide autorización y se cierra la sesión al terminar."
+      },
+      {
+        "enunciado": "Antes de conectarte a los sistemas de un cliente, debes:",
+        "tipo": "single",
+        "opciones": [
+          "Solicitar autorización explícita del cliente",
+          "Cambiar la configuración de inmediato",
+          "Copiar toda su información sensible",
+          "Compartir tus credenciales con el cliente"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Seguridad de accesos",
+        "explicacion": "Siempre se solicita autorización explícita y se documenta el acceso (fecha, hora, sistema, acciones)."
+      },
+      {
+        "enunciado": "Un Elemental Server tiene jobs en cola que no avanzan. En los logs buscarías mensajes como:",
+        "tipo": "multi",
+        "opciones": [
+          "'disk full'",
+          "'license expired'",
+          "'input not found'",
+          "'404 not found en el navegador del usuario'"
+        ],
+        "correctas": [
+          0,
+          1,
+          2
+        ],
+        "objetivo": "Diagnóstico de encoders",
+        "explicacion": "Jobs atascados suelen deberse a disco lleno, licencia vencida o input no encontrado. El 404 del navegador es otro tipo de problema."
+      },
+      {
+        "enunciado": "¿Qué es un 'Profile' o 'Preset' en un encoder?",
+        "tipo": "single",
+        "opciones": [
+          "Una plantilla que define códec, bitrate y resolución",
+          "El usuario administrador del equipo",
+          "Una alarma de QoE",
+          "Un ticket de Intercom"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Conceptos de encoders",
+        "explicacion": "Profile/Preset = plantilla reutilizable de configuración (códec, bitrate, resolución)."
+      },
+      {
+        "enunciado": "OpenVPN normalmente requiere:",
+        "tipo": "single",
+        "opciones": [
+          "Un archivo de configuración .ovpn que provee el cliente",
+          "Instalar un encoder de hardware",
+          "Un manifiesto .m3u8",
+          "Una cuenta de Google Ad Manager"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Conexión remota",
+        "explicacion": "OpenVPN usa un archivo .ovpn más credenciales que provee el cliente."
+      },
+      {
+        "enunciado": "Un cliente reporta su Elemental Live 'sin señal'. ¿Qué es lo primero que pides o revisas?",
+        "tipo": "single",
+        "opciones": [
+          "Acceso a la interfaz web del equipo (o capturas) para ver estado, Input Status y logs",
+          "Que reinicie su router",
+          "Que cambie de navegador",
+          "Que suba el bitrate al máximo"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Diagnóstico de encoders",
+        "explicacion": "Lo primero es revisar el estado del canal, el Input Status y los logs en la interfaz web del Elemental."
+      },
+      {
+        "enunciado": "Vas a conectarte por VPN al equipo de un cliente. ¿Qué es obligatorio antes y después?",
+        "tipo": "single",
+        "opciones": [
+          "Pedir autorización explícita antes y cerrar la sesión VPN al terminar",
+          "Nada, puedes conectarte libremente",
+          "Guardar sus credenciales en un archivo de texto",
+          "Cambiar su configuración de inmediato"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Seguridad de accesos",
+        "explicacion": "Se pide autorización, se documenta el acceso y se cierra la sesión al terminar."
+      }
+    ]
+  }
+}

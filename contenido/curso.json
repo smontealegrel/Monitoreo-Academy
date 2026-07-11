@@ -1,0 +1,26 @@
+{
+  "titulo": "Inducción de Soporte Técnico · Mediastream",
+  "subtitulo": "Programa de 15 días · de principiante a operador de soporte NOC · jornada de 7 horas/día",
+  "semanas": {
+    "1": "Fundamentos, cultura y herramientas",
+    "2": "Dominando Mediastream Platform",
+    "3": "Infraestructura, monitoreo y diagnóstico"
+  },
+  "dias": [
+    { "id": 1,  "semana": 1, "titulo": "Cultura de servicio y expectativas del rol", "modulo": "Onboarding" },
+    { "id": 2,  "semana": 1, "titulo": "Fundamentos de streaming y protocolos", "modulo": "Fundamentos técnicos" },
+    { "id": 3,  "semana": 1, "titulo": "El ecosistema Mediastream (Platform, CDN, Player)", "modulo": "Arquitectura" },
+    { "id": 4,  "semana": 1, "titulo": "Protocolos de soporte e Intercom", "modulo": "Operación de soporte" },
+    { "id": 5,  "semana": 1, "titulo": "Hardware de transmisión y conectividad remota", "modulo": "Encoders y accesos" },
+    { "id": 6,  "semana": 2, "titulo": "Módulo Media — ingesta, transcodificación y VOD", "modulo": "Platform · Media" },
+    { "id": 7,  "semana": 2, "titulo": "Módulo Live y Live Editor", "modulo": "Platform · Live" },
+    { "id": 8,  "semana": 2, "titulo": "Canales FAST, Schedules y Blackouts", "modulo": "Platform · FAST" },
+    { "id": 9,  "semana": 2, "titulo": "Módulo Next — plataformas OTT y Landings", "modulo": "Platform · Next" },
+    { "id": 10, "semana": 2, "titulo": "Players y monetización (DAI/SGAI, SCTE-35)", "modulo": "Platform · Player y Ads" },
+    { "id": 11, "semana": 3, "titulo": "Sindicación de contenidos y Feeds", "modulo": "Distribución" },
+    { "id": 12, "semana": 3, "titulo": "Automatización con Watchfolders y Elemental Server", "modulo": "Infraestructura" },
+    { "id": 13, "semana": 3, "titulo": "APIs, metadatos y MCP", "modulo": "Integraciones" },
+    { "id": 14, "semana": 3, "titulo": "Monitoreo, QoE y Analytics (Elecard Boro)", "modulo": "Diagnóstico" },
+    { "id": 15, "semana": 3, "titulo": "Operaciones avanzadas y simulación de soporte", "modulo": "Integración final" }
+  ]
+}

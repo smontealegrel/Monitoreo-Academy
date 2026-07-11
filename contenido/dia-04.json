@@ -1,0 +1,227 @@
+{
+  "id": 4,
+  "semana": 1,
+  "modulo": "Operación de soporte",
+  "titulo": "Protocolos de soporte e Intercom",
+  "objetivo": "Dominar el flujo de trabajo de soporte: recibir, categorizar y gestionar tickets en Intercom, saber cuándo y cómo escalar, y usar el Mapeo Visual para guiar al cliente.",
+  "bloques": [
+    {
+      "id": "b1",
+      "tipo": "teoria",
+      "titulo": "Intercom, prioridades, escalamiento, mapeo visual y categorización",
+      "duracion": "70 min",
+      "html": "<h3>Intercom: tu escritorio de trabajo</h3><p>Intercom es la plataforma de comunicación con clientes. Elementos clave: <b>Inbox</b> (bandeja), <b>Conversaciones</b> (cada ticket con su historial), <b>Etiquetas/Tags</b>, <b>Asignación</b> a un agente o equipo y <b>Notas internas</b> (visibles solo para el equipo).</p><h3>Prioridades de un ticket</h3><table><tr><th>Prioridad</th><th>Descripción y tiempo de respuesta</th></tr><tr><td>Crítico (P1)</td><td>Servicio caído o evento en vivo con problemas. Respuesta &lt; 15 min. Ej: 'nuestro canal de noticias está caído'.</td></tr><tr><td>Alto (P2)</td><td>Funcionalidad importante falla pero hay workaround. &lt; 2 h. Ej: 'no puedo subir videos a Media'.</td></tr><tr><td>Medio (P3)</td><td>Afecta pero no es urgente. &lt; 24 h. Ej: 'la miniatura no se actualiza'.</td></tr><tr><td>Bajo (P4)</td><td>Consultas, dudas, mejoras. &lt; 48 h. Ej: '¿cómo configuro el auto-play?'.</td></tr></table><div class=\"callout key\"><span class=\"ct\">Regla de oro</span>Ante la duda sobre la prioridad, sube un nivel. Es mejor tratar un P3 como P2 que dejar un problema urgente sin atención.</div><h3>Flujo de escalamiento</h3><ul><li><b>Nivel 1 (tú):</b> diagnóstico inicial, configuración, consultas generales.</li><li><b>Nivel 2 (senior):</b> problemas complejos que requieren logs o configuraciones avanzadas.</li><li><b>Nivel 3 (Ingeniería/DevOps):</b> fallas de infraestructura, bugs, problemas de CDN a nivel de red.</li></ul><p><b>¿Cuándo escalar?</b> No lo resuelves en el tiempo acordado; requiere accesos que no tienes; el cliente está en vivo y no se resuelve en 15 min; sospechas un bug de plataforma (mismo error en varios clientes).</p><h3>Mapeo Visual</h3><p>Guiar al cliente con capturas anotadas (flechas, círculos, numeración) mostrando dónde hacer clic. Herramientas: Loom (video con narración), Lightshot/Snagit (capturas), CloudApp.</p><h3>Categorización obligatoria (Auditoría CS)</h3><p>Antes de cerrar o posponer una conversación, completa 4 campos: <b>Tipo de ticket</b> (Consulta Cliente, Solucionado primer nivel, Problema Lado Cliente, Escalamiento Mediastream, Monitoreo o Reportado Por Soporte — nunca vacío), <b>Cliente</b> (nombre estandarizado, ej. Caracol, Megamedia, TVN), <b>Módulo</b> (Live, OTT, Media, L Editor, etc.) y <b>Consulta frecuente</b> (True/False).</p><div class=\"callout warn\"><span class=\"ct\">Error P1 de auditoría</span>Dejar tickets en 'snoozed' sin cliente, módulo o tipo asignado los saca del radar del reporte semanal. Categoriza de inmediato.</div>"
+    },
+    {
+      "id": "b2",
+      "tipo": "practica",
+      "titulo": "Gestionar un ticket en Intercom paso a paso",
+      "duracion": "80 min",
+      "requiereEvidencia": true,
+      "html": "<ol><li>Recibe la notificación del nuevo ticket.</li><li>Lee el mensaje COMPLETO del cliente antes de responder.</li><li>Asígnate el ticket a tu nombre.</li><li>Clasifica la prioridad (P1–P4).</li><li>Añade las etiquetas: módulo afectado y tipo de problema.</li><li>Responde saludando, confirmando recepción y pidiendo info adicional si hace falta.</li><li>Abre una nota interna con tu análisis.</li><li>Documenta la solución en la nota interna antes de cerrar.</li></ol>"
+    },
+    {
+      "id": "b3",
+      "tipo": "shadowing",
+      "titulo": "Caso P1: evento en vivo en 2 horas",
+      "duracion": "45 min",
+      "html": "<p>Un cliente escribe a las 10:00 que su evento es a las 12:00 y no puede crearlo. Observa el manejo correcto:</p><ol><li>Prioridad P1 inmediata (evento inminente).</li><li>Respuesta en &lt; 5 min confirmando que lo atiendes.</li><li>Pedir captura del error.</li><li>Intentar reproducir el problema.</li><li>Si no se resuelve en 10 min, escalar a Nivel 2.</li><li>Mantener al cliente informado cada 15 min aunque no haya solución aún.</li></ol>"
+    },
+    {
+      "id": "b4",
+      "tipo": "ejercicio",
+      "titulo": "Simulación de ticket con tu supervisor",
+      "duracion": "45 min",
+      "requiereEvidencia": true,
+      "html": "<p>Tu supervisor te enviará un mensaje simulando ser cliente:</p><ol><li>Clasifica la prioridad.</li><li>Responde siguiendo el protocolo.</li><li>Crea un Mapeo Visual simple con Loom o Lightshot.</li><li>Documenta tu análisis en una nota interna.</li><li>Categoriza (tipo, cliente, módulo, consulta frecuente) y cierra correctamente.</li></ol><p>Evalúen juntos: ¿fue correcta la prioridad? ¿la comunicación fue clara y empática?</p>"
+    }
+  ],
+  "quiz": {
+    "preguntasAMostrar": 10,
+    "umbral": 90,
+    "banco": [
+      {
+        "enunciado": "Un cliente reporta que su canal de noticias está completamente caído. ¿Qué prioridad corresponde?",
+        "tipo": "single",
+        "opciones": [
+          "Crítico (P1) — respuesta < 15 min",
+          "Alto (P2) — respuesta < 2 h",
+          "Medio (P3) — respuesta < 24 h",
+          "Bajo (P4) — respuesta < 48 h"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Prioridades de tickets",
+        "explicacion": "Servicio caído o evento en vivo con problemas = P1, respuesta inmediata (< 15 min)."
+      },
+      {
+        "enunciado": "'No puedo subir videos al módulo Media, pero puedo trabajar en lo demás.' ¿Qué prioridad es?",
+        "tipo": "single",
+        "opciones": [
+          "Alto (P2) — funcionalidad importante falla pero hay workaround",
+          "Crítico (P1)",
+          "Bajo (P4)",
+          "No es un ticket válido"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Prioridades de tickets",
+        "explicacion": "Falla una funcionalidad importante pero el servicio no está caído: P2, respuesta < 2 h."
+      },
+      {
+        "enunciado": "Según la regla de oro, si dudas entre dos prioridades, ¿qué haces?",
+        "tipo": "single",
+        "opciones": [
+          "Subir un nivel (tratar un P3 como P2, por ejemplo)",
+          "Bajar un nivel para no saturar",
+          "Dejarlo sin prioridad hasta estar seguro",
+          "Preguntar al cliente qué prioridad quiere"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Prioridades de tickets",
+        "explicacion": "Ante la duda, se sube un nivel: mejor sobre-atender que dejar algo urgente sin atención."
+      },
+      {
+        "enunciado": "¿Cuándo debes escalar un ticket? (selección múltiple)",
+        "tipo": "multi",
+        "opciones": [
+          "No lo resuelves en el tiempo de respuesta acordado",
+          "Requiere accesos/permisos que no tienes",
+          "Sospechas un bug de plataforma (mismo error en varios clientes)",
+          "El cliente te cae bien"
+        ],
+        "correctas": [
+          0,
+          1,
+          2
+        ],
+        "objetivo": "Escalamiento",
+        "explicacion": "Se escala por tiempo, por falta de accesos, por evento en vivo no resuelto o por sospecha de bug. La simpatía no es criterio."
+      },
+      {
+        "enunciado": "El Nivel 3 de escalamiento (Ingeniería/DevOps) se encarga de:",
+        "tipo": "single",
+        "opciones": [
+          "Fallas de infraestructura, bugs de plataforma y problemas de CDN a nivel de red",
+          "El diagnóstico inicial y consultas generales",
+          "Responder el primer saludo al cliente",
+          "Configurar el auto-play del player"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Escalamiento",
+        "explicacion": "Nivel 1 = diagnóstico inicial; Nivel 2 = técnico complejo; Nivel 3 = infraestructura, bugs, CDN."
+      },
+      {
+        "enunciado": "¿Qué es el Mapeo Visual?",
+        "tipo": "single",
+        "opciones": [
+          "Guiar al cliente con capturas anotadas (flechas, círculos, números) mostrando dónde hacer clic",
+          "Un mapa de los servidores CDN",
+          "Un diagrama de la red del cliente",
+          "Una métrica de Analytics"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Mapeo visual",
+        "explicacion": "El Mapeo Visual son capturas/videos anotados para guiar paso a paso al cliente (Loom, Lightshot, Snagit)."
+      },
+      {
+        "enunciado": "Al categorizar una conversación en Intercom, ¿qué campo NUNCA debe quedar vacío?",
+        "tipo": "single",
+        "opciones": [
+          "Tipo de ticket",
+          "El color del chat",
+          "La foto del cliente",
+          "El idioma del navegador"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Categorización de tickets",
+        "explicacion": "El Tipo de ticket nunca se deja vacío; junto con cliente, módulo y consulta frecuente son obligatorios."
+      },
+      {
+        "enunciado": "¿Por qué es un error P1 de auditoría dejar un ticket en 'snoozed' sin cliente/módulo/tipo?",
+        "tipo": "single",
+        "opciones": [
+          "Queda fuera del radar del reporte semanal de operaciones",
+          "Se borra automáticamente",
+          "El cliente recibe spam",
+          "Se escala solo a Nivel 3"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Categorización de tickets",
+        "explicacion": "Sin categorizar, el ticket no aparece en los reportes y se pierde de vista; por eso hay que categorizar de inmediato."
+      },
+      {
+        "enunciado": "En un P1 con evento en vivo, ¿cada cuánto mantienes informado al cliente aunque no tengas solución?",
+        "tipo": "single",
+        "opciones": [
+          "Cada 15 minutos",
+          "Una vez al día",
+          "Solo cuando esté resuelto",
+          "Cada 2 horas"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Escalamiento",
+        "explicacion": "En un P1 crítico se mantiene al cliente informado con actualizaciones cada 15 minutos."
+      },
+      {
+        "enunciado": "¿Qué es una 'nota interna' en Intercom?",
+        "tipo": "single",
+        "opciones": [
+          "Un comentario visible solo para el equipo, no para el cliente",
+          "Un mensaje que se envía al cliente por email",
+          "Una etiqueta de prioridad",
+          "Un reporte de Analytics"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Intercom",
+        "explicacion": "Las notas internas son visibles solo para el equipo; se usan para documentar el análisis y la solución."
+      },
+      {
+        "enunciado": "Antes de responder un ticket, lo primero que debes hacer es:",
+        "tipo": "single",
+        "opciones": [
+          "Leer el mensaje completo del cliente y asignarte el ticket",
+          "Cerrarlo de inmediato",
+          "Escalarlo a Nivel 3",
+          "Reenviarlo por WhatsApp"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Intercom",
+        "explicacion": "Se lee todo el mensaje y se asigna el ticket a tu nombre para que nadie lo trabaje en paralelo."
+      },
+      {
+        "enunciado": "Atiendes un P2 y necesitas revisar logs internos a los que no tienes acceso. ¿Qué haces?",
+        "tipo": "single",
+        "opciones": [
+          "Escalar a Nivel 2 documentando lo ya diagnosticado",
+          "Cerrar el ticket como resuelto",
+          "Pedir al cliente que espere sin avisar",
+          "Escalar directo a Nivel 3 saltando el 2"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Escalamiento",
+        "explicacion": "Se escala a Nivel 2 cuando se requieren logs/configuración avanzada; se documenta lo ya hecho."
+      }
+    ]
+  }
+}

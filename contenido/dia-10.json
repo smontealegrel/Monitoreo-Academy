@@ -1,0 +1,227 @@
+{
+  "id": 10,
+  "semana": 2,
+  "modulo": "Platform · Player y Ads",
+  "titulo": "Players y monetización (DAI/SGAI, SCTE-35)",
+  "objetivo": "Configurar el reproductor de Mediastream, entender sus parámetros de comportamiento, e integrar publicidad con Google DAI/SGAI y las marcas SCTE-35 para inserción de anuncios.",
+  "bloques": [
+    {
+      "id": "b1",
+      "tipo": "teoria",
+      "titulo": "Player, DAI vs SGAI, SCTE-35 y publicidad en NEXT",
+      "duracion": "70 min",
+      "html": "<h3>El Player de Mediastream</h3><p>El componente que ve el usuario final, personalizable y embebible. Tipos: Video Player (VOD), Audio Player (radio/podcast), Live Player (vivo con controles especiales).</p><h3>Parámetros de comportamiento</h3><ul><li><b>Autoplay:</b> reproduce al cargar. Para que funcione en la mayoría de navegadores, debe iniciar en <b>Mute on Start</b> (silencio).</li><li><b>Loop, Controls, Skin, Thumbnail/Poster, Responsive.</b></li></ul><h3>DAI vs SGAI</h3><table><tr><th>Tecnología</th><th>Cómo funciona</th></tr><tr><td>DAI (Server-Side)</td><td>El servidor mezcla el anuncio con el video antes de enviarlo. El usuario no puede bloquearlo con ad-blockers.</td></tr><tr><td>SGAI (Server-Guided)</td><td>La publicidad se reproduce en un reproductor secundario perfectamente sincronizado con el flujo principal.</td></tr></table><p>Para SGAI en Platform: crear la Ad Unit en Google Ad Manager (GAM, 1280×720 o 640×480), crear el Live Stream en GAM y generar el Asset Key; en la edición del Live activar el switch de Google SGAI, ingresar la Custom Asset Key y elegir formato <b>Side-by-Side</b> (el player se encuadra al costado para dar espacio al banner) o <b>Full Screen</b>. El formato es estático: cambiarlo se hace manualmente en Platform.</p><h3>SCTE-35</h3><p>Estándar que marca los puntos de inserción de publicidad, como 'semáforos' dentro del stream. Los broadcasters lo usan para marcar los ad breaks de su programación lineal y monetizar el 24/7 de forma automatizada.</p><h3>Publicidad Display en NEXT</h3><p>Los scripts de DoubleClick (gpt.js) se inyectan en NEXT &gt; OTT &gt; Content &gt; Ads (campo Ads head). Formatos: Ads Banner, Ads sticky (banner flotante inferior 728×90), interstitial (ITT 800×600 o 320×480). Actualizar anuncios requiere cargar el archivo <b>ads.txt</b> y ejecutar 'Publish' para limpiar el caché de producción.</p><div class=\"callout warn\"><span class=\"ct\">Duplicación de anuncios</span>Si el mismo anuncio aparece dos veces, revisa si el cliente tiene DAI (server-side) Y también publicidad client-side en el player: esa combinación duplica. Con DAI activo, el player NO debe tener publicidad adicional.</div>"
+    },
+    {
+      "id": "b2",
+      "tipo": "practica",
+      "titulo": "Configurar un player con publicidad",
+      "duracion": "80 min",
+      "requiereEvidencia": true,
+      "html": "<ol><li>Crea un player con autoplay + mute, controles visibles y skin de color de marca.</li><li>Embébelo en una página HTML simple y verifica que funciona.</li><li>Investiga el Google IMA SDK y escribe 5 líneas de cómo funciona el Ad Tag URL.</li><li>Investiga: ¿qué es un VAST tag y cómo se relaciona con Google DAI?</li></ol>"
+    },
+    {
+      "id": "b3",
+      "tipo": "shadowing",
+      "titulo": "Caso: 'los anuncios aparecen dos veces'",
+      "duracion": "45 min",
+      "html": "<ol><li>Verificar si hay DAI (server-side) Y publicidad client-side configuradas a la vez.</li><li>Si usa DAI, el player NO debe tener publicidad adicional.</li><li>Revisar el Ad Tag URL para que no tenga pre-roll Y mid-roll con el mismo asset.</li></ol><p>Solución: desactivar la publicidad client-side si DAI está activo.</p>"
+    },
+    {
+      "id": "b4",
+      "tipo": "ejercicio",
+      "titulo": "Tabla DAI vs SGAI y formatos SGAI",
+      "duracion": "45 min",
+      "requiereEvidencia": true,
+      "html": "<ol><li>Haz una tabla comparando DAI y SGAI.</li><li>Explica los formatos Side-by-Side y Full Screen del SGAI.</li><li>Describe con tus palabras qué hace una marca SCTE-35.</li></ol>"
+    }
+  ],
+  "quiz": {
+    "preguntasAMostrar": 10,
+    "umbral": 90,
+    "banco": [
+      {
+        "enunciado": "Para que el Autoplay funcione en la mayoría de navegadores, el video debe:",
+        "tipo": "single",
+        "opciones": [
+          "Iniciar en silencio (Mute on Start)",
+          "Estar en 4K",
+          "Usar SRT",
+          "Tener DRM activo"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Parámetros del Player",
+        "explicacion": "Los navegadores exigen que el autoplay inicie en mute; por eso se usa Mute on Start."
+      },
+      {
+        "enunciado": "La diferencia clave de DAI (Server-Side Ad Insertion) es que:",
+        "tipo": "single",
+        "opciones": [
+          "El servidor mezcla el anuncio con el video, así el usuario no puede bloquearlo con ad-blockers",
+          "El anuncio se descarga aparte y es fácil de bloquear",
+          "Solo funciona en radio",
+          "No requiere Google Ad Manager"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "DAI vs SGAI",
+        "explicacion": "En DAI el anuncio va 'cosido' al stream desde el servidor, resistente a ad-blockers."
+      },
+      {
+        "enunciado": "En SGAI, ¿qué hace el formato 'Side-by-Side'?",
+        "tipo": "single",
+        "opciones": [
+          "El player principal se encuadra al costado para dar espacio al banner de publicidad",
+          "El anuncio ocupa el 100% de la pantalla",
+          "Silencia el audio",
+          "Bloquea el contenido por región"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "SGAI",
+        "explicacion": "Side-by-Side reduce/encuadra el video al costado para mostrar el banner; Full Screen ocupa toda la pantalla."
+      },
+      {
+        "enunciado": "¿Para qué sirve el estándar SCTE-35?",
+        "tipo": "single",
+        "opciones": [
+          "Marcar los puntos de inserción de publicidad dentro del stream",
+          "Comprimir el video",
+          "Autenticar la API",
+          "Medir la audiencia"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "SCTE-35",
+        "explicacion": "SCTE-35 marca los ad breaks, como 'semáforos' que indican dónde insertar anuncios."
+      },
+      {
+        "enunciado": "Un cliente ve el mismo anuncio dos veces. ¿Cuál es la causa más probable?",
+        "tipo": "single",
+        "opciones": [
+          "Tiene DAI (server-side) Y publicidad client-side en el player al mismo tiempo",
+          "El video está en 4K",
+          "La CDN está saturada",
+          "El manifiesto tiene pocos segmentos"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Diagnóstico de Ads",
+        "explicacion": "Combinar DAI y publicidad client-side duplica el anuncio. Con DAI activo, el player no debe llevar publicidad adicional."
+      },
+      {
+        "enunciado": "¿Cuáles son tipos de player en Mediastream? (selección múltiple)",
+        "tipo": "multi",
+        "opciones": [
+          "Video Player (VOD)",
+          "Audio Player (radio/podcast)",
+          "Live Player (vivo)",
+          "Watchfolder Player"
+        ],
+        "correctas": [
+          0,
+          1,
+          2
+        ],
+        "objetivo": "El Player",
+        "explicacion": "Video, Audio y Live Player. 'Watchfolder Player' no existe."
+      },
+      {
+        "enunciado": "Para actualizar la publicidad Display en NEXT, además de cargar el ads.txt hay que:",
+        "tipo": "single",
+        "opciones": [
+          "Ejecutar 'Publish' para limpiar el caché de producción",
+          "Reiniciar el encoder",
+          "Cambiar la Stream Key",
+          "Borrar la Papelera"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Publicidad en NEXT",
+        "explicacion": "Tras cargar ads.txt se ejecuta 'Publish' en NEXT para limpiar el caché y aplicar los cambios."
+      },
+      {
+        "enunciado": "El formato configurado de SGAI (Side-by-Side o Full Screen) es:",
+        "tipo": "single",
+        "opciones": [
+          "Estático; para cambiarlo hay que modificarlo manualmente en Platform",
+          "Dinámico; cambia solo según el dispositivo",
+          "Definido por la CDN",
+          "Elegido por el usuario final"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "SGAI",
+        "explicacion": "El formato SGAI es estático; el cambio se hace manualmente en Platform."
+      },
+      {
+        "enunciado": "¿Qué resolución debe tener la Ad Unit creada en Google Ad Manager para SGAI?",
+        "tipo": "single",
+        "opciones": [
+          "1280×720 o 640×480",
+          "1920×300",
+          "728×90",
+          "800×600"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "SGAI",
+        "explicacion": "La Ad Unit en GAM se crea en 1280×720 o 640×480 para configurar SGAI."
+      },
+      {
+        "enunciado": "Un cliente reporta anuncios duplicados y usa DAI. ¿Cuál es la corrección?",
+        "tipo": "single",
+        "opciones": [
+          "Desactivar la publicidad client-side del player (con DAI el player no debe llevar ads adicionales)",
+          "Activar más anuncios",
+          "Subir el bitrate",
+          "Cambiar la zona"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Diagnóstico de Ads",
+        "explicacion": "DAI + publicidad client-side duplica el anuncio; se quita la publicidad client-side."
+      },
+      {
+        "enunciado": "El autoplay del player de un cliente no arranca en varios navegadores. ¿Qué ajuste sugieres?",
+        "tipo": "single",
+        "opciones": [
+          "Activar Mute on Start (iniciar en silencio)",
+          "Subir a 4K",
+          "Quitar los controles",
+          "Activar DRM"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Parámetros del Player",
+        "explicacion": "Los navegadores exigen mute para permitir autoplay; se activa Mute on Start."
+      },
+      {
+        "enunciado": "Tras cambiar la publicidad Display en NEXT, los cambios no se reflejan. ¿Qué falta hacer?",
+        "tipo": "single",
+        "opciones": [
+          "Cargar el ads.txt y ejecutar 'Publish' para limpiar el caché de producción",
+          "Reiniciar el encoder",
+          "Borrar la Papelera",
+          "Cambiar la Stream Key"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Publicidad en NEXT",
+        "explicacion": "Hay que subir ads.txt y hacer 'Publish' para limpiar el caché y aplicar los cambios."
+      }
+    ]
+  }
+}

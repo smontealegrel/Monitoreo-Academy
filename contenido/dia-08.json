@@ -1,0 +1,225 @@
+{
+  "id": 8,
+  "semana": 2,
+  "modulo": "Platform · FAST",
+  "titulo": "Canales FAST, Schedules y Blackouts",
+  "objetivo": "Entender el modelo FAST (canales 24/7 automatizados), cómo se programan con reglas de bloques, cómo resolver colisiones de horarios y cómo gestionar blackouts de contenido.",
+  "bloques": [
+    {
+      "id": "b1",
+      "tipo": "teoria",
+      "titulo": "FAST, programación por bloques, colisiones y blackouts",
+      "duracion": "75 min",
+      "html": "<h3>¿Qué es un canal FAST?</h3><p>FAST = <b>Free Ad-Supported Streaming TV</b>: un canal que transmite contenido de forma continua 24/7 y automatizada, sin operador humano constante. El cliente sube una biblioteca a Media, arma una playlist y el sistema la reproduce en orden generando un stream HLS, como un canal de TV.</p><h3>Reglas de programación (caso América TV)</h3><ul><li><b>Lunes a viernes:</b> bloques fijos de 6 horas exactas.</li><li><b>Fin de semana:</b> bloques variables de 7, 9 y 8 horas (suman 24 h).</li><li><b>Composición:</b> episodios (35–45 min) intercalados con cortes comerciales (Ad Breaks) de exactamente 120 segundos. La duración total de media + comerciales debe igualar o superar el bloque para evitar caídas de señal.</li></ul><h3>Maniobra de continuidad (OBS)</h3><p>Para actualizar la playlist sin baches de pantalla negra: se inicia una transmisión temporal de respaldo desde OBS (con la Stream Key del Live), se ejecuta el POST del nuevo JSON de programación por API (autenticado por JWT), y al confirmar la carga se detiene OBS para que la grilla retome el control de forma transparente.</p><h3>Schedules y colisiones</h3><p>La programación diaria se administra en la pestaña <b>Schedules</b>. Error común: <i>'There are already scheduled dates in the period you entered'</i>. Es una colisión: no pueden existir dos bloques activos simultáneos. Se resuelve identificando el bloque que se traslapa (date_start / date_end) y editándolo o eliminando el viejo.</p><h3>Blackouts</h3><p>Bloqueo de una señal cuando un programa no tiene derechos para transmitirse por internet. Se crean bloques marcados como <code>is_blackout: true</code>. Flujo: el cliente envía por correo los horarios a bloquear → el operador valida los bloques → registra los blackouts en el módulo Live.</p><div class=\"callout warn\"><span class=\"ct\">Loop</span>Si un canal 24/7 se detiene a cierta hora, la causa más común es que la playlist no está en modo Loop (repetición infinita) o que un video con error de transcodificación la detiene.</div>"
+    },
+    {
+      "id": "b2",
+      "tipo": "practica",
+      "titulo": "Explorar y programar un canal FAST",
+      "duracion": "80 min",
+      "requiereEvidencia": true,
+      "html": "<ol><li>Explora un Fast Channel existente en sandbox: ¿cuántos videos tiene la playlist? ¿está en modo loop?</li><li>Crea una playlist de programación con al menos 5 videos en orden.</li><li>Configúrala en modo loop.</li><li>Simula una colisión de horarios y resuélvela editando el bloque que se traslapa.</li></ol>"
+    },
+    {
+      "id": "b3",
+      "tipo": "shadowing",
+      "titulo": "Caso: 'mi canal 24/7 deja de transmitir a las 3 AM'",
+      "duracion": "45 min",
+      "html": "<ol><li>¿La playlist tiene contenido suficiente? Si termina, el canal se detiene.</li><li>¿Está en modo Loop?</li><li>¿Hay a esa hora un video con error de transcodificación?</li><li>Revisar logs a la hora del corte.</li></ol><p>Solución más común: activar el modo Loop en la playlist.</p>"
+    },
+    {
+      "id": "b4",
+      "tipo": "ejercicio",
+      "titulo": "Diseña una parrilla de 24 h",
+      "duracion": "45 min",
+      "requiereEvidencia": true,
+      "html": "<ol><li>Diseña en papel una parrilla de fin de semana con bloques de 7 + 9 + 8 horas.</li><li>Dentro de un bloque, calcula cuántos episodios de 40 min + ad breaks de 120 s necesitas para llenar/superar el bloque.</li><li>Explica por qué la suma media + comerciales debe igualar o superar el bloque.</li></ol>"
+    }
+  ],
+  "quiz": {
+    "preguntasAMostrar": 10,
+    "umbral": 90,
+    "banco": [
+      {
+        "enunciado": "¿Qué significa FAST?",
+        "tipo": "single",
+        "opciones": [
+          "Free Ad-Supported Streaming TV",
+          "Fast Adaptive Streaming Transport",
+          "File Archive Storage Technology",
+          "Full Automated Stream Transcoding"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Concepto FAST",
+        "explicacion": "FAST = televisión gratuita financiada con publicidad, transmitida 24/7 de forma automatizada."
+      },
+      {
+        "enunciado": "En la programación de América TV, los bloques de lunes a viernes son de:",
+        "tipo": "single",
+        "opciones": [
+          "6 horas exactas",
+          "8 horas variables",
+          "24 horas",
+          "2 horas"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Reglas de programación",
+        "explicacion": "De lunes a viernes son bloques fijos de 6 horas exactas; el fin de semana varían (7, 9 y 8 h)."
+      },
+      {
+        "enunciado": "Los cortes comerciales (Ad Breaks) en la composición del bloque duran exactamente:",
+        "tipo": "single",
+        "opciones": [
+          "120 segundos",
+          "30 segundos",
+          "60 segundos",
+          "300 segundos"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Reglas de programación",
+        "explicacion": "Los Ad Breaks son de exactamente 120 segundos, intercalados con episodios de 35–45 min."
+      },
+      {
+        "enunciado": "¿Por qué la duración total de media + comerciales debe igualar o superar el bloque de programación?",
+        "tipo": "single",
+        "opciones": [
+          "Para evitar caídas de señal (pantalla en negro)",
+          "Para ahorrar almacenamiento",
+          "Para reducir el bitrate",
+          "Para cumplir con la ley de blackouts"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Reglas de programación",
+        "explicacion": "Si el contenido no llena el bloque, la señal se queda sin material y cae."
+      },
+      {
+        "enunciado": "El error 'There are already scheduled dates in the period you entered' indica:",
+        "tipo": "single",
+        "opciones": [
+          "Una colisión: dos bloques activos simultáneos en el mismo canal",
+          "Que el video está corrupto",
+          "Que la CDN está caída",
+          "Que falta la Stream Key"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Colisiones de horarios",
+        "explicacion": "Es una colisión de horarios; se resuelve editando el bloque que se traslapa (date_start/date_end) o eliminando el viejo."
+      },
+      {
+        "enunciado": "Un canal 24/7 se detiene siempre a cierta hora. ¿Cuál es la causa más común?",
+        "tipo": "single",
+        "opciones": [
+          "La playlist no está en modo Loop o un video con error la detiene",
+          "El cliente apaga su computadora",
+          "La CDN cierra de noche",
+          "El player no tiene skin"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Diagnóstico FAST",
+        "explicacion": "La causa más común es que la playlist no está en Loop, o un video con error de transcodificación detiene el canal."
+      },
+      {
+        "enunciado": "Un blackout se implementa creando bloques marcados como:",
+        "tipo": "single",
+        "opciones": [
+          "is_blackout: true",
+          "loop: false",
+          "is_ad: true",
+          "geo: US"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Blackouts",
+        "explicacion": "Los bloques de bloqueo se marcan con is_blackout: true en el módulo Live."
+      },
+      {
+        "enunciado": "Durante la maniobra de continuidad para actualizar la playlist sin baches, ¿qué se usa como respaldo temporal?",
+        "tipo": "single",
+        "opciones": [
+          "Una transmisión desde OBS con la Stream Key del Live, mientras se hace el POST del nuevo JSON por API",
+          "Un video pregrabado en YouTube",
+          "Un segundo encoder de hardware",
+          "Nada, se acepta el bache"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Maniobra de continuidad",
+        "explicacion": "Se emite un respaldo por OBS, se hace el POST del nuevo JSON (JWT) y al confirmar se detiene OBS para que la grilla retome el control."
+      },
+      {
+        "enunciado": "¿Cuál es la ventaja principal de un canal FAST para el cliente?",
+        "tipo": "single",
+        "opciones": [
+          "No necesita infraestructura de transmisión en vivo 24/7",
+          "Obtiene 4K gratis",
+          "Elimina toda la publicidad",
+          "No requiere subir contenido"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Concepto FAST",
+        "explicacion": "El cliente automatiza un canal continuo sin operar una transmisión en vivo permanente."
+      },
+      {
+        "enunciado": "Al importar un bloque, el cliente recibe 'There are already scheduled dates in the period you entered'. ¿Qué haces?",
+        "tipo": "single",
+        "opciones": [
+          "Identificar y editar/eliminar el bloque que se traslapa en el calendario",
+          "Subir el bitrate",
+          "Reprocesar todos los videos",
+          "Activar un blackout"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Colisiones de horarios",
+        "explicacion": "Es una colisión de horarios; se ajusta o elimina el bloque que se traslapa (date_start/date_end)."
+      },
+      {
+        "enunciado": "Un canal FAST se apaga cada noche. Como primer paso de soporte, ¿qué verificas?",
+        "tipo": "single",
+        "opciones": [
+          "Si la playlist está en modo Loop y si hay un video con error a esa hora",
+          "El skin del player",
+          "La VPN del cliente",
+          "La metadata ID3"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Diagnóstico FAST",
+        "explicacion": "Lo más común es Loop desactivado o un video con error que detiene el canal."
+      },
+      {
+        "enunciado": "Un cliente necesita bloquear un programa que no tiene derechos en internet. ¿Qué se configura?",
+        "tipo": "single",
+        "opciones": [
+          "Bloques marcados como is_blackout: true en el módulo Live",
+          "Un nuevo encoder",
+          "Un feed MRSS",
+          "Autoplay con mute"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Blackouts",
+        "explicacion": "Los blackouts se implementan con bloques is_blackout: true."
+      }
+    ]
+  }
+}
