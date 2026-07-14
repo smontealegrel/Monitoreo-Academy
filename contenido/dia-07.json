@@ -10,7 +10,7 @@
       "tipo": "teoria",
       "titulo": "Señales en vivo, DVR, Cloud Transcoding, clips y regla de zonas",
       "duracion": "75 min",
-      "html": "<p>El módulo <b>Live</b> es el motor de las transmisiones en tiempo real. Soporta video y audio: se crea con <i>New Live Stream</i> o <i>New Audio Stream</i> (radios: ingesta RTMP o Icecast, salidas HLS/Icecast).</p><h3>Tipos de evento</h3><table><tr><th>Tipo</th><th>Descripción</th></tr><tr><td>Live Event (único)</td><td>Evento con inicio y fin. Ej: conferencia, partido.</td></tr><tr><td>Live Recurring</td><td>Se repite según horario. Ej: noticiero diario.</td></tr><tr><td>24/7 Linear Channel</td><td>Canal continuo (se gestiona con Fast Channels).</td></tr></table><h3>Editar una señal</h3><ul><li><b>Quick Edit:</b> cambios rápidos de título, estado (Online/Offline) y protocolo (HLS por defecto, RTMP legacy).</li><li><b>Edit (avanzada):</b> Publishing Points (zonas US, CL, BR), restricciones (geobloqueo ISO 3166, referer de dominio, whitelist de IP, restricciones ASN, límite de espectadores), imagen de error y thumbnails.</li><li><b>DVR (Timeshift):</b> permite pausar/retroceder el vivo. Grabaciones (Start Recording): máx. <b>3 h en RTMP</b> y máx. <b>5h 59m 59s en HLS</b> vía Cloud Transcoding.</li></ul><h3>Cloud Transcoding</h3><p>La Platform toma la señal del encoder y la transcodifica en la nube a múltiples calidades. El cliente envía UNA señal de alta calidad y Mediastream genera 1080p/720p/480p/360p.</p><h3>Live Editor</h3><p>Crea VOD recortando segmentos de una señal en vivo activa. Requiere <b>DVR/retención activo</b>. Modos: Live (cortes recientes) y Date Picker (pasado). Herramientas: marcador de entrada (I), de salida (O), procesar clip (C), zoom. El movimiento fino desplaza <b>12 ms por clic</b>. Máx. 6 h por clip y hasta 9 cortes por proceso.</p><div class=\"callout warn\"><span class=\"ct\">Regla de Zonas (súper crítica)</span>Para que la línea de tiempo cargue segmentos sin errores, la zona de publicación del Live y la zona geográfica de la cuenta deben COINCIDIR (una cuenta de Chile usa punto de publicación CL). Única excepción: el timeline siempre funciona en zona US para flujos de Audio y señales con Cloud Transcoding (AWS MediaLive).</div>"
+      "html": "<p>El módulo <b>Live</b> es el motor de las transmisiones en tiempo real. Soporta video y audio: se crea con <i>New Live Stream</i> o <i>New Audio Stream</i> (radios: ingesta RTMP o Icecast, salidas HLS/Icecast).</p><h3>Tipos de evento</h3><table><tr><th>Tipo</th><th>Descripción</th></tr><tr><td>Live Event (único)</td><td>Evento con inicio y fin. Ej: conferencia, partido.</td></tr><tr><td>Live Recurring</td><td>Se repite según horario. Ej: noticiero diario.</td></tr><tr><td>24/7 Linear Channel</td><td>Canal continuo (se gestiona con Fast Channels).</td></tr></table><h3>Editar una señal</h3><ul><li><b>Quick Edit:</b> cambios rápidos de título, estado (Online/Offline) y protocolo (HLS por defecto, RTMP legacy).</li><li><b>Edit (avanzada):</b> Publishing Points (zonas US, CL, BR), restricciones (geobloqueo ISO 3166, referer de dominio, whitelist de IP, restricciones ASN, límite de espectadores), imagen de error y thumbnails.</li><li><b>DVR (Timeshift):</b> permite pausar/retroceder el vivo. Grabaciones (Start Recording): máx. <b>3 h en RTMP</b> y máx. <b>5h 59m 59s en HLS</b> vía Cloud Transcoding.</li></ul><h3>Cloud Transcoding</h3><p>La Platform toma la señal del encoder y la transcodifica en la nube a múltiples calidades. El cliente envía UNA señal de alta calidad y Mediastream genera 1080p/720p/480p/360p.</p><h3>Live Editor</h3><p>Crea VOD recortando segmentos de una señal en vivo activa. Requiere <b>DVR/retención activo</b>. Modos: Live (cortes recientes) y Date Picker (pasado). Herramientas: marcador de entrada (I), de salida (O), procesar clip (C), zoom. El movimiento fino desplaza <b>12 ms por clic</b>. Máx. 6 h por clip y hasta 9 cortes por proceso.</p><div class=\"callout warn\"><span class=\"ct\">Regla de Zonas (súper crítica)</span>Para que la línea de tiempo cargue segmentos sin errores, la zona de publicación del Live y la zona geográfica de la cuenta deben COINCIDIR (una cuenta de Chile usa punto de publicación CL). Única excepción: el timeline siempre funciona en zona US para flujos de Audio y señales con Cloud Transcoding (AWS MediaLive).</div><h3>Dar de alta la señal en Elecard Boro (monitoreo QoE)</h3><p>Una vez publicada la señal, se registra en <b>Elecard Boro</b> para que el monitoreo de calidad la vigile de forma proactiva. Procedimiento estándar:</p><h4>1. Acceder al panel e iniciar la tarea</h4><p>En el panel de proyectos de Boro, haz clic en el botón <b>Add task</b>. El sistema muestra 4 protocolos de entrada: IPTV, OTT, SRT, RTMP. Selecciona <b>OTT</b>: es la opción por defecto para flujos HTTP/HLS que vienen de Mediastream Platform.</p><h4>2. Obtener y parametrizar la URL del stream</h4><p>Copia la URL de distribución HLS (.m3u8) desde el módulo <b>Embed</b> de la señal en Platform, y agrégale los parámetros de administración para que la sonda de Boro no choque con tokens vencidos o restricciones de acceso:</p><p><code>?dnt=true&amp;access_token=[TOKEN_ADMIN]&amp;admin_token=true</code></p><p>Pega la URL completa (con los parámetros) en el campo <b>URI</b> del formulario.</p><h4>3. Nomenclatura estándar (campo Name)</h4><p>Formato obligatorio: <code>[TIPO] - [CUENTA]: [CONTEXTO] - [NOMBRE_LIVE] | [PROVEEDOR] - [ID_LIVE]</code>, donde TIPO es <b>V</b> (Video) o <b>R</b> (Audio/Radio). No inventes nombres cortos: respeta la sintaxis exacta para que la consola y los reportes queden ordenados.</p><h4>4. Asignar perfiles de alertas (Select profiles)</h4><table><tr><th>Tipo de señal</th><th>Alarma</th><th>Webhook</th></tr><tr><td>Video</td><td>soporte</td><td>soporte_boro</td></tr><tr><td>Audio</td><td>SoporteAudio</td><td>soporte_boro_Audio</td></tr></table><p>Marca los dos checks (Alarma y Webhook) según el tipo de señal y confirma con <b>OK</b>.</p><h4>5. Configurar QoE Options</h4><p>En Settings, cambia el desplegable principal a <b>Lite</b> y activa/desactiva las casillas según esta matriz:</p><table><tr><th>Check</th><th>Video</th><th>Audio</th></tr><tr><td>Video Freeze Detection</td><td>Activo</td><td>Inactivo</td></tr><tr><td>Thumbnails Capture</td><td>Activo</td><td>Inactivo</td></tr><tr><td>Audio Loudness Analysis</td><td>Activo</td><td>Activo</td></tr><tr><td>Audio Decodability Analysis</td><td>Activo</td><td>Activo</td></tr></table><h4>6. Publicar e iniciar el monitoreo</h4><p>Revisa que la URL tenga los parámetros, que el nombre siga la sintaxis, que las alertas estén mapeadas y que las opciones QoE coincidan con la matriz. Haz clic en <b>Start</b>: la tarea se inicializa de inmediato y en segundos la telemetría empieza a reportar al panel.</p>"
     },
     {
       "id": "b2",
@@ -18,7 +18,7 @@
       "titulo": "Crear un evento en vivo y un clip",
       "duracion": "90 min",
       "requiereEvidencia": true,
-      "html": "<ol><li>Crea un evento en vivo de prueba en sandbox con Cloud Transcoding en 3 calidades.</li><li>Usa OBS en tu equipo como encoder y envía la señal a la URL de ingest.</li><li>Verifica que el evento pase a estado 'Online' en la Platform.</li><li>Usa Live Editor para crear un clip de 30 segundos.</li><li>Verifica que el clip aparece en el módulo Media.</li><li>Repite el ejercicio pero esta vez SIN Cloud Transcoding: envía la señal ya en la calidad final (sin generar múltiples calidades) y compara la diferencia con el evento anterior.</li></ol>"
+      "html": "<ol><li>Crea un evento en vivo de prueba en sandbox con Cloud Transcoding en 3 calidades.</li><li>Usa OBS en tu equipo como encoder y envía la señal a la URL de ingest.</li><li>Verifica que el evento pase a estado 'Online' en la Platform.</li><li>Usa Live Editor para crear un clip de 30 segundos.</li><li>Verifica que el clip aparece en el módulo Media.</li><li>Da de alta en Boro la señal que creaste, siguiendo el procedimiento de la teoría (URL parametrizada, nomenclatura, alertas y QoE Options).</li><li>Repite el ejercicio pero esta vez SIN Cloud Transcoding: envía la señal ya en la calidad final (sin generar múltiples calidades) y compara la diferencia con el evento anterior.</li></ol>"
     },
     {
       "id": "b3",
@@ -206,6 +206,51 @@
         ],
         "objetivo": "Diagnóstico de Live",
         "explicacion": "Si la señal llega (Live) pero no se ve, se revisa la publicación/player público."
+      },
+      {
+        "enunciado": "Al dar de alta en Boro una señal HLS que viene de Mediastream Platform, ¿qué protocolo de entrada seleccionas?",
+        "tipo": "single",
+        "opciones": [
+          "OTT",
+          "IPTV",
+          "SRT",
+          "RTMP"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Alta de señal en Boro",
+        "explicacion": "OTT es la opción por defecto para flujos HTTP/HLS que vienen de Mediastream Platform."
+      },
+      {
+        "enunciado": "¿Para qué se agregan los parámetros ?dnt=true&access_token=[TOKEN_ADMIN]&admin_token=true a la URL antes de pegarla en Boro?",
+        "tipo": "single",
+        "opciones": [
+          "Para que la sonda de Boro no sea bloqueada por tokens vencidos o restricciones de acceso",
+          "Para aumentar el bitrate del stream",
+          "Para activar el DVR de la señal",
+          "Para cambiar la zona de publicación"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Alta de señal en Boro",
+        "explicacion": "Esos parámetros de administración evitan que restricciones o tokens vencidos bloqueen el acceso de la sonda de monitoreo."
+      },
+      {
+        "enunciado": "Vas a monitorear una señal de AUDIO en Boro. ¿Qué alarma y webhook activas en Select profiles?",
+        "tipo": "single",
+        "opciones": [
+          "Alarma SoporteAudio y webhook soporte_boro_Audio",
+          "Alarma soporte y webhook soporte_boro",
+          "Solo la alarma, sin webhook",
+          "Ninguno, el audio no se monitorea"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Alta de señal en Boro",
+        "explicacion": "Para Audio se activan Alarma SoporteAudio y Webhook soporte_boro_Audio (para Video son soporte y soporte_boro)."
       }
     ]
   }
