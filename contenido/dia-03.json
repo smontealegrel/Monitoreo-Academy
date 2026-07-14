@@ -18,14 +18,14 @@
       "titulo": "Recorrido guiado por la Platform (demo/sandbox)",
       "duracion": "90 min",
       "requiereEvidencia": true,
-      "html": "<p>Pide a tu supervisor acceso demo/sandbox y realiza el recorrido:</p><ol><li>Ingresa con tus credenciales.</li><li>Identifica en el menú lateral los módulos: Media, Live, Next, Fast Channels, Analytics, Ads.</li><li>Entra a Media y observa cómo se organizan los videos (categorías, metadatos).</li><li>Entra a Live y observa la sección de eventos.</li><li>Identifica la sección de configuración del Player.</li></ol>"
+      "html": "<p>Junto a tu supervisor, revisa una cuenta real en la Platform y realiza el siguiente recorrido:</p><ol><li>Identifica en el menú lateral los módulos: Media, Live, Next, Fast Channels, Analytics, Ads.</li><li>Entra a Media y observa cómo se organizan los videos (categorías, metadatos).</li><li>Entra a Live y observa la sección de eventos.</li><li>Identifica la sección de configuración del Player.</li></ol>"
     },
     {
       "id": "b3",
       "tipo": "shadowing",
       "titulo": "Caso: 'se ve bien en Chile pero lento en México'",
       "duracion": "45 min",
-      "html": "<p>Con un senior, analiza el caso donde usuarios en México tienen buffering pero en Chile no:</p><ol><li>El video está bien subido y transcodificado en la Platform.</li><li>El problema está en la distribución: el nodo CDN cercano a México puede estar bajo alta demanda o mal configurado.</li><li>Se revisa la configuración CDN del cliente y las alertas de disponibilidad de nodos en esa zona.</li></ol>"
+      "html": "<p>Con un senior, analiza el caso donde usuarios en México tienen buffering pero en Chile no:</p><ol><li>El video está bien subido y transcodificado en la Platform.</li><li>El problema está en la distribución: el nodo CDN cercano a México puede estar bajo alta demanda o mal configurado.</li></ol>"
     },
     {
       "id": "b4",

@@ -115,7 +115,7 @@ window.__MDSTRM_CONTENT = {
      "tipo": "teoria",
      "titulo": "Qu\u00e9 es Mediastream, sus valores y c\u00f3mo nos comunicamos",
      "duracion": "50 min",
-     "html": "<h3>\u00bfQu\u00e9 es Mediastream?</h3><p>Mediastream es una empresa <b>l\u00edder en streaming desde 2007</b>, fundada por <b>Luis Ahumada</b> y con sede en <b>Santiago de Chile</b>. Ofrece una soluci\u00f3n <b>end-to-end</b> para la <b>gesti\u00f3n, distribuci\u00f3n y monetizaci\u00f3n</b> de contenido de audio y video, y atiende a <b>m\u00e1s de 300 clientes</b> en Latinoam\u00e9rica y Europa.</p><p>Su ecosistema (la <b>Platform</b>) cubre todo lo que necesita un servicio de streaming: canales en vivo, VOD (video bajo demanda), podcasts, canales FAST, players, integraciones de IA y publicaci\u00f3n en m\u00faltiples dispositivos (web, apps m\u00f3viles y Smart TV). La monetizaci\u00f3n puede ser por <b>suscripci\u00f3n, PPV (pago por evento) o publicidad</b>.</p><div class=\"callout key\"><span class=\"ct\">Idea central del rol</span>Nuestro objetivo en soporte es hacer que este ecosistema complejo sea simple para el cliente, y mantener sus transmisiones funcionando.</div><h3>Nuestros valores</h3><p>Mediastream se gu\u00eda por <b>honestidad, pasi\u00f3n y transparencia</b>. Se consideran esenciales para construir relaciones de confianza y asegurar el \u00e9xito tanto de los clientes como del equipo.</p><h3>C\u00f3mo nos comunicamos (herramientas oficiales)</h3><table><tr><th>Herramienta</th><th>Para qu\u00e9 se usa</th></tr><tr><td>Slack</td><td><b>Comunicaci\u00f3n interna del equipo</b>: coordinaci\u00f3n, dudas r\u00e1pidas, canales tem\u00e1ticos y alertas autom\u00e1ticas de monitoreo.</td></tr><tr><td>Intercom</td><td><b>Comunicaci\u00f3n con los clientes</b>: es la consola donde llegan y se gestionan los tickets/conversaciones de soporte.</td></tr><tr><td>Correo (Gmail)</td><td>Se usa en <b>casos espec\u00edficos</b> (por ejemplo, comunicaciones formales puntuales con un cliente).</td></tr><tr><td>Google Calendar</td><td>Principalmente para <b>programar eventos y tareas</b>; tambi\u00e9n para agendar reuniones ocasionales.</td></tr></table><div class=\"callout tip\"><span class=\"ct\">Regla pr\u00e1ctica</span>El d\u00eda a d\u00eda del equipo vive en Slack (interno) e Intercom (clientes). Si dudas d\u00f3nde escribir algo, pregunta: \u00bfes para el equipo? \u2192 Slack. \u00bfes para un cliente? \u2192 Intercom.</div><h3>Qu\u00e9 se espera de ti en soporte</h3><ul><li>Aprender r\u00e1pido y dominar las herramientas.</li><li>Dar un buen servicio y cuidar la experiencia del cliente.</li><li>Resolver de forma aut\u00f3noma lo que puedas, escalando cuando corresponde.</li><li>Documentar lo que haces y los incidentes nuevos.</li></ul>"
+     "html": "<h3>\u00bfQu\u00e9 es Mediastream?</h3><p>Mediastream es una empresa <b>l\u00edder en streaming desde 2007</b>, fundada por <b>Luis Ahumada</b> y con sede en <b>Santiago de Chile</b>. Ofrece una soluci\u00f3n <b>end-to-end</b> para la <b>gesti\u00f3n, distribuci\u00f3n y monetizaci\u00f3n</b> de contenido de audio y video, y atiende a <b>m\u00e1s de 300 clientes</b> en Latinoam\u00e9rica y Europa.</p><p>Todo esto ocurre dentro de un mismo ecosistema al que llamamos <b>Platform</b>, que cubre todo lo que necesita un servicio de streaming: canales en vivo, VOD (video bajo demanda), podcasts, canales FAST, players, integraciones de IA y publicaci\u00f3n en m\u00faltiples dispositivos (web, apps m\u00f3viles y Smart TV). La monetizaci\u00f3n puede ser por <b>suscripci\u00f3n, PPV (pago por evento) o publicidad</b>.</p><div class=\"callout key\"><span class=\"ct\">Idea central del rol</span>Nuestro objetivo en soporte es hacer que este ecosistema complejo sea simple para el cliente, y mantener sus transmisiones funcionando.</div><h3>Nuestros valores</h3><p>Mediastream se gu\u00eda por <b>honestidad, pasi\u00f3n y transparencia</b>. Se consideran esenciales para construir relaciones de confianza y asegurar el \u00e9xito tanto de los clientes como del equipo.</p><h3>C\u00f3mo nos comunicamos (herramientas oficiales)</h3><table><tr><th>Herramienta</th><th>Para qu\u00e9 se usa</th></tr><tr><td>Slack</td><td><b>Comunicaci\u00f3n interna del equipo</b>: coordinaci\u00f3n, dudas r\u00e1pidas, canales tem\u00e1ticos y alertas autom\u00e1ticas de monitoreo.</td></tr><tr><td>Intercom</td><td><b>Comunicaci\u00f3n con los clientes</b>: es la consola donde llegan y se gestionan los tickets/conversaciones de soporte.</td></tr><tr><td>Correo (Gmail)</td><td>Se usa en <b>casos espec\u00edficos</b>: comunicaciones formales puntuales con un cliente, o escalamientos internos.</td></tr><tr><td>Google Calendar</td><td>Principalmente para <b>programar eventos y tareas</b>; tambi\u00e9n para agendar reuniones ocasionales.</td></tr><tr><td>M360</td><td><b>Escalamiento de tickets</b>: se usa para escalar solicitudes de mejoras o bugs reportados por los clientes.</td></tr></table><div class=\"callout tip\"><span class=\"ct\">Regla pr\u00e1ctica</span>El d\u00eda a d\u00eda del equipo vive en Slack (interno) e Intercom (clientes). Si dudas d\u00f3nde escribir algo, pregunta: \u00bfes para el equipo? \u2192 Slack. \u00bfes para un cliente? \u2192 Intercom.</div><h3>Qu\u00e9 se espera de ti en soporte</h3><ul><li>Aprender r\u00e1pido y dominar las herramientas.</li><li>Dar un buen servicio y cuidar la experiencia del cliente.</li><li>Resolver de forma aut\u00f3noma lo que puedas, escalando cuando corresponde.</li><li>Documentar lo que haces y los incidentes nuevos.</li></ul>"
     },
     {
      "id": "b2",
@@ -239,7 +239,7 @@ window.__MDSTRM_CONTENT = {
       "enunciado": "El correo (Gmail) en el flujo de trabajo se usa:",
       "tipo": "single",
       "opciones": [
-       "En casos espec\u00edficos, como comunicaciones formales puntuales",
+       "En casos espec\u00edficos, como comunicaciones formales puntuales o escalamientos internos",
        "Como canal principal del d\u00eda a d\u00eda",
        "Para el chat interno del equipo",
        "Nunca"
@@ -249,23 +249,6 @@ window.__MDSTRM_CONTENT = {
       ],
       "objetivo": "Canales de comunicaci\u00f3n",
       "explicacion": "El correo se reserva para casos espec\u00edficos; el d\u00eda a d\u00eda vive en Slack (interno) e Intercom (clientes)."
-     },
-     {
-      "enunciado": "\u00bfEn qu\u00e9 modalidades puede monetizar un cliente con Mediastream? (selecci\u00f3n m\u00faltiple)",
-      "tipo": "multi",
-      "opciones": [
-       "Suscripci\u00f3n",
-       "PPV (pago por evento)",
-       "Publicidad",
-       "Venta de encoders"
-      ],
-      "correctas": [
-       0,
-       1,
-       2
-      ],
-      "objetivo": "Qu\u00e9 es Mediastream",
-      "explicacion": "La monetizaci\u00f3n puede ser por suscripci\u00f3n, PPV o publicidad."
      },
      {
       "enunciado": "El ecosistema de Mediastream permite publicar contenido en: (selecci\u00f3n m\u00faltiple)",
@@ -611,14 +594,14 @@ window.__MDSTRM_CONTENT = {
      "titulo": "Recorrido guiado por la Platform (demo/sandbox)",
      "duracion": "90 min",
      "requiereEvidencia": true,
-     "html": "<p>Pide a tu supervisor acceso demo/sandbox y realiza el recorrido:</p><ol><li>Ingresa con tus credenciales.</li><li>Identifica en el men\u00fa lateral los m\u00f3dulos: Media, Live, Next, Fast Channels, Analytics, Ads.</li><li>Entra a Media y observa c\u00f3mo se organizan los videos (categor\u00edas, metadatos).</li><li>Entra a Live y observa la secci\u00f3n de eventos.</li><li>Identifica la secci\u00f3n de configuraci\u00f3n del Player.</li></ol>"
+     "html": "<p>Junto a tu supervisor, revisa una cuenta real en la Platform y realiza el siguiente recorrido:</p><ol><li>Identifica en el men\u00fa lateral los m\u00f3dulos: Media, Live, Next, Fast Channels, Analytics, Ads.</li><li>Entra a Media y observa c\u00f3mo se organizan los videos (categor\u00edas, metadatos).</li><li>Entra a Live y observa la secci\u00f3n de eventos.</li><li>Identifica la secci\u00f3n de configuraci\u00f3n del Player.</li></ol>"
     },
     {
      "id": "b3",
      "tipo": "shadowing",
      "titulo": "Caso: 'se ve bien en Chile pero lento en M\u00e9xico'",
      "duracion": "45 min",
-     "html": "<p>Con un senior, analiza el caso donde usuarios en M\u00e9xico tienen buffering pero en Chile no:</p><ol><li>El video est\u00e1 bien subido y transcodificado en la Platform.</li><li>El problema est\u00e1 en la distribuci\u00f3n: el nodo CDN cercano a M\u00e9xico puede estar bajo alta demanda o mal configurado.</li><li>Se revisa la configuraci\u00f3n CDN del cliente y las alertas de disponibilidad de nodos en esa zona.</li></ol>"
+     "html": "<p>Con un senior, analiza el caso donde usuarios en M\u00e9xico tienen buffering pero en Chile no:</p><ol><li>El video est\u00e1 bien subido y transcodificado en la Platform.</li><li>El problema est\u00e1 en la distribuci\u00f3n: el nodo CDN cercano a M\u00e9xico puede estar bajo alta demanda o mal configurado.</li></ol>"
     },
     {
      "id": "b4",
