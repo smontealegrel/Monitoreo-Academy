@@ -5,24 +5,23 @@ paginado día a día, con **quizzes de dominio** (metodología *mastery learning
 
 ---
 
-## Cómo iniciarla
+## Cómo iniciarla (CERO INSTALACIÓN)
 
-### Mac
-1. Copia la carpeta `mediastream-academy` al equipo.
-2. Doble clic en **`iniciar-mac.command`**.
-   - Si Mac dice que "no se puede abrir porque es de un desarrollador no identificado":
-     clic derecho → **Abrir** → **Abrir**. (Solo la primera vez.)
-3. Se abrirá el navegador en `http://localhost:8750`.
-4. Para cerrar: cierra la ventana de la terminal.
+No requiere instalar nada (ni Python, ni Node, ni servidor). Cada nuevo ingreso:
 
-### Windows
-1. Copia la carpeta al equipo.
-2. Doble clic en **`iniciar-windows.bat`**.
-3. Se abrirá el navegador.
-4. Para cerrar: cierra la ventana negra (consola).
+1. Copia la carpeta `mediastream-academy` a su PC (por ZIP, carpeta de red o USB).
+2. La abre con **doble clic**:
+   - **Windows:** doble clic en `iniciar-windows.bat` (o directamente en `index.html`).
+   - **Mac:** doble clic en `iniciar-mac.command` (o clic derecho en `index.html` → Abrir con → navegador).
+     - Si Mac bloquea el `.command` la 1ª vez: clic derecho → **Abrir** → **Abrir**.
+3. Se abre la plataforma en el navegador. Escribe tu nombre y empieza.
 
-> Requiere **Python 3** o **Node.js** instalado (uno de los dos). La mayoría de los equipos ya tienen alguno.
-> El lanzador detecta automáticamente cuál usar.
+> Funciona abriendo `index.html` como archivo local (file://). El contenido va empaquetado
+> en `contenido/contenido.js`, por eso no necesita servidor.
+
+**Importante — el progreso se guarda en el navegador de ESE PC.** Cada persona en su equipo
+tiene su propio avance. Recomendación: que cada uno use **el mismo navegador** siempre (Chrome/Edge)
+y no borre datos de navegación. Como respaldo, en "Mi progreso" pueden **Exportar** su avance a un archivo.
 
 ---
 
@@ -104,7 +103,12 @@ Estructura de un día:
 **Regla de cantidad de preguntas:** el banco debe ser mayor que `preguntasAMostrar`
 (recomendado ~1.5×) para que cada intento sea distinto y no se memoricen posiciones.
 
-Después de editar un JSON, basta con **recargar la página** (no hay que recompilar nada).
+**Tras editar los JSON**, regenera el bundle para que la versión de doble-clic (file://) muestre
+los cambios: doble clic en **`regenerar-contenido.command`** (Mac) o ejecuta `python3 construir-bundle.py`.
+Esto reescribe `contenido/contenido.js`. Luego vuelve a compartir la carpeta.
+
+> Los `dia-NN.json` son la fuente de edición. `contenido/contenido.js` es un archivo **autogenerado**
+> (no lo edites a mano). El flujo es: editar JSON → regenerar bundle → distribuir.
 
 ---
 
