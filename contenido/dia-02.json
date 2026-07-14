@@ -10,7 +10,7 @@
       "tipo": "teoria",
       "titulo": "Streaming, códecs, bitrate, transcodificación, HLS y SRT",
       "duracion": "70 min",
-      "html": "<h3>¿Qué es el streaming?</h3><p>Imagina llenar un vaso de agua. Puedes esperar a que te traigan toda el agua de una vez (eso es <b>descargar</b>), o conectar una manguera que va dejando caer agua mientras bebes (eso es <b>streaming</b>): recibir y consumir el contenido al mismo tiempo. El video se divide en pequeños fragmentos (<i>chunks</i>) que se envían y reproducen de forma secuencial.</p><h3>Códecs</h3><p>Un códec (COdificador/DECodificador) es el 'idioma' en el que se comprime el video. Un minuto en 1080p sin comprimir puede ocupar más de 100 GB.</p><table><tr><th>Códec</th><th>Descripción</th></tr><tr><td>H.264 (AVC)</td><td>El más usado. Compatibilidad universal.</td></tr><tr><td>H.265 (HEVC)</td><td>Hasta 50% más eficiente que H.264, pide más procesamiento. Ideal para 4K.</td></tr><tr><td>VP9</td><td>De Google, muy eficiente, usado en YouTube.</td></tr><tr><td>AV1</td><td>El futuro: más eficiente que H.265 y de código abierto.</td></tr></table><h3>Bitrate: la 'velocidad del agua'</h3><p>Cantidad de datos por segundo. Bitrate alto = mejor calidad pero exige mejor conexión. Referencias: 720p ≈ 2.500–4.000 kbps; 1080p ≈ 4.500–9.000 kbps (el roadmap técnico usa 3.000–6.000 kbps para 1080p@30fps). Audio óptimo: <b>128 kbps en AAC</b>.</p><div class=\"callout tip\"><span class=\"ct\">Analogía para clientes</span>Si el video se ve pixelado, muchas veces el bitrate está muy bajo o la conexión no lo soporta: es como una manguera muy delgada para una pileta grande.</div><h3>Transcodificación</h3><p>Convertir un video a múltiples formatos y calidades a la vez (ej. 1080p, 720p, 480p, 360p). El reproductor elige la mejor versión según la conexión: esto es <b>ABR (Adaptive Bitrate)</b>. Ojo con el matiz técnico: <i>codificar</i> es de crudo a comprimido; <i>transcodificar</i> es de un comprimido a otro (ej. de un RTMP entrante a varias resoluciones HLS).</p><h3>HLS (HTTP Live Streaming)</h3><p>Protocolo adaptativo de Apple, el más usado. Divide el stream en fragmentos (2–10 s) referenciados por un archivo de índice o <b>manifiesto .m3u8</b> (texto plano con las rutas de video y audio). Gracias al ABR, el reproductor cambia de calidad según el ancho de banda.</p><div class=\"callout key\"><span class=\"ct\">Dato clave</span>El .m3u8 es el corazón de HLS. Cuando un cliente dice 'el video no carga', muchas veces el problema es que ese archivo no es accesible o tiene un error. Aprenderás a leerlo en el Día 14.</div><h3>SRT (Secure Reliable Transport)</h3><p>Protocolo para transmisión en vivo de larga distancia con baja latencia. Si HLS es el 'correo regular', SRT es la 'mensajería express con confirmación de entrega'. Ideal cuando el cliente envía señal desde una ubicación con conexión inestable (estadio, cancha): se recupera de pérdidas de paquetes sin caerse.</p><table><tr><th>Protocolo</th><th>Uso principal</th></tr><tr><td>HLS</td><td>Distribución al público final (muchos usuarios).</td></tr><tr><td>SRT</td><td>Contribución: enviar la señal del encoder al servidor.</td></tr></table>"
+      "html": "<h3>¿Qué es el streaming?</h3><p>Imagina llenar un vaso de agua. Puedes esperar a que te traigan toda el agua de una vez (eso es <b>descargar</b>), o conectar una manguera que va dejando caer agua mientras bebes (eso es <b>streaming</b>): recibir y consumir el contenido al mismo tiempo. El video se divide en pequeños fragmentos (<i>chunks</i>) que se envían y reproducen de forma secuencial.</p><h3>Códecs</h3><p>Un códec (COdificador/DECodificador) es el 'idioma' en el que se comprime el video. Un minuto en 1080p sin comprimir puede ocupar más de 100 GB.</p><table><tr><th>Códec</th><th>Descripción</th></tr><tr><td>H.264 (AVC)</td><td>El más usado. Compatibilidad universal.</td></tr><tr><td>H.265 (HEVC)</td><td>Hasta 50% más eficiente que H.264, pide más procesamiento. Ideal para 4K.</td></tr><tr><td>VP9</td><td>De Google, muy eficiente, usado en YouTube.</td></tr><tr><td>AV1</td><td>El futuro: más eficiente que H.265 y de código abierto.</td></tr></table><h3>Perfiles y frames de H.264 (para profundizar)</h3><p>H.264 divide el video en tres tipos de <b>frames</b>: <b>I</b> (imagen completa, el fotograma base), <b>P</b> (guarda solo los cambios respecto al frame anterior) y <b>B</b> (se construye a partir de frames anteriores y posteriores, la compresión más eficiente). También define <b>perfiles</b> según el uso: <b>Baseline</b> (solo I/P, bajo procesamiento — videollamadas, equipos antiguos), <b>Main</b> (usa también B, más común en TV digital y streaming online) y <b>High</b> (usa I/P/B, mayor calidad para HD/4K, exige más CPU).</p><h3>Bitrate: la 'velocidad del agua'</h3><p>Cantidad de datos por segundo. Bitrate alto = mejor calidad pero exige mejor conexión. Referencias: 720p ≈ 2.500–4.000 kbps; 1080p ≈ 4.500–9.000 kbps (el roadmap técnico usa 3.000–6.000 kbps para 1080p@30fps). Audio óptimo: <b>128 kbps en AAC</b>.</p><div class=\"callout tip\"><span class=\"ct\">Analogía para clientes</span>Si el video se ve pixelado, muchas veces el bitrate está muy bajo o la conexión no lo soporta: es como una manguera muy delgada para una pileta grande.</div><h3>Transcodificación</h3><p>Convertir un video a múltiples formatos y calidades a la vez (ej. 1080p, 720p, 480p, 360p). El reproductor elige la mejor versión según la conexión: esto es <b>ABR (Adaptive Bitrate)</b>. Ojo con el matiz técnico: <i>codificar</i> es de crudo a comprimido; <i>transcodificar</i> es de un comprimido a otro (ej. de un RTMP entrante a varias resoluciones HLS).</p><h3>HLS (HTTP Live Streaming)</h3><p>Protocolo adaptativo de Apple, el más usado. Divide el stream en fragmentos (2–10 s) referenciados por un archivo de índice o <b>manifiesto .m3u8</b> (texto plano con las rutas de video y audio). Gracias al ABR, el reproductor cambia de calidad según el ancho de banda.</p><div class=\"callout key\"><span class=\"ct\">Dato clave</span>El .m3u8 es el corazón de HLS. Cuando un cliente dice 'el video no carga', muchas veces el problema es que ese archivo no es accesible o tiene un error. Aprenderás a leerlo en el Día 14.</div><h3>SRT (Secure Reliable Transport)</h3><p>Protocolo para transmisión en vivo de larga distancia con baja latencia. Si HLS es el 'correo regular', SRT es la 'mensajería express con confirmación de entrega'. Ideal cuando el cliente envía señal desde una ubicación con conexión inestable (estadio, cancha): se recupera de pérdidas de paquetes sin caerse.</p><table><tr><th>Protocolo</th><th>Uso principal</th></tr><tr><td>HLS</td><td>Distribución al público final (muchos usuarios).</td></tr><tr><td>SRT</td><td>Contribución: enviar la señal del encoder al servidor.</td></tr></table><h3>RTMP y RTMPS</h3><p>RTMP es un protocolo de baja latencia sobre TCP, muy usado en la primera generación de streaming en vivo (encoders tipo OBS lo usan para enviar la señal al servidor). No soporta bitrate adaptativo y hoy tiene limitaciones de compatibilidad con dispositivos modernos. <b>RTMPS</b> es la misma tecnología con cifrado SSL/TLS: se prefiere cuando el cliente requiere una conexión segura.</p><h3>DASH y CMAF</h3><p><b>MPEG-DASH</b> es el protocolo adaptativo equivalente a HLS pero de estándar abierto (genera archivos .mp4 en vez de .ts). <b>CMAF</b> es un contenedor que unifica HLS y MPEG-DASH bajo un mismo formato de segmento, reduciendo la latencia (de ~30-45 s a 2-4 s) y evitando empaquetar el contenido dos veces para cada protocolo.</p>"
     },
     {
       "id": "b2",
@@ -236,6 +236,66 @@
         ],
         "objetivo": "Manifiesto HLS",
         "explicacion": "HLS divide el stream en segmentos cortos, generalmente de 2 a 10 segundos."
+      },
+      {
+        "enunciado": "¿Cuál es la diferencia entre los frames I, P y B en H.264?",
+        "tipo": "single",
+        "opciones": [
+          "I es el fotograma completo/base; P guarda cambios respecto al anterior; B se construye con frames anteriores y posteriores",
+          "Son tres nombres distintos para el mismo tipo de frame",
+          "I es para audio, P y B son solo para video",
+          "Solo existen en H.265, no en H.264"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Perfiles y frames H.264",
+        "explicacion": "I = fotograma base completo. P = guarda cambios respecto al frame anterior. B = se construye con frames anteriores y posteriores, la compresión más eficiente."
+      },
+      {
+        "enunciado": "¿Qué perfil de H.264 se usa típicamente para videollamadas o equipos antiguos, con bajo procesamiento?",
+        "tipo": "single",
+        "opciones": [
+          "Baseline",
+          "Main",
+          "High",
+          "Ninguno, todos los perfiles son iguales"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "Perfiles y frames H.264",
+        "explicacion": "Baseline usa solo frames I/P y bajo procesamiento; Main agrega frames B (TV digital/streaming); High usa I/P/B para HD/4K."
+      },
+      {
+        "enunciado": "¿Qué es CMAF?",
+        "tipo": "single",
+        "opciones": [
+          "Un contenedor que unifica HLS y MPEG-DASH bajo un mismo formato de segmento, reduciendo la latencia",
+          "Un códec de audio",
+          "Un tipo de encoder físico",
+          "Una alarma de monitoreo de Boro"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "DASH y CMAF",
+        "explicacion": "CMAF unifica HLS y MPEG-DASH en un mismo formato de segmento, bajando la latencia típica de ~30-45 s a 2-4 s."
+      },
+      {
+        "enunciado": "¿Cuál es la diferencia entre RTMP y RTMPS?",
+        "tipo": "single",
+        "opciones": [
+          "RTMPS agrega cifrado SSL/TLS sobre RTMP",
+          "RTMPS es una versión más antigua y sin soporte",
+          "RTMP soporta bitrate adaptativo y RTMPS no",
+          "No hay ninguna diferencia entre ambos"
+        ],
+        "correctas": [
+          0
+        ],
+        "objetivo": "RTMP y RTMPS",
+        "explicacion": "RTMPS es RTMP con cifrado SSL/TLS; se prefiere cuando el cliente necesita una conexión segura."
       }
     ]
   }

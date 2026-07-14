@@ -18,7 +18,7 @@
       "titulo": "Deja listas tus herramientas de trabajo",
       "duracion": "80 min",
       "requiereEvidencia": true,
-      "html": "<p>Con apoyo de tu supervisor, configura y explora tu entorno:</p><ol><li>Entra a <b>Slack</b>, preséntate en el canal del equipo e identifica los canales de soporte (incluidos los de alertas de monitoreo que veremos en el Día 14).</li><li>Accede a la consola de <b>Intercom</b> y familiarízate con la bandeja de conversaciones (la usaremos a fondo el Día 4).</li><li>Revisa tu <b>correo corporativo</b> y confirma que tienes acceso.</li><li>Abre <b>Google Calendar</b> y revisa cómo se agendan los eventos/tareas del equipo.</li></ol>"
+      "html": "<p>Con apoyo de tu supervisor, configura y explora tu entorno:</p><ol><li>Entra a <b>Slack</b>, preséntate en el canal del equipo e identifica los canales de soporte (incluidos los de alertas de monitoreo que veremos en el Día 14).</li><li>Accede a la consola de <b>Intercom</b> y familiarízate con la bandeja de conversaciones (la usaremos a fondo el Día 4).</li><li>Revisa tu <b>correo corporativo</b> y confirma que tienes acceso.</li><li>Abre <b>Google Calendar</b> y revisa cómo se agendan los eventos/tareas del equipo.</li><li>Configura tu <b>foto de perfil</b> en Slack, Gmail e Intercom.</li></ol>"
     },
     {
       "id": "b3",

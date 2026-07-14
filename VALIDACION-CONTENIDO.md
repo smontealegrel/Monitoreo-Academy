@@ -24,6 +24,7 @@ Marca cada punto y, si algo está mal, escribe la corrección al lado. Yo ajusto
 - [ ] Latencia HLS estándar: **10–30 s**
 - [ ] TTL de caché CDN de ejemplo: **5–60 min** / se resuelve con purge
 - [ ] Ingest en vivo por **RTMP o SRT**
+- [ ] Componentes de software de la Platform — descripciones de **Platform_App, Embed, Tracker, Webchannel** son una aproximación mía por nombre, no confirmadas *(agregado 2026-07-14, vienen de la hoja "Entrenamiento Soporte")*
 
 ## Día 4 — Soporte e Intercom  ⚠️ (SLAs internos, revisar con cuidado)
 - [ ] Prioridades y tiempos: **P1 <15 min · P2 <2 h · P3 <24 h · P4 <48 h**
@@ -32,6 +33,7 @@ Marca cada punto y, si algo está mal, escribe la corrección al lado. Yo ajusto
 - [ ] Valores de "Tipo de ticket": Consulta Cliente / Solucionado primer nivel / Problema Lado Cliente / Escalamiento Mediastream / Monitoreo / Reportado Por Soporte
 - [ ] Nombres de clientes usados como ejemplo (Caracol, Megamedia, TVN, América TV, Grupo Fórmula): ¿ok usarlos?
 - [ ] Regla de HOLD < 5 minutos (¿existe?)
+- [ ] Base de conocimiento del equipo: ¿dónde vive (Notion/Confluence/Drive/otro) y cómo se actualiza? *(agregado 2026-07-14, viene de la hoja "Entrenamiento Soporte")*
 
 ## Día 5 — Encoders y conectividad
 - [ ] Elemental **Live** = vivo · Elemental **Server** = transcodificación VOD *(estándar AWS)*

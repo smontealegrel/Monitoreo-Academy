@@ -18,7 +18,7 @@
       "titulo": "Crear un evento en vivo y un clip",
       "duracion": "90 min",
       "requiereEvidencia": true,
-      "html": "<ol><li>Crea un evento en vivo de prueba en sandbox con Cloud Transcoding en 3 calidades.</li><li>Usa OBS en tu equipo como encoder y envía la señal a la URL de ingest.</li><li>Verifica que el evento pase a estado 'Live' en la Platform.</li><li>Usa Live Editor para crear un clip de 30 segundos.</li><li>Verifica que el clip aparece en el módulo Media.</li></ol>"
+      "html": "<ol><li>Crea un evento en vivo de prueba en sandbox con Cloud Transcoding en 3 calidades.</li><li>Usa OBS en tu equipo como encoder y envía la señal a la URL de ingest.</li><li>Verifica que el evento pase a estado 'Live' en la Platform.</li><li>Usa Live Editor para crear un clip de 30 segundos.</li><li>Verifica que el clip aparece en el módulo Media.</li><li>Repite el ejercicio pero esta vez SIN Cloud Transcoding: envía la señal ya en la calidad final (sin generar múltiples calidades) y compara la diferencia con el evento anterior.</li></ol>"
     },
     {
       "id": "b3",

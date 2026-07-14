@@ -29,7 +29,7 @@ y no borre datos de navegación. Como respaldo, en "Mi progreso" pueden **Export
 
 1. Escribe su **nombre** al entrar (se guarda en ese equipo).
 2. Ve la **ruta de 15 días**. Solo el Día 1 está disponible al inicio.
-3. Cada día tiene una **jornada de 7 horas** con bloques:
+3. Cada día tiene una **jornada de 8 horas** con bloques:
    - 📘 Teoría (en la plataforma)
    - 🛠️ Práctica en sandbox
    - 👀 Shadowing
