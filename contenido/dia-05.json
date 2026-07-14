@@ -180,21 +180,6 @@
         "explicacion": "Profile/Preset = plantilla reutilizable de configuración (códec, bitrate, resolución)."
       },
       {
-        "enunciado": "OpenVPN normalmente requiere:",
-        "tipo": "single",
-        "opciones": [
-          "Un archivo de configuración .ovpn que provee el cliente",
-          "Instalar un encoder de hardware",
-          "Un manifiesto .m3u8",
-          "Una cuenta de Google Ad Manager"
-        ],
-        "correctas": [
-          0
-        ],
-        "objetivo": "Conexión remota",
-        "explicacion": "OpenVPN usa un archivo .ovpn más credenciales que provee el cliente."
-      },
-      {
         "enunciado": "Un cliente reporta su Elemental Live 'sin señal'. ¿Qué es lo primero que pides o revisas?",
         "tipo": "single",
         "opciones": [

@@ -1314,21 +1314,6 @@ window.__MDSTRM_CONTENT = {
       "explicacion": "Profile/Preset = plantilla reutilizable de configuraci\u00f3n (c\u00f3dec, bitrate, resoluci\u00f3n)."
      },
      {
-      "enunciado": "OpenVPN normalmente requiere:",
-      "tipo": "single",
-      "opciones": [
-       "Un archivo de configuraci\u00f3n .ovpn que provee el cliente",
-       "Instalar un encoder de hardware",
-       "Un manifiesto .m3u8",
-       "Una cuenta de Google Ad Manager"
-      ],
-      "correctas": [
-       0
-      ],
-      "objetivo": "Conexi\u00f3n remota",
-      "explicacion": "OpenVPN usa un archivo .ovpn m\u00e1s credenciales que provee el cliente."
-     },
-     {
       "enunciado": "Un cliente reporta su Elemental Live 'sin se\u00f1al'. \u00bfQu\u00e9 es lo primero que pides o revisas?",
       "tipo": "single",
       "opciones": [
@@ -1604,7 +1589,7 @@ window.__MDSTRM_CONTENT = {
      "tipo": "teoria",
      "titulo": "Se\u00f1ales en vivo, DVR, Cloud Transcoding, clips y regla de zonas",
      "duracion": "75 min",
-     "html": "<p>El m\u00f3dulo <b>Live</b> es el motor de las transmisiones en tiempo real. Soporta video y audio: se crea con <i>New Live Stream</i> o <i>New Audio Stream</i> (radios: ingesta RTMP o Icecast, salidas HLS/Icecast).</p><h3>Tipos de evento</h3><table><tr><th>Tipo</th><th>Descripci\u00f3n</th></tr><tr><td>Live Event (\u00fanico)</td><td>Evento con inicio y fin. Ej: conferencia, partido.</td></tr><tr><td>Live Recurring</td><td>Se repite seg\u00fan horario. Ej: noticiero diario.</td></tr><tr><td>24/7 Linear Channel</td><td>Canal continuo (se gestiona con Fast Channels).</td></tr></table><h3>Editar una se\u00f1al</h3><ul><li><b>Quick Edit:</b> cambios r\u00e1pidos de t\u00edtulo, estado (Online/Offline), protocolo (HLS por defecto, RTMP legacy) y skin del player.</li><li><b>Edit (avanzada):</b> Publishing Points (zonas US, CL, BR), restricciones (geobloqueo ISO 3166, referer de dominio, whitelist de IP, restricciones ASN, l\u00edmite de espectadores), imagen de error y thumbnails.</li><li><b>DVR (Timeshift):</b> permite pausar/retroceder el vivo. Grabaciones (Start Recording): m\u00e1x. <b>3 h en RTMP</b> y m\u00e1x. <b>5h 59m 59s en HLS</b> v\u00eda Cloud Transcoding.</li></ul><h3>Cloud Transcoding</h3><p>La Platform toma la se\u00f1al del encoder y la transcodifica en la nube a m\u00faltiples calidades. El cliente env\u00eda UNA se\u00f1al de alta calidad y Mediastream genera 1080p/720p/480p/360p.</p><h3>Live Editor</h3><p>Crea VOD recortando segmentos de una se\u00f1al en vivo activa. Requiere <b>DVR/retenci\u00f3n activo</b>. Modos: Live (cortes recientes) y Date Picker (pasado). Herramientas: marcador de entrada (I), de salida (O), procesar clip (C), zoom. El movimiento fino desplaza <b>12 ms por clic</b>. M\u00e1x. 6 h por clip y hasta 9 cortes por proceso.</p><div class=\"callout warn\"><span class=\"ct\">Regla de Zonas (s\u00faper cr\u00edtica)</span>Para que la l\u00ednea de tiempo cargue segmentos sin errores, la zona de publicaci\u00f3n del Live y la zona geogr\u00e1fica de la cuenta deben COINCIDIR (una cuenta de Chile usa punto de publicaci\u00f3n CL). \u00danica excepci\u00f3n: el timeline siempre funciona en zona US para flujos de Audio y se\u00f1ales con Cloud Transcoding (AWS MediaLive).</div>"
+     "html": "<p>El m\u00f3dulo <b>Live</b> es el motor de las transmisiones en tiempo real. Soporta video y audio: se crea con <i>New Live Stream</i> o <i>New Audio Stream</i> (radios: ingesta RTMP o Icecast, salidas HLS/Icecast).</p><h3>Tipos de evento</h3><table><tr><th>Tipo</th><th>Descripci\u00f3n</th></tr><tr><td>Live Event (\u00fanico)</td><td>Evento con inicio y fin. Ej: conferencia, partido.</td></tr><tr><td>Live Recurring</td><td>Se repite seg\u00fan horario. Ej: noticiero diario.</td></tr><tr><td>24/7 Linear Channel</td><td>Canal continuo (se gestiona con Fast Channels).</td></tr></table><h3>Editar una se\u00f1al</h3><ul><li><b>Quick Edit:</b> cambios r\u00e1pidos de t\u00edtulo, estado (Online/Offline) y protocolo (HLS por defecto, RTMP legacy).</li><li><b>Edit (avanzada):</b> Publishing Points (zonas US, CL, BR), restricciones (geobloqueo ISO 3166, referer de dominio, whitelist de IP, restricciones ASN, l\u00edmite de espectadores), imagen de error y thumbnails.</li><li><b>DVR (Timeshift):</b> permite pausar/retroceder el vivo. Grabaciones (Start Recording): m\u00e1x. <b>3 h en RTMP</b> y m\u00e1x. <b>5h 59m 59s en HLS</b> v\u00eda Cloud Transcoding.</li></ul><h3>Cloud Transcoding</h3><p>La Platform toma la se\u00f1al del encoder y la transcodifica en la nube a m\u00faltiples calidades. El cliente env\u00eda UNA se\u00f1al de alta calidad y Mediastream genera 1080p/720p/480p/360p.</p><h3>Live Editor</h3><p>Crea VOD recortando segmentos de una se\u00f1al en vivo activa. Requiere <b>DVR/retenci\u00f3n activo</b>. Modos: Live (cortes recientes) y Date Picker (pasado). Herramientas: marcador de entrada (I), de salida (O), procesar clip (C), zoom. El movimiento fino desplaza <b>12 ms por clic</b>. M\u00e1x. 6 h por clip y hasta 9 cortes por proceso.</p><div class=\"callout warn\"><span class=\"ct\">Regla de Zonas (s\u00faper cr\u00edtica)</span>Para que la l\u00ednea de tiempo cargue segmentos sin errores, la zona de publicaci\u00f3n del Live y la zona geogr\u00e1fica de la cuenta deben COINCIDIR (una cuenta de Chile usa punto de publicaci\u00f3n CL). \u00danica excepci\u00f3n: el timeline siempre funciona en zona US para flujos de Audio y se\u00f1ales con Cloud Transcoding (AWS MediaLive).</div>"
     },
     {
      "id": "b2",
@@ -1612,14 +1597,14 @@ window.__MDSTRM_CONTENT = {
      "titulo": "Crear un evento en vivo y un clip",
      "duracion": "90 min",
      "requiereEvidencia": true,
-     "html": "<ol><li>Crea un evento en vivo de prueba en sandbox con Cloud Transcoding en 3 calidades.</li><li>Usa OBS en tu equipo como encoder y env\u00eda la se\u00f1al a la URL de ingest.</li><li>Verifica que el evento pase a estado 'Live' en la Platform.</li><li>Usa Live Editor para crear un clip de 30 segundos.</li><li>Verifica que el clip aparece en el m\u00f3dulo Media.</li><li>Repite el ejercicio pero esta vez SIN Cloud Transcoding: env\u00eda la se\u00f1al ya en la calidad final (sin generar m\u00faltiples calidades) y compara la diferencia con el evento anterior.</li></ol>"
+     "html": "<ol><li>Crea un evento en vivo de prueba en sandbox con Cloud Transcoding en 3 calidades.</li><li>Usa OBS en tu equipo como encoder y env\u00eda la se\u00f1al a la URL de ingest.</li><li>Verifica que el evento pase a estado 'Online' en la Platform.</li><li>Usa Live Editor para crear un clip de 30 segundos.</li><li>Verifica que el clip aparece en el m\u00f3dulo Media.</li><li>Repite el ejercicio pero esta vez SIN Cloud Transcoding: env\u00eda la se\u00f1al ya en la calidad final (sin generar m\u00faltiples calidades) y compara la diferencia con el evento anterior.</li></ol>"
     },
     {
      "id": "b3",
      "tipo": "shadowing",
      "titulo": "Caso: 'mi encoder env\u00eda pero no se ve nada'",
      "duracion": "45 min",
-     "html": "<ol><li>\u00bfEl evento est\u00e1 en 'Live' o sigue en 'Scheduled'?</li><li>Si no est\u00e1 en 'Live': revisar el trayecto encoder \u2192 Mediastream (URL de ingest, firewall, stream key).</li><li>Comparar la URL de ingest del encoder vs. la que muestra la Platform.</li><li>Si est\u00e1 en 'Live' pero no se ve: revisar la configuraci\u00f3n de publicaci\u00f3n (\u00bfplayer p\u00fablico habilitado?).</li></ol>"
+     "html": "<ol><li>\u00bfEl evento est\u00e1 'Online' o sigue 'Offline'?</li><li>Si sigue 'Offline': revisar el trayecto encoder \u2192 Mediastream (URL de ingest, firewall, stream key).</li><li>Comparar la URL de ingest del encoder vs. la que muestra la Platform.</li><li>Si est\u00e1 'Online' pero no se ve: revisar la configuraci\u00f3n de publicaci\u00f3n (\u00bfplayer p\u00fablico habilitado?).</li></ol>"
     },
     {
      "id": "b4",
@@ -1710,23 +1695,6 @@ window.__MDSTRM_CONTENT = {
       "explicacion": "El cliente manda una sola se\u00f1al y Mediastream genera 1080p/720p/480p/360p en la nube."
      },
      {
-      "enunciado": "En Quick Edit se pueden cambiar r\u00e1pidamente: (selecci\u00f3n m\u00faltiple)",
-      "tipo": "multi",
-      "opciones": [
-       "T\u00edtulo de la se\u00f1al",
-       "Estado Online/Offline",
-       "Skin del player",
-       "Las credenciales VPN del cliente"
-      ],
-      "correctas": [
-       0,
-       1,
-       2
-      ],
-      "objetivo": "Edici\u00f3n de se\u00f1ales",
-      "explicacion": "Quick Edit maneja t\u00edtulo, estado, protocolo preferido y skin. No gestiona credenciales VPN."
-     },
-     {
       "enunciado": "El movimiento fino (Move Selection) en Live Editor desplaza:",
       "tipo": "single",
       "opciones": [
@@ -1742,7 +1710,7 @@ window.__MDSTRM_CONTENT = {
       "explicacion": "El movimiento fino realiza desplazamientos de 12 ms por clic para cortes precisos."
      },
      {
-      "enunciado": "Un evento sigue en 'Scheduled' y no pasa a 'Live'. \u00bfD\u00f3nde est\u00e1 el problema?",
+      "enunciado": "Un evento sigue 'Offline' y no pasa a 'Online'. \u00bfD\u00f3nde est\u00e1 el problema?",
       "tipo": "single",
       "opciones": [
        "En el trayecto encoder \u2192 Mediastream (URL de ingest, firewall o stream key)",
@@ -1754,7 +1722,7 @@ window.__MDSTRM_CONTENT = {
        0
       ],
       "objetivo": "Diagn\u00f3stico de Live",
-      "explicacion": "Si no llega la se\u00f1al, el evento no pasa a Live: se revisa URL de ingest, firewall y stream key."
+      "explicacion": "Si no llega la se\u00f1al, el evento no pasa a Online: se revisa URL de ingest, firewall y stream key."
      },
      {
       "enunciado": "En la edici\u00f3n avanzada (Edit) de una se\u00f1al se configuran restricciones como: (selecci\u00f3n m\u00faltiple)",
@@ -1804,7 +1772,7 @@ window.__MDSTRM_CONTENT = {
       "explicacion": "La Regla de Zonas: publicaci\u00f3n y cuenta deben coincidir (salvo Audio/Cloud Transcoding, que van en US)."
      },
      {
-      "enunciado": "El evento est\u00e1 en 'Live' pero los espectadores no ven nada. \u00bfQu\u00e9 revisas?",
+      "enunciado": "El evento est\u00e1 'Online' pero los espectadores no ven nada. \u00bfQu\u00e9 revisas?",
       "tipo": "single",
       "opciones": [
        "La configuraci\u00f3n de publicaci\u00f3n (\u00bfest\u00e1 habilitado el player p\u00fablico?)",

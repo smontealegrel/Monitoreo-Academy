@@ -10,7 +10,7 @@
       "tipo": "teoria",
       "titulo": "Señales en vivo, DVR, Cloud Transcoding, clips y regla de zonas",
       "duracion": "75 min",
-      "html": "<p>El módulo <b>Live</b> es el motor de las transmisiones en tiempo real. Soporta video y audio: se crea con <i>New Live Stream</i> o <i>New Audio Stream</i> (radios: ingesta RTMP o Icecast, salidas HLS/Icecast).</p><h3>Tipos de evento</h3><table><tr><th>Tipo</th><th>Descripción</th></tr><tr><td>Live Event (único)</td><td>Evento con inicio y fin. Ej: conferencia, partido.</td></tr><tr><td>Live Recurring</td><td>Se repite según horario. Ej: noticiero diario.</td></tr><tr><td>24/7 Linear Channel</td><td>Canal continuo (se gestiona con Fast Channels).</td></tr></table><h3>Editar una señal</h3><ul><li><b>Quick Edit:</b> cambios rápidos de título, estado (Online/Offline), protocolo (HLS por defecto, RTMP legacy) y skin del player.</li><li><b>Edit (avanzada):</b> Publishing Points (zonas US, CL, BR), restricciones (geobloqueo ISO 3166, referer de dominio, whitelist de IP, restricciones ASN, límite de espectadores), imagen de error y thumbnails.</li><li><b>DVR (Timeshift):</b> permite pausar/retroceder el vivo. Grabaciones (Start Recording): máx. <b>3 h en RTMP</b> y máx. <b>5h 59m 59s en HLS</b> vía Cloud Transcoding.</li></ul><h3>Cloud Transcoding</h3><p>La Platform toma la señal del encoder y la transcodifica en la nube a múltiples calidades. El cliente envía UNA señal de alta calidad y Mediastream genera 1080p/720p/480p/360p.</p><h3>Live Editor</h3><p>Crea VOD recortando segmentos de una señal en vivo activa. Requiere <b>DVR/retención activo</b>. Modos: Live (cortes recientes) y Date Picker (pasado). Herramientas: marcador de entrada (I), de salida (O), procesar clip (C), zoom. El movimiento fino desplaza <b>12 ms por clic</b>. Máx. 6 h por clip y hasta 9 cortes por proceso.</p><div class=\"callout warn\"><span class=\"ct\">Regla de Zonas (súper crítica)</span>Para que la línea de tiempo cargue segmentos sin errores, la zona de publicación del Live y la zona geográfica de la cuenta deben COINCIDIR (una cuenta de Chile usa punto de publicación CL). Única excepción: el timeline siempre funciona en zona US para flujos de Audio y señales con Cloud Transcoding (AWS MediaLive).</div>"
+      "html": "<p>El módulo <b>Live</b> es el motor de las transmisiones en tiempo real. Soporta video y audio: se crea con <i>New Live Stream</i> o <i>New Audio Stream</i> (radios: ingesta RTMP o Icecast, salidas HLS/Icecast).</p><h3>Tipos de evento</h3><table><tr><th>Tipo</th><th>Descripción</th></tr><tr><td>Live Event (único)</td><td>Evento con inicio y fin. Ej: conferencia, partido.</td></tr><tr><td>Live Recurring</td><td>Se repite según horario. Ej: noticiero diario.</td></tr><tr><td>24/7 Linear Channel</td><td>Canal continuo (se gestiona con Fast Channels).</td></tr></table><h3>Editar una señal</h3><ul><li><b>Quick Edit:</b> cambios rápidos de título, estado (Online/Offline) y protocolo (HLS por defecto, RTMP legacy).</li><li><b>Edit (avanzada):</b> Publishing Points (zonas US, CL, BR), restricciones (geobloqueo ISO 3166, referer de dominio, whitelist de IP, restricciones ASN, límite de espectadores), imagen de error y thumbnails.</li><li><b>DVR (Timeshift):</b> permite pausar/retroceder el vivo. Grabaciones (Start Recording): máx. <b>3 h en RTMP</b> y máx. <b>5h 59m 59s en HLS</b> vía Cloud Transcoding.</li></ul><h3>Cloud Transcoding</h3><p>La Platform toma la señal del encoder y la transcodifica en la nube a múltiples calidades. El cliente envía UNA señal de alta calidad y Mediastream genera 1080p/720p/480p/360p.</p><h3>Live Editor</h3><p>Crea VOD recortando segmentos de una señal en vivo activa. Requiere <b>DVR/retención activo</b>. Modos: Live (cortes recientes) y Date Picker (pasado). Herramientas: marcador de entrada (I), de salida (O), procesar clip (C), zoom. El movimiento fino desplaza <b>12 ms por clic</b>. Máx. 6 h por clip y hasta 9 cortes por proceso.</p><div class=\"callout warn\"><span class=\"ct\">Regla de Zonas (súper crítica)</span>Para que la línea de tiempo cargue segmentos sin errores, la zona de publicación del Live y la zona geográfica de la cuenta deben COINCIDIR (una cuenta de Chile usa punto de publicación CL). Única excepción: el timeline siempre funciona en zona US para flujos de Audio y señales con Cloud Transcoding (AWS MediaLive).</div>"
     },
     {
       "id": "b2",
@@ -18,14 +18,14 @@
       "titulo": "Crear un evento en vivo y un clip",
       "duracion": "90 min",
       "requiereEvidencia": true,
-      "html": "<ol><li>Crea un evento en vivo de prueba en sandbox con Cloud Transcoding en 3 calidades.</li><li>Usa OBS en tu equipo como encoder y envía la señal a la URL de ingest.</li><li>Verifica que el evento pase a estado 'Live' en la Platform.</li><li>Usa Live Editor para crear un clip de 30 segundos.</li><li>Verifica que el clip aparece en el módulo Media.</li><li>Repite el ejercicio pero esta vez SIN Cloud Transcoding: envía la señal ya en la calidad final (sin generar múltiples calidades) y compara la diferencia con el evento anterior.</li></ol>"
+      "html": "<ol><li>Crea un evento en vivo de prueba en sandbox con Cloud Transcoding en 3 calidades.</li><li>Usa OBS en tu equipo como encoder y envía la señal a la URL de ingest.</li><li>Verifica que el evento pase a estado 'Online' en la Platform.</li><li>Usa Live Editor para crear un clip de 30 segundos.</li><li>Verifica que el clip aparece en el módulo Media.</li><li>Repite el ejercicio pero esta vez SIN Cloud Transcoding: envía la señal ya en la calidad final (sin generar múltiples calidades) y compara la diferencia con el evento anterior.</li></ol>"
     },
     {
       "id": "b3",
       "tipo": "shadowing",
       "titulo": "Caso: 'mi encoder envía pero no se ve nada'",
       "duracion": "45 min",
-      "html": "<ol><li>¿El evento está en 'Live' o sigue en 'Scheduled'?</li><li>Si no está en 'Live': revisar el trayecto encoder → Mediastream (URL de ingest, firewall, stream key).</li><li>Comparar la URL de ingest del encoder vs. la que muestra la Platform.</li><li>Si está en 'Live' pero no se ve: revisar la configuración de publicación (¿player público habilitado?).</li></ol>"
+      "html": "<ol><li>¿El evento está 'Online' o sigue 'Offline'?</li><li>Si sigue 'Offline': revisar el trayecto encoder → Mediastream (URL de ingest, firewall, stream key).</li><li>Comparar la URL de ingest del encoder vs. la que muestra la Platform.</li><li>Si está 'Online' pero no se ve: revisar la configuración de publicación (¿player público habilitado?).</li></ol>"
     },
     {
       "id": "b4",
@@ -116,23 +116,6 @@
         "explicacion": "El cliente manda una sola señal y Mediastream genera 1080p/720p/480p/360p en la nube."
       },
       {
-        "enunciado": "En Quick Edit se pueden cambiar rápidamente: (selección múltiple)",
-        "tipo": "multi",
-        "opciones": [
-          "Título de la señal",
-          "Estado Online/Offline",
-          "Skin del player",
-          "Las credenciales VPN del cliente"
-        ],
-        "correctas": [
-          0,
-          1,
-          2
-        ],
-        "objetivo": "Edición de señales",
-        "explicacion": "Quick Edit maneja título, estado, protocolo preferido y skin. No gestiona credenciales VPN."
-      },
-      {
         "enunciado": "El movimiento fino (Move Selection) en Live Editor desplaza:",
         "tipo": "single",
         "opciones": [
@@ -148,7 +131,7 @@
         "explicacion": "El movimiento fino realiza desplazamientos de 12 ms por clic para cortes precisos."
       },
       {
-        "enunciado": "Un evento sigue en 'Scheduled' y no pasa a 'Live'. ¿Dónde está el problema?",
+        "enunciado": "Un evento sigue 'Offline' y no pasa a 'Online'. ¿Dónde está el problema?",
         "tipo": "single",
         "opciones": [
           "En el trayecto encoder → Mediastream (URL de ingest, firewall o stream key)",
@@ -160,7 +143,7 @@
           0
         ],
         "objetivo": "Diagnóstico de Live",
-        "explicacion": "Si no llega la señal, el evento no pasa a Live: se revisa URL de ingest, firewall y stream key."
+        "explicacion": "Si no llega la señal, el evento no pasa a Online: se revisa URL de ingest, firewall y stream key."
       },
       {
         "enunciado": "En la edición avanzada (Edit) de una señal se configuran restricciones como: (selección múltiple)",
@@ -210,7 +193,7 @@
         "explicacion": "La Regla de Zonas: publicación y cuenta deben coincidir (salvo Audio/Cloud Transcoding, que van en US)."
       },
       {
-        "enunciado": "El evento está en 'Live' pero los espectadores no ven nada. ¿Qué revisas?",
+        "enunciado": "El evento está 'Online' pero los espectadores no ven nada. ¿Qué revisas?",
         "tipo": "single",
         "opciones": [
           "La configuración de publicación (¿está habilitado el player público?)",
